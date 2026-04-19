@@ -3,123 +3,103 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Skydocket | The Weather Verdict for Families</title>
+  <title>Skydocket | The Household Command Center</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #050b14;
-      --primary: #2563eb;
-      --accent: #22c55e;
-      --text: #ffffff;
-      --muted: #94a3b8;
-      --card: #0f172a;
-      --border: rgba(255,255,255,0.1);
+      --bg: #030712;
+      --card: #111827;
+      --primary: #3b82f6;
+      --accent: #10b981;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: rgba(255,255,255,0.08);
     }
 
-    body {
-      margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.5;
+    body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* Navigation */
+    nav { height: 80px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
+    .logo { font-weight: 800; font-size: 24px; letter-spacing: -1px; display: flex; align-items: center; gap: 8px; }
+    .logo-icon { width: 32px; height: 32px; background: var(--primary); border-radius: 8px; }
+
+    /* Hero Section */
+    .hero { padding: 100px 0 60px; text-align: center; }
+    h1 { font-size: clamp(48px, 8vw, 84px); font-weight: 800; line-height: 0.95; letter-spacing: -0.06em; margin-bottom: 24px; }
+    .hero p { font-size: 20px; color: var(--muted); max-width: 650px; margin: 0 auto 48px; }
+
+    /* Data Capture Box */
+    .lead-box {
+      background: var(--card); border: 1px solid var(--border); padding: 10px; border-radius: 20px;
+      display: flex; max-width: 550px; margin: 0 auto; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+    }
+    .lead-box input { flex: 1; background: transparent; border: 0; color: white; padding: 15px 20px; font-size: 18px; outline: none; }
+    .btn { background: var(--primary); color: white; border: 0; padding: 15px 30px; border-radius: 14px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); }
+
+    /* Value Tiers */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 80px 0; }
+    .card { background: var(--card); border: 1px solid var(--border); padding: 40px; border-radius: 24px; transition: 0.3s; }
+    .card:hover { border-color: var(--primary); }
+    .card h3 { font-size: 24px; margin-bottom: 16px; }
+    .card p { color: var(--muted); line-height: 1.6; }
+
+    /* The "Partner" Alert Component */
+    .alert-preview {
+      background: rgba(16, 185, 129, 0.1); border: 1px solid var(--accent); padding: 24px; border-radius: 20px;
+      max-width: 600px; margin: 40px auto; text-align: left;
     }
 
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-
-    /* Header */
-    header { padding: 20px 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-weight: 800; font-size: 24px; color: var(--primary); text-decoration: none; }
-
-    /* Hero: The Shark Hook */
-    .hero { padding: 80px 0; text-align: center; }
-    h1 { font-size: clamp(40px, 8vw, 72px); line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.04em; }
-    .hero p { font-size: 20px; color: var(--muted); max-width: 700px; margin: 0 auto 40px; }
-
-    /* The "Shark" Lead Capture */
-    .zip-capture {
-      background: var(--card); padding: 8px; border-radius: 16px; display: flex; max-width: 500px; margin: 0 auto; border: 1px solid var(--border);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
-    .zip-capture input {
-      flex: 1; background: transparent; border: 0; color: white; padding: 15px; font-size: 18px; outline: none;
-    }
-    .btn-main {
-      background: var(--primary); color: white; border: 0; padding: 15px 30px; border-radius: 12px; font-weight: 700; cursor: pointer;
-    }
-
-    /* Grid for "Business" Features */
-    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 80px 0; }
-    .f-card { background: var(--card); padding: 30px; border-radius: 20px; border: 1px solid var(--border); }
-    .f-card h3 { margin-top: 0; font-size: 22px; }
-    .f-card p { color: var(--muted); }
-
-    /* The "Sync" Feature (The Moat) */
-    .sync-section {
-      background: linear-gradient(90deg, #1e3a8a 0%, #050b14 100%);
-      padding: 60px; border-radius: 30px; margin: 60px 0; border: 1px solid var(--primary);
-    }
-
-    /* Stats for Credibility */
-    .stats { display: flex; justify-content: space-around; padding: 40px 0; border-top: 1px solid var(--border); }
-    .stat-item b { display: block; font-size: 32px; color: var(--accent); }
-    .stat-item span { color: var(--muted); text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
-
-    @media (max-width: 600px) {
-      .zip-capture { flex-direction: column; }
-      .btn-main { width: 100%; margin-top: 10px; }
-    }
+    /* Footer */
+    footer { padding: 60px 0; border-top: 1px solid var(--border); text-align: center; color: var(--muted); }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <header>
-    <a href="#" class="logo">SKYDOCKET</a>
-    <a href="#pricing" style="color: white; text-decoration: none; font-weight: 600;">Pricing</a>
-  </header>
+  <nav>
+    <div class="logo"><div class="logo-icon"></div> SKYDOCKET</div>
+    <div style="font-weight: 600; font-size: 14px; color: var(--accent);">● LIVE IN INDIANAPOLIS</div>
+  </nav>
 
   <section class="hero">
-    <h1>Weather data is useless.<br><span style="color: var(--primary);">You need a Verdict.</span></h1>
-    <p>Skydocket tells Indy parents exactly what to do. No percentages. No radar-watching. Just the answer.</p>
+    <h1>Don't just check the weather.<br><span style="color: var(--primary);">Get the Verdict.</span></h1>
+    <p>The only tool that tells Indy parents if the soccer field is too muddy, the playground is too hot, or if it's a "Hoodie vs. Jacket" morning.</p>
     
-    <div class="zip-capture">
-      <input type="text" placeholder="Enter Indy Zip Code (e.g. 46241)">
-      <button class="btn-main">Get Today's Verdict</button>
+    <div class="lead-box">
+      <input type="text" placeholder="Enter Your Indy Zip Code">
+      <button class="btn">Get Early Access</button>
     </div>
-    <small style="display: block; margin-top: 15px; color: var(--muted);">Join 450+ Indianapolis households already using Skydocket.</small>
   </section>
 
-  <div class="stats">
-    <div class="stat-item"><b>15min</b><span>Saved Per Morning</span></div>
-    <div class="stat-item"><b>92%</b><span>Accuracy Rate</span></div>
-    <div class="stat-item"><b>0</b><span>Ruined Saturdays</span></div>
+  <div class="alert-preview">
+    <div style="font-weight: 800; font-size: 12px; text-transform: uppercase; margin-bottom: 10px; color: var(--accent);">Tomorrow's Early Verdict</div>
+    <div style="font-size: 22px; font-weight: 700; margin-bottom: 8px;">❌ Soccer Practice: CANCELED</div>
+    <p style="margin: 0; opacity: 0.8;">Saturation levels at Grand Park are too high. Expect standing water. <br><strong>Plan B:</strong> $5 off at Sky Zone Indy (Partner Offer).</p>
   </div>
 
-  <section class="feature-grid">
-    <div class="f-card">
-      <div style="font-size: 30px; margin-bottom: 15px;">📱</div>
-      <h3>Automated Spouse Sync</h3>
-      <p>Stop the "Should we go?" texts. Skydocket sends the morning verdict to you and your partner simultaneously via SMS.</p>
+  <section class="grid">
+    <div class="card">
+      <h3>Family Sync</h3>
+      <p>Automatically pushes the 7:00 AM Verdict to your spouse, nanny, or co-parent. One source of truth for the whole village.</p>
     </div>
-    <div class="f-card">
-      <div style="font-size: 30px; margin-bottom: 15px;">⚽</div>
-      <h3>Grand Park Precision</h3>
-      <p>Custom alerts for major local sports hubs. We monitor the wind chill and ground moisture so you know which cleats to pack.</p>
+    <div class="card" style="border-color: var(--primary);">
+      <h3>Field Intelligence</h3>
+      <p>We monitor specific Indy parks (Eagle Creek, Broad Ripple, Holliday Park) for ground moisture and playground equipment heat.</p>
     </div>
-    <div class="f-card">
-      <div style="font-size: 30px; margin-bottom: 15px;">🧥</div>
-      <h3>The Outfit Rule</h3>
-      <p>Eliminate the coat argument. Skydocket sets the "Household Standard" for what to wear based on real-feel temps.</p>
+    <div class="card">
+      <h3>The Wardrobe Rule</h3>
+      <p>Stop the 8:00 AM coat debate. Skydocket defines the outfit for the day based on "Real Feel" metrics and activity levels.</p>
     </div>
   </section>
 
-  <section class="sync-section">
-    <div style="max-width: 600px;">
-      <h2 style="font-size: 36px; margin-bottom: 20px;">Built for the "Command Center" Parent.</h2>
-      <p style="font-size: 18px; opacity: 0.9; margin-bottom: 30px;">Manage multiple locations (School, Home, Soccer Field) from one dashboard. Set custom rules for rain alerts and UV protection.</p>
-      <button class="btn-main" style="background: white; color: var(--primary);">Secure Early Access</button>
-    </div>
-  </section>
-
-  <footer style="padding: 40px 0; text-align: center; color: var(--muted); border-top: 1px solid var(--border);">
+  <footer>
     <p>&copy; 2026 Skydocket. Precision for Indianapolis Households.</p>
+    <div style="margin-top: 20px; font-size: 12px; opacity: 0.5;">
+      TRADING RAW DATA FOR FAMILY PEACE.
+    </div>
   </footer>
 </div>
 
