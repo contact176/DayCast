@@ -3,12 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Skydocket — Bad weather changes revenue.</title>
-  <meta name="description" content="Skydocket tells operators what weather changes mean for schedules, jobs, routes, and revenue before it costs them." />
+  <title>Skydocket — Weather, translated into action.</title>
+  <meta
+    name="description"
+    content="Skydocket helps parents and college students know what weather changes mean for school, commute, pets, errands, and daily plans before it causes stress."
+  />
   <meta name="theme-color" content="#07152b" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
     :root {
       --bg: #061224;
@@ -32,9 +40,1025 @@
     }
 
     * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
+    html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
     body {
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(59,130,246,0.18), transparent 32%),
+        radial-gradient(circle at top right, rgba(34,211,238,0.08), transparent 24%),
+        linear-gradient(180deg, #07152b 0%, #061224 42%, #05101f 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: rgba(8, 23, 46, 0.72);
+      color: #cfe1fb;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.12);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(14px);
+      background: rgba(4, 13, 27, 0.58);
+      border-bottom: 1px solid rgba(125, 157, 196, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 78px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: 22px;
+    }
+
+    .brand-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #1857ff, #2a7fff);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 12px 26px rgba(37, 99, 235, 0.35);
+      font-size: 22px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      border: 0;
+      cursor: pointer;
+      border-radius: 16px;
+      padding: 14px 20px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-ghost {
+      color: #d8e6fb;
+      background: rgba(11, 27, 52, 0.55);
+      border: 1px solid rgba(119, 157, 206, 0.18);
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(180deg, var(--blue-2), var(--blue));
+      box-shadow: 0 18px 34px rgba(37, 99, 235, 0.28);
+    }
+
+    .hero {
+      padding: 68px 0 34px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 18px 0 14px;
+      font-size: clamp(42px, 7vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      max-width: 780px;
+    }
+
+    .lead {
+      margin: 0 0 28px;
+      max-width: 690px;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.65;
+    }
+
+    .lead strong { color: #e8f1ff; }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .micro-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: #bdd0eb;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .hero-card,
+    .panel,
+    .feature,
+    .metric,
+    .step,
+    .tier,
+    .quote,
+    .faq-item,
+    .cta-panel {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(13, 30, 58, 0.92), rgba(8, 22, 43, 0.92));
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      border-radius: 30px;
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -20% auto auto -5%;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(96, 165, 250, 0.2), transparent 70%);
+      pointer-events: none;
+    }
+
+    .app-shell {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(132, 171, 222, 0.12);
+      background: linear-gradient(180deg, #081426, #071221);
+    }
+
+    .app-top {
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(132, 171, 222, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .app-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+
+    .app-pill {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(11, 31, 56, 0.9);
+      color: #ddecff;
+      font-size: 14px;
+      border: 1px solid rgba(113, 154, 210, 0.14);
+    }
+
+    .app-body {
+      padding: 22px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .alert-card {
+      border-radius: 28px;
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(43, 9, 34, 0.85), rgba(29, 8, 30, 0.92));
+      border: 1px solid rgba(251, 113, 133, 0.25);
+    }
+
+    .alert-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(139, 21, 58, 0.32);
+      color: #ffb5c2;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(251, 113, 133, 0.22);
+    }
+
+    .alert-card h3 {
+      margin: 0 0 12px;
+      font-size: clamp(26px, 4vw, 38px);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .alert-card p {
+      margin: 0;
+      color: #d4dcec;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .impact-box {
+      border-radius: 20px;
+      padding: 16px;
+      background: rgba(10, 24, 46, 0.9);
+      border: 1px solid rgba(121, 158, 207, 0.14);
+    }
+
+    .impact-label {
+      color: #94aac5;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .impact-value {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .impact-note {
+      font-size: 13px;
+      color: #b9cade;
+      margin-top: 8px;
+    }
+
+    .section {
+      padding: 28px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(30px, 5vw, 46px);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+    }
+
+    .section-head p {
+      margin: 8px 0 0;
+      max-width: 700px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .metric {
+      border-radius: 22px;
+      padding: 22px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 34px;
+      letter-spacing: -0.05em;
+      margin-bottom: 8px;
+    }
+
+    .metric .metric-title {
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .feature {
+      border-radius: 24px;
+      padding: 22px;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(59, 130, 246, 0.18);
+      border: 1px solid rgba(96, 165, 250, 0.24);
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+
+    .feature h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      letter-spacing: -0.04em;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .step {
+      border-radius: 22px;
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(59, 130, 246, 0.18);
+      border: 1px solid rgba(96, 165, 250, 0.24);
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .step h3 {
+      margin: 0 0 10px;
+      font-size: 21px;
+      letter-spacing: -0.04em;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .pricing {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr 1fr;
+      gap: 16px;
+    }
+
+    .tier {
+      border-radius: 26px;
+      padding: 24px;
+      position: relative;
+    }
+
+    .tier-recommended {
+      outline: 2px solid rgba(96, 165, 250, 0.45);
+      transform: translateY(-4px);
+      background: linear-gradient(180deg, rgba(16, 37, 69, 0.98), rgba(8, 24, 46, 0.98));
+    }
+
+    .tier-tag {
+      display: inline-flex;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.16);
+      border: 1px solid rgba(96, 165, 250, 0.24);
+      color: #d7e8ff;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .tier h3 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      letter-spacing: -0.04em;
+    }
+
+    .tier p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .price {
+      font-size: 46px;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      margin-bottom: 6px;
+    }
+
+    .price small {
+      font-size: 16px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .tier ul {
+      list-style: none;
+      margin: 20px 0 24px;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+      color: #d8e6fb;
+    }
+
+    .tier li {
+      position: relative;
+      padding-left: 26px;
+      line-height: 1.5;
+    }
+
+    .tier li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    .quotes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .quote {
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    .quote p {
+      margin: 0 0 18px;
+      color: #dfebff;
+      line-height: 1.72;
+      font-size: 16px;
+    }
+
+    .quote strong { display: block; }
+    .quote span { color: var(--muted); font-size: 14px; }
+
+    .faq {
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item {
+      border-radius: 22px;
+      padding: 22px;
+    }
+
+    .faq-item h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .faq-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .cta-panel {
+      border-radius: 30px;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 20px;
+      align-items: center;
+      margin: 18px 0 70px;
+    }
+
+    .cta-panel h2 {
+      margin: 0 0 12px;
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+    }
+
+    .cta-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+      max-width: 640px;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(125, 157, 196, 0.08);
+      padding: 22px 0 34px;
+      color: #8ea6c3;
+      font-size: 14px;
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1120px) {
+      .hero-grid,
+      .cta-panel,
+      .pricing,
+      .features,
+      .steps,
+      .quotes,
+      .metrics {
+        grid-template-columns: 1fr 1fr;
+      }
+      .cta-actions { justify-content: flex-start; }
+    }
+
+    @media (max-width: 760px) {
+      .nav { min-height: 72px; }
+      .nav-links { display: none; }
+      .hero { padding-top: 42px; }
+      .hero-grid,
+      .cta-panel,
+      .pricing,
+      .features,
+      .steps,
+      .quotes,
+      .metrics,
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 44px; }
+      .lead { font-size: 17px; }
+      .brand { font-size: 20px; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 12px; }
+      .hero-card,
+      .cta-panel,
+      .feature,
+      .step,
+      .quote,
+      .tier,
+      .metric,
+      .faq-item {
+        border-radius: 22px;
+      }
+      .cta-panel { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#">
+        <div class="brand-badge">☁</div>
+        <div>
+          <div>Skydocket</div>
+          <div style="font-size:12px;color:#94aac5;font-weight:600;letter-spacing:0.02em;">
+            Weather, translated into action.
+          </div>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#problem">Problem</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-ghost">View demo</button>
+        <button class="btn btn-primary">Start free</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">
+          <span class="dot"></span>
+          Built for parents and college students
+        </div>
+
+        <h1>Bad weather does not just change plans. It changes the whole day.</h1>
+
+        <p class="lead">
+          <strong>Skydocket tells parents and college students what weather changes mean for school, commute, pets, errands, and daily plans before it causes stress.</strong>
+          No forecast guessing. No overthinking. Just what is at risk and the best next move in plain English.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary">See my first weather risk report</button>
+          <button class="btn btn-ghost">See how it works</button>
+        </div>
+
+        <div class="micro-proof">
+          <span>No card required</span>
+          <span>Cancel anytime</span>
+          <span>See your first weather impact before paying</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="app-shell">
+          <div class="app-top">
+            <div class="app-brand">
+              <div class="brand-badge" style="width:34px;height:34px;border-radius:12px;font-size:18px;">☁</div>
+              <div>
+                <div style="font-size:16px;">Skydocket</div>
+                <div style="font-size:12px;color:#92a8c7;">Today · 2:58 PM</div>
+              </div>
+            </div>
+            <div class="app-pill">56° · Live weather</div>
+          </div>
+
+          <div class="app-body">
+            <div class="alert-card">
+              <div class="alert-chip">● ACT NOW</div>
+              <h3>Good dog walk conditions end at 6:00 PM.</h3>
+              <p>Rain and wind move in after that. About 1 hour left in the safe window. Best move: head out now and push evening errands later.</p>
+            </div>
+
+            <div class="impact-grid">
+              <div class="impact-box">
+                <div class="impact-label">Today at risk</div>
+                <div class="impact-value">3 plans</div>
+                <div class="impact-note">Walk, commute, grocery run</div>
+              </div>
+              <div class="impact-box">
+                <div class="impact-label">Time protected</div>
+                <div class="impact-value">47 min</div>
+                <div class="impact-note">By leaving earlier</div>
+              </div>
+              <div class="impact-box">
+                <div class="impact-label">Best next move</div>
+                <div class="impact-value">Ready</div>
+                <div class="impact-note">One screen, clear answer</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="problem">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>The problem is not the weather. The problem is what it ruins if nobody adjusts in time.</h2>
+          <p>
+            Skydocket follows loss aversion first. It should not sell “better organization.” It should help users avoid missed class timing, stressful school pickup, bad pet windows, wasted trips, and days that fall apart because weather changed faster than the plan did.
+          </p>
+        </div>
+      </div>
+
+      <div class="metrics">
+        <div class="metric">
+          <strong>3 plans</strong>
+          <div class="metric-title">flagged before rain starts</div>
+          <span>School pickup, dog walk, and store run all need adjustment.</span>
+        </div>
+
+        <div class="metric">
+          <strong>42 min</strong>
+          <div class="metric-title">of time protected</div>
+          <span>One early decision can prevent a delayed commute and second trip.</span>
+        </div>
+
+        <div class="metric">
+          <strong>1 screen</strong>
+          <div class="metric-title">to check before leaving</div>
+          <span>No bouncing between weather, maps, and group texts.</span>
+        </div>
+
+        <div class="metric">
+          <strong>7-day</strong>
+          <div class="metric-title">planning view</div>
+          <span>Know which school, pet, and campus days need backup plans.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Built for real daily life, not generic weather browsing.</h2>
+          <p>
+            The app should feel like it was built for parents managing kids, pets, pickups, groceries, and school days, and for college students balancing class, walking, transit, work, and campus life.
+          </p>
+        </div>
+      </div>
+
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">⚠️</div>
+          <h3>See what weather will actually disrupt</h3>
+          <p>Not just “rain at 7.” Skydocket should say what that means for school drop-off, dog walks, campus walks, errands, and commute windows.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🧭</div>
+          <h3>Get the next best move in plain English</h3>
+          <p>“Leave 20 minutes earlier.” “Walk the dog now.” “Push the grocery run until after 7.” Cognitive fluency builds trust fast.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🎒</div>
+          <h3>Made for your kind of day</h3>
+          <p>Parents and students should feel the product is built for them, not for everybody. That unity makes the app feel relevant immediately.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🔔</div>
+          <h3>High-value defaults are already on</h3>
+          <p>Weather alerts, plan-risk warnings, and daily action briefs should start enabled by default. Users should not build the product from scratch.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🏠</div>
+          <h3>Personalized in minutes</h3>
+          <p>Add your ZIP code, school or campus area, pet routine, and common plan types. The faster it feels like your system, the harder it is to leave.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">📈</div>
+          <h3>Daily proof it earned its place</h3>
+          <p>Every day the app should answer one question: what needs to change today because of the weather?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Onboarding should move fast and end with proof.</h2>
+          <p>
+            Goal-gradient effect matters. Show visible progress, ask for small yeses, and end with one strong output the user remembers.
+          </p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Choose your day type</h3>
+          <p>Parent, college student, or both. Small commitment first.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Set your home or campus area</h3>
+          <p>Add your ZIP code and service radius so the app starts feeling personal immediately.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Pick what weather affects most</h3>
+          <p>School drop-off, commute, dog walks, campus walks, errands, sports, or pickup timing.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>See your live impact preview</h3>
+          <p>“Rain tomorrow at 2 PM. These 3 plans are at risk. Here is the best move.”</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Make Premium the obvious choice.</h2>
+          <p>
+            Three tiers. Starter gets people in. Premium is the clear best-value plan. Household is for shared planning. This follows clean option framing without fake urgency.
+          </p>
+        </div>
+      </div>
+
+      <div class="pricing">
+        <div class="tier">
+          <h3>Starter</h3>
+          <p>For light daily use and basic weather-risk awareness.</p>
+          <div class="price">$0<small>/mo</small></div>
+          <ul>
+            <li>Basic weather alerts</li>
+            <li>One location</li>
+            <li>Basic daily plan view</li>
+            <li>See first risk report before paying</li>
+          </ul>
+          <button class="btn btn-ghost" style="width:100%;">Start free</button>
+        </div>
+
+        <div class="tier tier-recommended">
+          <div class="tier-tag">Recommended</div>
+          <h3>Premium</h3>
+          <p>The main plan for parents and students who want weather translated into action every day.</p>
+          <div class="price">$4.99<small>/mo</small></div>
+          <ul>
+            <li>7-day weather-to-action planning</li>
+            <li>Morning action brief</li>
+            <li>Pet and commute timing alerts</li>
+            <li>Multi-plan risk detection</li>
+            <li>Best-move recommendations</li>
+            <li>Clear upgrade path without extra complexity</li>
+          </ul>
+          <button class="btn btn-primary" style="width:100%;">Choose Premium</button>
+        </div>
+
+        <div class="tier">
+          <h3>Household</h3>
+          <p>For shared planning across family members, routines, and multiple schedules.</p>
+          <div class="price">$9.99<small>/mo</small></div>
+          <ul>
+            <li>Shared household views</li>
+            <li>Multiple locations</li>
+            <li>Family planning support</li>
+            <li>Expanded alerts and coordination</li>
+          </ul>
+          <button class="btn btn-ghost" style="width:100%;">Choose Household</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Specific proof beats vague hype.</h2>
+          <p>
+            Social proof should sound like the user, not like a marketing department. The more specific the example, the stronger it feels.
+          </p>
+        </div>
+      </div>
+
+      <div class="quotes">
+        <div class="quote">
+          <p>“Used by busy parents who need to know if the walk, pickup, and errands still fit before the weather shifts.”</p>
+          <strong>Parent-focused proof</strong>
+          <span>Specific beats generic</span>
+        </div>
+
+        <div class="quote">
+          <p>“Built for students who walk campus, commute between classes, and need one simple answer about what the weather changes today.”</p>
+          <strong>Student-specific proof</strong>
+          <span>Unity principle</span>
+        </div>
+
+        <div class="quote">
+          <p>“The best first session ends with: you would have avoided one wasted trip and protected 35 minutes today.”</p>
+          <strong>Peak-end rule</strong>
+          <span>Remembered value</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Questions users will actually ask.</h2>
+          <p>Clear answers reduce friction, lower risk, and make the product easier to trust.</p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <div class="faq-item">
+          <h3>Who is Skydocket for?</h3>
+          <p>Skydocket is built for parents and college students whose plans change fast when weather changes. It helps with school, commute, pets, errands, and timing decisions.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What makes it different from a weather app?</h3>
+          <p>A weather app tells you what the sky is doing. Skydocket tells you what to do next because of it.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Why not ask for payment first?</h3>
+          <p>Because risk-reversal works better. Users should see their first weather impact report before being asked to pay.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What should the daily habit be?</h3>
+          <p>One question: what needs to change today because of the weather? If Skydocket answers that better than checking three different apps, it stays useful.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="cta-panel">
+      <div>
+        <div class="eyebrow">
+          <span class="dot"></span>
+          Start with proof, not pressure
+        </div>
+        <h2>See your first weather risk report before paying.</h2>
+        <p>
+          That is the cleanest version of risk-reversal for Skydocket. No fake countdowns. No forced commitment. Just immediate proof that the app can protect time, reduce stress, and improve decisions.
+        </p>
+      </div>
+
+      <div class="cta-actions">
+        <button class="btn btn-primary">Get my first risk report</button>
+        <button class="btn btn-ghost">View example day</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-row">
+      <div>Skydocket — Weather, translated into action.</div>
+      <div>Built for parents and college students.</div>
+    </div>
+  </footer>
+</body>
+</html>      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
         radial-gradient(circle at top left, rgba(59,130,246,0.18), transparent 32%),
         radial-gradient(circle at top right, rgba(34,211,238,0.08), transparent 24%),
