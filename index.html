@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Skydocket — Know the verdict before you load the kids up</title>
+  <title>Skydocket - Coming Soon</title>
   <meta
     name="description"
-    content="Skydocket helps parents and busy households know when weather will turn an outing into wasted effort, cranky kids, and a harder day."
+    content="Skydocket helps parents stay ahead of weather-driven chaos with simple verdicts for sports, outfits, playtime, and busy household plans."
   />
   <meta name="theme-color" content="#081427" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,25 +18,22 @@
   <style>
     :root {
       --bg: #071427;
-      --bg-2: #0b1d36;
-      --panel: rgba(10, 24, 46, 0.88);
-      --panel-2: rgba(14, 31, 58, 0.96);
-      --card: rgba(14, 33, 62, 0.92);
-      --line: rgba(121, 156, 204, 0.14);
-      --line-strong: rgba(121, 156, 204, 0.28);
-      --text: #eff6ff;
-      --muted: #9cb3cf;
+      --bg-2: #0c1d35;
+      --card: rgba(12, 28, 52, 0.9);
+      --card-2: rgba(15, 35, 64, 0.95);
+      --text: #eef5ff;
+      --muted: #9fb4cf;
+      --line: rgba(119, 156, 207, 0.16);
+      --line-strong: rgba(119, 156, 207, 0.28);
       --blue: #3b82f6;
       --blue-2: #60a5fa;
-      --cyan: #22d3ee;
       --green: #22c55e;
       --amber: #f59e0b;
       --red: #fb7185;
       --shadow: 0 22px 70px rgba(0, 0, 0, 0.35);
       --radius: 24px;
-      --max: 1180px;
+      --max: 1160px;
     }
-
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
     body {
@@ -48,25 +45,22 @@
         linear-gradient(180deg, #071427 0%, #08172d 42%, #06111f 100%);
       min-height: 100vh;
     }
-
     a { color: inherit; text-decoration: none; }
     button, input { font: inherit; }
     .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
-
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 10px;
       padding: 10px 14px;
-      border: 1px solid var(--line-strong);
       border-radius: 999px;
+      border: 1px solid var(--line-strong);
       background: rgba(8, 23, 46, 0.76);
       color: #d6e6ff;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.02em;
     }
-
     .dot {
       width: 8px;
       height: 8px;
@@ -74,16 +68,14 @@
       background: var(--green);
       box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.12);
     }
-
     header {
       position: sticky;
       top: 0;
       z-index: 20;
       background: rgba(5, 13, 26, 0.62);
       backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(125, 157, 196, 0.08);
     }
-
+      border-bottom: 1px solid rgba(125, 157, 196, 0.08);
     .nav {
       min-height: 76px;
       display: flex;
@@ -91,7 +83,6 @@
       justify-content: space-between;
       gap: 18px;
     }
-
     .brand {
       display: flex;
       align-items: center;
@@ -100,7 +91,6 @@
       letter-spacing: -0.03em;
       font-size: 22px;
     }
-
     .brand-badge {
       width: 44px;
       height: 44px;
@@ -111,14 +101,12 @@
       box-shadow: 0 12px 26px rgba(37, 99, 235, 0.35);
       font-size: 22px;
     }
-
     .brand-sub {
       font-size: 12px;
       color: #95adca;
       font-weight: 600;
       letter-spacing: 0.02em;
     }
-
     .nav-links {
       display: flex;
       gap: 22px;
@@ -126,13 +114,6 @@
       font-size: 15px;
       align-items: center;
     }
-
-    .nav-actions {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-
     .btn {
       border: 0;
       cursor: pointer;
@@ -141,65 +122,63 @@
       font-weight: 700;
       font-size: 15px;
       transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
-
     .btn:hover { transform: translateY(-1px); }
-    .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
-
     .btn-primary {
       color: white;
       background: linear-gradient(180deg, var(--blue-2), var(--blue));
       box-shadow: 0 18px 34px rgba(37, 99, 235, 0.28);
     }
-
     .btn-ghost {
       color: #d8e6fb;
       background: rgba(11, 27, 52, 0.55);
       border: 1px solid rgba(119, 157, 206, 0.18);
     }
-
-    .btn-soft {
-      color: #e8f1ff;
-      background: rgba(20, 44, 79, 0.9);
-      border: 1px solid rgba(120, 153, 202, 0.14);
-    }
-
     .hero {
-      padding: 68px 0 32px;
+      padding: 72px 0 36px;
     }
-
     .hero-grid {
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
       gap: 34px;
       align-items: center;
     }
-
     h1 {
       margin: 18px 0 14px;
-      font-size: clamp(42px, 7vw, 72px);
+      font-size: clamp(40px, 7vw, 72px);
       line-height: 0.98;
       letter-spacing: -0.06em;
       max-width: 760px;
     }
-
     .lead {
-      margin: 0 0 28px;
-      max-width: 690px;
+      margin: 0 0 24px;
+      max-width: 720px;
       color: var(--muted);
       font-size: 20px;
       line-height: 1.65;
     }
-
     .lead strong { color: var(--text); }
-
+    .hero-points {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 26px;
+      color: #d6e6ff;
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .hero-points span::before {
+      content: "• ";
+      color: var(--green);
+    }
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
       margin-bottom: 16px;
     }
-
     .risk-strip {
       display: flex;
       flex-wrap: wrap;
@@ -208,29 +187,21 @@
       font-size: 14px;
       font-weight: 700;
     }
-
     .hero-card,
-    .metric,
-    .feature,
-    .step,
+    .step-card,
     .tier,
-    .proof,
-    .faq-item,
-    .cta-panel,
-    .modal-card,
-    .flow-box {
+    .proof-card,
+    .signup-panel {
       border: 1px solid var(--line);
       background: linear-gradient(180deg, rgba(13, 30, 58, 0.92), rgba(8, 22, 43, 0.92));
       box-shadow: var(--shadow);
     }
-
     .hero-card {
       border-radius: 30px;
       padding: 18px;
-      position: relative;
       overflow: hidden;
+      position: relative;
     }
-
     .hero-card::before {
       content: "";
       position: absolute;
@@ -240,14 +211,12 @@
       background: radial-gradient(circle, rgba(96, 165, 250, 0.2), transparent 70%);
       pointer-events: none;
     }
-
     .app-shell {
       border-radius: 24px;
       overflow: hidden;
       border: 1px solid rgba(132, 171, 222, 0.12);
       background: linear-gradient(180deg, #081426, #071221);
     }
-
     .app-top {
       padding: 16px 18px;
       border-bottom: 1px solid rgba(132, 171, 222, 0.12);
@@ -256,14 +225,12 @@
       justify-content: space-between;
       gap: 12px;
     }
-
     .app-brand {
       display: flex;
       align-items: center;
       gap: 10px;
       font-weight: 700;
     }
-
     .app-pill {
       display: inline-flex;
       gap: 8px;
@@ -275,632 +242,17 @@
       font-size: 14px;
       border: 1px solid rgba(113, 154, 210, 0.14);
     }
-
     .app-body {
       padding: 22px;
       display: grid;
       gap: 16px;
     }
-
-    .alert-card {
-      border-radius: 28px;
-      padding: 24px;
-      background: linear-gradient(180deg, rgba(43, 9, 34, 0.85), rgba(29, 8, 30, 0.92));
-      border: 1px solid rgba(251, 113, 133, 0.25);
-    }
-
-    .alert-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      border-radius: 999px;
-      padding: 10px 14px;
-      background: rgba(139, 21, 58, 0.32);
-      color: #ffb5c2;
-      font-weight: 700;
-      font-size: 13px;
-      margin-bottom: 18px;
-      border: 1px solid rgba(251, 113, 133, 0.22);
-    }
-
-    .alert-card h3 {
-      margin: 0 0 12px;
-      font-size: clamp(26px, 4vw, 38px);
-      line-height: 1.08;
-      letter-spacing: -0.04em;
-    }
-
-    .alert-card p {
-      margin: 0;
-      color: #d4dcec;
-      line-height: 1.6;
-      font-size: 16px;
-    }
-
-    .impact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .impact-box {
-      border-radius: 20px;
-      padding: 16px;
-      background: rgba(10, 24, 46, 0.9);
-      border: 1px solid rgba(121, 158, 207, 0.14);
-    }
-
-    .impact-label {
-      color: #94aac5;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
-      font-weight: 700;
-    }
-
-    .impact-value {
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-    }
-
-    .impact-note {
-      font-size: 13px;
-      color: #b9cade;
-      margin-top: 8px;
-    }
-
-    .section { padding: 28px 0; }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      align-items: end;
-      margin-bottom: 22px;
-    }
-
-    .section-head h2 {
-      margin: 0;
-      font-size: clamp(30px, 5vw, 46px);
-      line-height: 1.02;
-      letter-spacing: -0.05em;
-    }
-
-    .section-head p {
-      margin: 8px 0 0;
-      max-width: 760px;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.65;
-    }
-
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-
-    .metric {
-      border-radius: 22px;
-      padding: 22px;
-    }
-
-    .metric strong {
-      display: block;
-      font-size: 34px;
-      letter-spacing: -0.05em;
-      margin-bottom: 8px;
-    }
-
-    .metric .metric-title {
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .metric span {
-      color: var(--muted);
-      line-height: 1.5;
-      font-size: 14px;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .feature {
-      border-radius: 24px;
-      padding: 22px;
-    }
-
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      background: rgba(59, 130, 246, 0.18);
-      border: 1px solid rgba(96, 165, 250, 0.24);
-      font-size: 24px;
-      margin-bottom: 18px;
-    }
-
-    .feature h3 {
-      margin: 0 0 10px;
-      font-size: 22px;
-      letter-spacing: -0.04em;
-    }
-
-    .feature p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.65;
-      font-size: 15px;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-
-    .step {
-      border-radius: 22px;
-      padding: 22px;
-    }
-
-    .step-number {
-      width: 38px;
-      height: 38px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      background: rgba(59, 130, 246, 0.18);
-      border: 1px solid rgba(96, 165, 250, 0.24);
-      font-weight: 800;
-      margin-bottom: 14px;
-    }
-
-    .step h3 {
-      margin: 0 0 10px;
-      font-size: 21px;
-      letter-spacing: -0.04em;
-    }
-
-    .step p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 15px;
-    }
-
-    .flow-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 12px;
-    }
-
-    .flow-box {
-      border-radius: 20px;
-      padding: 18px;
-    }
-
-    .flow-box strong {
-      display: block;
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #cfe1fb;
-      margin-bottom: 10px;
-    }
-
-    .flow-box h4 {
-      margin: 0 0 8px;
-      font-size: 17px;
-      letter-spacing: -0.03em;
-    }
-
-    .flow-box p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
-    }
-
-    .pricing {
-      display: grid;
-      grid-template-columns: 1fr 1.15fr 1fr;
-      gap: 16px;
-    }
-
-    .tier {
-      border-radius: 26px;
-      padding: 24px;
-      position: relative;
-    }
-
-    .tier-recommended {
-      outline: 2px solid rgba(96, 165, 250, 0.45);
-      transform: translateY(-4px);
-      background: linear-gradient(180deg, rgba(16, 37, 69, 0.98), rgba(8, 24, 46, 0.98));
-    }
-
-    .tier-tag {
-      display: inline-flex;
-      margin-bottom: 18px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(59, 130, 246, 0.16);
-      border: 1px solid rgba(96, 165, 250, 0.24);
-      color: #d7e8ff;
-      font-weight: 700;
-      font-size: 13px;
-    }
-
-    .tier h3 {
-      margin: 0 0 8px;
-      font-size: 24px;
-      letter-spacing: -0.04em;
-    }
-
-    .tier p {
-      margin: 0 0 16px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    .price {
-      font-size: 46px;
-      font-weight: 800;
-      letter-spacing: -0.05em;
-      margin-bottom: 6px;
-    }
-
-    .price small {
-      font-size: 16px;
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    .tier ul {
-      list-style: none;
-      margin: 20px 0 24px;
-      padding: 0;
-      display: grid;
-      gap: 12px;
-      color: #d8e6fb;
-    }
-
-    .tier li {
-      position: relative;
-      padding-left: 26px;
-      line-height: 1.5;
-    }
-
-    .tier li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: var(--green);
-      font-weight: 800;
-    }
-
-    .proof-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .proof {
-      border-radius: 24px;
-      padding: 24px;
-    }
-
-    .proof p {
-      margin: 0 0 18px;
-      color: #dfebff;
-      line-height: 1.7;
-      font-size: 16px;
-    }
-
-    .proof strong { display: block; }
-    .proof span { color: var(--muted); font-size: 14px; }
-
-    .faq { display: grid; gap: 14px; }
-    .faq-item {
-      border-radius: 22px;
-      padding: 22px;
-    }
-    .faq-item h3 {
-      margin: 0 0 10px;
-      font-size: 20px;
-      letter-spacing: -0.03em;
-    }
-    .faq-item p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    .cta-panel {
-      border-radius: 30px;
-      padding: 30px;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 20px;
-      align-items: center;
-      margin: 18px 0 70px;
-    }
-
-    .cta-panel h2 {
-      margin: 0 0 12px;
-      font-size: clamp(30px, 5vw, 48px);
-      line-height: 1.02;
-      letter-spacing: -0.05em;
-    }
-
-    .cta-panel p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.65;
-      max-width: 640px;
-    }
-
-    .cta-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 12px;
-    }
-
-    footer {
-      border-top: 1px solid rgba(125, 157, 196, 0.08);
-      padding: 22px 0 34px;
-      color: #8ea6c3;
-      font-size: 14px;
-    }
-
-    .footer-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    /* Modal */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(2, 9, 18, 0.72);
-      backdrop-filter: blur(8px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-      z-index: 60;
-    }
-
-    .modal-backdrop.open { display: flex; }
-
-    .modal-card {
-      width: min(760px, 100%);
-      border-radius: 28px;
-      overflow: hidden;
-    }
-
-    .modal-head {
-      padding: 18px 20px 14px;
-      border-bottom: 1px solid rgba(132, 171, 222, 0.12);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .modal-head-left h3 {
-      margin: 0 0 6px;
-      font-size: 22px;
-      letter-spacing: -0.04em;
-    }
-
-    .modal-head-left p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .close-btn {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      border: 1px solid rgba(132, 171, 222, 0.14);
-      background: rgba(13, 31, 58, 0.9);
-      color: #eff6ff;
-      cursor: pointer;
-      font-size: 20px;
-    }
-
-    .progress-wrap {
-      padding: 0 20px 18px;
-    }
-
-    .progress-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 10px;
-      font-size: 13px;
-      color: #bfd4f1;
-      font-weight: 700;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(25, 49, 82, 0.95);
-      overflow: hidden;
-      border: 1px solid rgba(120, 153, 202, 0.1);
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 14.285%;
-      background: linear-gradient(90deg, var(--cyan), var(--blue-2), var(--blue));
-      transition: width 0.24s ease;
-    }
-
-    .modal-body {
-      padding: 0 20px 22px;
-    }
-
-    .screen { display: none; }
-    .screen.active { display: block; }
-
-    .screen-title {
-      margin: 0 0 8px;
-      font-size: clamp(28px, 4vw, 40px);
-      line-height: 1.06;
-      letter-spacing: -0.05em;
-    }
-
-    .screen-copy {
-      margin: 0 0 22px;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.65;
-      max-width: 620px;
-    }
-
-    .choice-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .choice-btn,
-    .activity-box,
-    .timing-btn {
-      border-radius: 18px;
-      padding: 18px;
-      border: 1px solid rgba(120, 153, 202, 0.16);
-      background: rgba(14, 33, 62, 0.9);
-      color: var(--text);
-      cursor: pointer;
-      text-align: left;
-      transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
-    }
-
-    .choice-btn:hover,
-    .activity-box:hover,
-    .timing-btn:hover {
-      transform: translateY(-1px);
-      border-color: rgba(96, 165, 250, 0.34);
-    }
-
-    .choice-btn.selected,
-    .activity-box.selected,
-    .timing-btn.selected {
-      border-color: rgba(96, 165, 250, 0.6);
-      background: rgba(20, 44, 79, 0.96);
-      box-shadow: inset 0 0 0 1px rgba(96, 165, 250, 0.2);
-    }
-
-    .choice-btn strong,
-    .timing-btn strong { display: block; font-size: 18px; margin-bottom: 6px; }
-    .choice-btn span,
-    .timing-btn span,
-    .activity-box span { color: var(--muted); font-size: 14px; line-height: 1.45; }
-
-    .input-row {
-      display: grid;
-      gap: 12px;
-      max-width: 360px;
-    }
-
-    .input-label {
-      font-size: 14px;
-      color: #cfe1fb;
-      font-weight: 700;
-    }
-
-    .text-input {
-      width: 100%;
-      border-radius: 18px;
-      border: 1px solid rgba(120, 153, 202, 0.16);
-      background: rgba(14, 33, 62, 0.92);
-      color: var(--text);
-      padding: 16px 18px;
-      outline: none;
-      font-size: 18px;
-      letter-spacing: 0.04em;
-    }
-
-    .text-input::placeholder { color: #7f97b5; }
-
-    .activity-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .activity-box {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      min-height: 110px;
-    }
-
-    .activity-box input { display: none; }
-    .activity-box strong { font-size: 18px; }
-
-    .slider-wrap {
-      display: grid;
-      gap: 14px;
-      max-width: 540px;
-    }
-
-    .slider-card {
-      border-radius: 20px;
-      padding: 18px;
-      background: rgba(13, 31, 58, 0.86);
-      border: 1px solid rgba(120, 153, 202, 0.14);
-    }
-
-    .slider-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 12px;
-      font-weight: 700;
-    }
-
-    .range-input {
-      width: 100%;
-      accent-color: #60a5fa;
-    }
-
-    .helper {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
-    }
-
     .verdict-card {
-      border-radius: 24px;
+      border-radius: 26px;
       padding: 24px;
       background: linear-gradient(180deg, rgba(8, 36, 30, 0.92), rgba(8, 24, 38, 0.96));
       border: 1px solid rgba(34, 197, 94, 0.22);
-      margin-bottom: 14px;
     }
-
     .verdict-badge {
       display: inline-flex;
       padding: 8px 12px;
@@ -912,1137 +264,30 @@
       border: 1px solid rgba(34, 197, 94, 0.24);
       margin-bottom: 14px;
     }
-
-    .verdict-card h4 {
+    .verdict-card h3 {
       margin: 0 0 12px;
-      font-size: 30px;
+      font-size: clamp(26px, 4vw, 38px);
+      line-height: 1.08;
       letter-spacing: -0.04em;
-      line-height: 1.05;
     }
-
     .verdict-card p {
       margin: 0;
       color: #d4e8f1;
       line-height: 1.6;
       font-size: 16px;
     }
-
-    .lock-in-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-bottom: 18px;
-    }
-
-    .lock-item {
-      border-radius: 18px;
-      padding: 18px;
-      border: 1px solid rgba(120, 153, 202, 0.14);
-      background: rgba(13, 31, 58, 0.86);
-    }
-
-    .lock-item strong {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 16px;
-    }
-
-    .lock-item span {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .modal-actions {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      margin-top: 24px;
-    }
-
-    .hidden { display: none !important; }
-
-    @media (max-width: 1120px) {
-      .hero-grid,
-      .pricing,
-      .features,
-      .metrics,
-      .proof-grid,
-      .cta-panel {
-        grid-template-columns: 1fr 1fr;
-      }
-      .flow-grid { grid-template-columns: repeat(3, 1fr); }
-      .cta-actions { justify-content: flex-start; }
-    }
-
-    @media (max-width: 820px) {
-      .nav-links { display: none; }
-      .steps,
-      .choice-grid,
-      .activity-grid,
-      .lock-in-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .hero { padding-top: 42px; }
-      .hero-grid,
-      .pricing,
-      .features,
-      .metrics,
-      .proof-grid,
-      .cta-panel,
-      .flow-grid,
-      .impact-grid {
-        grid-template-columns: 1fr;
-      }
-      h1 { font-size: 44px; }
-      .lead { font-size: 17px; }
-      .brand { font-size: 20px; }
-      .section-head { display: block; }
-      .section-head p { margin-top: 12px; }
-      .hero-card,
-      .cta-panel,
-      .feature,
-      .step,
-      .proof,
-      .tier,
-      .metric,
-      .faq-item,
-      .modal-card {
-        border-radius: 22px;
-      }
-      .modal-head {
-        align-items: start;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#">
-        <div class="brand-badge">☁</div>
-        <div>
-          <div>Skydocket</div>
-          <div class="brand-sub">Weather, translated into a verdict.</div>
-        </div>
-      </a>
-
-      <nav class="nav-links">
-        <a href="#problem">Why it matters</a>
-        <a href="#features">What it does</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-
-      <div class="nav-actions">
-        <button class="btn btn-ghost open-flow">View guided flow</button>
-        <button class="btn btn-primary open-flow">Start free</button>
-      </div>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <div class="eyebrow">
-          <span class="dot"></span>
-          Built for parents and busy households
-        </div>
-
-        <h1>Know the verdict before you load the kids up.</h1>
-
-        <p class="lead">
-          <strong>Skydocket helps you avoid wasted effort, cranky kids, and last-minute plan changes by telling you what weather means for the day in plain English.</strong>
-          Not percentages. Not weather jargon. Just: park day, green light. Pool plan, bad idea. Dog walk, go now.
-        </p>
-
-        <div class="hero-actions">
-          <button class="btn btn-primary open-flow">See my first verdict</button>
-          <button class="btn btn-ghost" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">View plans</button>
-        </div>
-
-        <div class="risk-strip">
-          <span>No Credit Card Required</span>
-          <span>Cancel Anytime</span>
-          <span>First verdict before you pay</span>
-        </div>
-      </div>
-
-      <div class="hero-card">
-        <div class="app-shell">
-          <div class="app-top">
-            <div class="app-brand">
-              <div class="brand-badge" style="width:34px;height:34px;border-radius:12px;font-size:18px;">☁</div>
-              <div>
-                <div style="font-size:16px;">Skydocket</div>
-                <div style="font-size:12px;color:#92a8c7;">Household view · Today</div>
-              </div>
-            </div>
-            <div class="app-pill">2 plans at risk</div>
-          </div>
-
-          <div class="app-body">
-            <div class="alert-card">
-              <div class="alert-chip">● VERDICT READY</div>
-              <h3>Park Day: Red Light after 3:30 PM.</h3>
-              <p>Wind and rain hit before dinner. Best move: go before nap time or swap the park for an indoor stop. That saves one wasted trip and one meltdown later.</p>
-            </div>
-
-            <div class="impact-grid">
-              <div class="impact-box">
-                <div class="impact-label">Outing status</div>
-                <div class="impact-value">2 risky</div>
-                <div class="impact-note">Park and soccer</div>
-              </div>
-              <div class="impact-box">
-                <div class="impact-label">Stress avoided</div>
-                <div class="impact-value">1 bad trip</div>
-                <div class="impact-note">If you leave earlier</div>
-              </div>
-              <div class="impact-box">
-                <div class="impact-label">Best move</div>
-                <div class="impact-value">Go now</div>
-                <div class="impact-note">Before 1:45 PM</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="problem">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>The value is not better weather. The value is less mental load.</h2>
-          <p>
-            Parents do not lose time because weather exists. They lose time because weather changes the plan after bags are packed, kids are dressed, and everyone is already moving. Skydocket is built to stop wasted effort before it starts.
-          </p>
-        </div>
-      </div>
-
-      <div class="metrics">
-        <div class="metric">
-          <strong>1</strong>
-          <div class="metric-title">less wasted trip</div>
-          <span>Know when an outing is worth doing before you buckle everyone in.</span>
-        </div>
-
-        <div class="metric">
-          <strong>3</strong>
-          <div class="metric-title">daily plans checked</div>
-          <span>Park, pickup, walk, errands, sports, pool, or commute windows.</span>
-        </div>
-
-        <div class="metric">
-          <strong>1 screen</strong>
-          <div class="metric-title">simple answer</div>
-          <span>Green light, yellow watch, or red light. No weather decoding needed.</span>
-        </div>
-
-        <div class="metric">
-          <strong>7-day</strong>
-          <div class="metric-title">family planning view</div>
-          <span>See which days look smooth and which ones need a backup plan.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="features">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>Built to answer the real parent question: “Should we still do this?”</h2>
-          <p>
-            This app uses verdict language instead of weather jargon. That keeps it easy to trust, easy to use, and easy to act on fast.
-          </p>
-        </div>
-      </div>
-
-      <div class="features">
-        <div class="feature">
-          <div class="feature-icon">🟢</div>
-          <h3>Verdict language, not weather talk</h3>
-          <p>Park Day: Green Light. Soccer: Watch it. Pool: Not worth the setup. The wording is simple on purpose.</p>
-        </div>
-
-        <div class="feature">
-          <div class="feature-icon">🧠</div>
-          <h3>Less second-guessing</h3>
-          <p>Skydocket reduces mental load by turning weather into a clear plan decision before the household starts moving.</p>
-        </div>
-
-        <div class="feature">
-          <div class="feature-icon">⏰</div>
-          <h3>Best move, best timing</h3>
-          <p>It does not just say “bad later.” It says “go now,” “push to tomorrow,” or “swap this for indoor time.”</p>
-        </div>
-
-        <div class="feature">
-          <div class="feature-icon">⚙️</div>
-          <h3>High-value defaults already on</h3>
-          <p>Daily verdicts, alert timing, and outing risk checks start enabled so families get value fast without building the system themselves.</p>
-        </div>
-
-        <div class="feature">
-          <div class="feature-icon">🏡</div>
-          <h3>Feels like your household</h3>
-          <p>Add your ZIP code, favorite outing types, and kid comfort thresholds so the app quickly feels personal.</p>
-        </div>
-
-        <div class="feature">
-          <div class="feature-icon">📱</div>
-          <h3>One daily check-in</h3>
-          <p>The product should earn its place by answering one thing well every day: what should change today because of the weather?</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>7-screen guided flow designed to get a fast “yes, this helps me.”</h2>
-          <p>
-            The flow uses progress, small commitments, personalization, and one strong “aha” moment before asking for anything serious.
-          </p>
-        </div>
-      </div>
-
-      <div class="flow-grid">
-        <div class="flow-box">
-          <strong>Screen 1</strong>
-          <h4>Role Selection</h4>
-          <p>Mom, Dad, or Caregiver. Easy first click.</p>
-        </div>
-        <div class="flow-box">
-          <strong>Screen 2</strong>
-          <h4>ZIP Code</h4>
-          <p>Anchors the app to the right place right away.</p>
-        </div>
-        <div class="flow-box">
-          <strong>Screen 3</strong>
-          <h4>Activity Picker</h4>
-          <p>Soccer, park, pool, and other family plans.</p>
-        </div>
-        <div class="flow-box">
-          <strong>Screen 4</strong>
-          <h4>Sensitivity Slider</h4>
-          <p>Kid-specific comfort thresholds make it feel owned.</p>
-        </div>
-        <div class="flow-box">
-          <strong>Screen 5</strong>
-          <h4>Alert Timing</h4>
-          <p>Small commitment: when do you want the heads-up?</p>
-        </div>
-        <div class="flow-box">
-          <strong>Screen 6</strong>
-          <h4>First Verdict</h4>
-          <p>Immediate proof in plain English.</p>
-        </div>
-        <div class="flow-box">
-          <strong>Screen 7</strong>
-          <h4>Final Lock-In</h4>
-          <p>Finish setup with value already shown.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="pricing">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>Pricing designed so the middle choice feels like the right one.</h2>
-          <p>
-            Basic Parent gets people in. Power Parent is the clear best-value plan for real day-to-day use. The Village is for shared family coordination.
-          </p>
-        </div>
-      </div>
-
-      <div class="pricing">
-        <div class="tier">
-          <h3>Basic Parent</h3>
-          <p>Free access for getting simple verdicts before the day gets messy.</p>
-          <div class="price">$0<small>/mo</small></div>
-          <ul>
-            <li>Basic daily verdicts</li>
-            <li>One location</li>
-            <li>One household profile</li>
-            <li>No Credit Card Required</li>
-          </ul>
-          <button class="btn btn-ghost open-flow" style="width:100%;">Start free</button>
-        </div>
-
-        <div class="tier tier-recommended">
-          <div class="tier-tag">Targeted plan</div>
-          <h3>Power Parent</h3>
-          <p>The main plan for busy households that want fewer wasted trips and better day decisions.</p>
-          <div class="price">$4.99<small>/mo</small></div>
-          <ul>
-            <li>7-day verdict planning</li>
-            <li>Morning family brief</li>
-            <li>Custom activity verdicts</li>
-            <li>Kid comfort threshold settings</li>
-            <li>Smarter alert timing</li>
-            <li>Cancel Anytime</li>
-          </ul>
-          <button class="btn btn-primary open-flow" style="width:100%;">Choose Power Parent</button>
-        </div>
-
-        <div class="tier">
-          <h3>The Village</h3>
-          <p>For bigger households or multiple caregivers who need everyone on the same page.</p>
-          <div class="price">$9.99<small>/mo</small></div>
-          <ul>
-            <li>Shared household access</li>
-            <li>Multiple caregivers</li>
-            <li>More locations and routines</li>
-            <li>Expanded coordination alerts</li>
-          </ul>
-          <button class="btn btn-soft open-flow" style="width:100%;">Choose The Village</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>Specific proof works better than generic promises.</h2>
-          <p>
-            The message should sound like face-to-face parent advice, not broad software marketing.
-          </p>
-        </div>
-      </div>
-
-      <div class="proof-grid">
-        <div class="proof">
-          <p>“Helped me stop doing the whole shoes-snacks-water-bottles routine for a park trip that was about to get ruined anyway.”</p>
-          <strong>Busy parent use case</strong>
-          <span>Mental load reduction</span>
-        </div>
-
-        <div class="proof">
-          <p>“The best part is it does not talk like a weather app. It just tells me if the plan is still worth it.”</p>
-          <strong>Cognitive fluency</strong>
-          <span>Simple wording builds trust</span>
-        </div>
-
-        <div class="proof">
-          <p>“The first verdict should feel like: you just avoided one wasted outing and one round of cranky-kid fallout.”</p>
-          <strong>Immediate proof</strong>
-          <span>Peak-end rule</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="faq">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>Questions people will ask before trying it.</h2>
-          <p>Clear answers reduce risk and make the product easier to trust fast.</p>
-        </div>
-      </div>
-
-      <div class="faq">
-        <div class="faq-item">
-          <h3>Is this a weather app?</h3>
-          <p>No. It is a decision app built on weather. The point is not more weather data. The point is knowing what the weather means for your plan.</p>
-        </div>
-        <div class="faq-item">
-          <h3>Who is it for?</h3>
-          <p>Parents, caregivers, and busy households trying to avoid wasted effort, bad timing, and harder days caused by weather changes.</p>
-        </div>
-        <div class="faq-item">
-          <h3>What makes it different?</h3>
-          <p>It uses verdict language. Instead of making you decode the forecast, it tells you if the outing is a green light, a watch-it, or a bad idea.</p>
-        </div>
-        <div class="faq-item">
-          <h3>Do I have to pay first?</h3>
-          <p>No. No Credit Card Required to start, and Cancel Anytime if you upgrade later.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="container">
-    <div class="cta-panel">
-      <div>
-        <div class="eyebrow">
-          <span class="dot"></span>
-          First verdict before payment
-        </div>
-        <h2>See whether tomorrow is a green light, a watch-it, or a bad idea.</h2>
-        <p>
-          That is the whole point. Let the app prove it can reduce mental load before asking for money.
-        </p>
-      </div>
-
-      <div class="cta-actions">
-        <button class="btn btn-primary open-flow">Get my first verdict</button>
-        <button class="btn btn-ghost">No Credit Card Required</button>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container footer-row">
-      <div>Skydocket — Weather, translated into a verdict.</div>
-      <div>Built for parents and busy households.</div>
-    </div>
-  </footer>
-
-  <!-- Guided Flow Modal -->
-  <div class="modal-backdrop" id="guidedFlow">
-    <div class="modal-card">
-      <div class="modal-head">
-        <div class="modal-head-left">
-          <h3>Build your household setup</h3>
-          <p>No Credit Card Required · Cancel Anytime</p>
-        </div>
-        <button class="close-btn" id="closeFlow" aria-label="Close">×</button>
-      </div>
-
-      <div class="progress-wrap">
-        <div class="progress-top">
-          <span id="progressLabel">Step 1 of 7</span>
-          <span id="progressHint">6 steps left until your first verdict</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" id="progressFill"></div>
-        </div>
-      </div>
-
-      <div class="modal-body">
-        <!-- Screen 1 -->
-        <div class="screen active" data-screen="1">
-          <h2 class="screen-title">Who are we setting this up for?</h2>
-          <p class="screen-copy">Start simple. Pick the role that fits best so the app talks to you like a real person, not like software.</p>
-          <div class="choice-grid" id="roleChoices">
-            <button class="choice-btn" data-role="Mom">
-              <strong>Mom</strong>
-              <span>School, errands, outings, backup plans.</span>
-            </button>
-            <button class="choice-btn" data-role="Dad">
-              <strong>Dad</strong>
-              <span>Timing, pickup, sports, everyday household decisions.</span>
-            </button>
-            <button class="choice-btn" data-role="Caregiver">
-              <strong>Caregiver</strong>
-              <span>Shared planning, handoffs, and fewer surprises.</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Screen 2 -->
-        <div class="screen" data-screen="2">
-          <h2 class="screen-title">What ZIP code should we watch?</h2>
-          <p class="screen-copy">This anchors the app to your area so your verdicts feel local and immediate.</p>
-          <div class="input-row">
-            <label class="input-label" for="zipCode">ZIP code</label>
-            <input id="zipCode" class="text-input" type="text" maxlength="5" placeholder="Enter 5-digit ZIP" />
-            <div class="helper">Example: 46203</div>
-          </div>
-        </div>
-
-        <!-- Screen 3 -->
-        <div class="screen" data-screen="3">
-          <h2 class="screen-title">What plans matter most to your household?</h2>
-          <p class="screen-copy">Pick the activities weather messes with most. This makes Skydocket feel like your system immediately.</p>
-          <div class="activity-grid">
-            <label class="activity-box">
-              <input type="checkbox" value="Soccer" />
-              <strong>Soccer</strong>
-              <span>Games, practice, muddy fields, late cancellations.</span>
-            </label>
-            <label class="activity-box">
-              <input type="checkbox" value="Park" />
-              <strong>Park</strong>
-              <span>Quick green-light or bad-idea verdicts.</span>
-            </label>
-            <label class="activity-box">
-              <input type="checkbox" value="Pool" />
-              <strong>Pool</strong>
-              <span>Worth packing for or not worth the hassle.</span>
-            </label>
-            <label class="activity-box">
-              <input type="checkbox" value="Dog Walk" />
-              <strong>Dog Walk</strong>
-              <span>Best walk window before the weather flips.</span>
-            </label>
-            <label class="activity-box">
-              <input type="checkbox" value="School Pickup" />
-              <strong>School Pickup</strong>
-              <span>Timing changes before traffic and rain stack up.</span>
-            </label>
-            <label class="activity-box">
-              <input type="checkbox" value="Errands" />
-              <strong>Errands</strong>
-              <span>Know whether the trip is worth doing now.</span>
-            </label>
-          </div>
-        </div>
-
-        <!-- Screen 4 -->
-        <div class="screen" data-screen="4">
-          <h2 class="screen-title">How sensitive are your kids to the weather?</h2>
-          <p class="screen-copy">Set your comfort line so verdicts feel right for your household, not generic.</p>
-          <div class="slider-wrap">
-            <div class="slider-card">
-              <div class="slider-top">
-                <span>Too cold below</span>
-                <span><strong id="tempValue">55°F</strong></span>
-              </div>
-              <input class="range-input" id="tempSlider" type="range" min="35" max="75" value="55" />
-            </div>
-            <div class="helper">This helps Skydocket decide when an outing still feels fine and when it turns into a rough time for the kids.</div>
-          </div>
-        </div>
-
-        <!-- Screen 5 -->
-        <div class="screen" data-screen="5">
-          <h2 class="screen-title">When should we send the heads-up?</h2>
-          <p class="screen-copy">One small choice. This builds the habit and gets the app working for you without extra effort.</p>
-          <div class="choice-grid" id="timingChoices">
-            <button class="timing-btn" data-timing="Night Before">
-              <strong>Night Before</strong>
-              <span>Great for packing and planning ahead.</span>
-            </button>
-            <button class="timing-btn" data-timing="Early Morning">
-              <strong>Early Morning</strong>
-              <span>Best for same-day family decisions.</span>
-            </button>
-            <button class="timing-btn" data-timing="One Hour Before">
-              <strong>One Hour Before</strong>
-              <span>Good for flexible plans and quick pivots.</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Screen 6 -->
-        <div class="screen" data-screen="6">
-          <h2 class="screen-title">Here is your first verdict.</h2>
-          <p class="screen-copy">This is the “aha” moment. The value should feel obvious right here.</p>
-          <div class="verdict-card">
-            <div class="verdict-badge" id="verdictBadge">GREEN LIGHT</div>
-            <h4 id="verdictTitle">Park Day: Green Light before 3:00 PM.</h4>
-            <p id="verdictBody">Best move: go after lunch, then do errands later. That avoids one wasted trip and keeps the easy part of the day easy.</p>
-          </div>
-          <div class="helper" id="verdictHelper">Based on your role, location, activity picks, comfort setting, and alert timing.</div>
-        </div>
-
-        <!-- Screen 7 -->
-        <div class="screen" data-screen="7">
-          <h2 class="screen-title">You are one step from locking this in.</h2>
-          <p class="screen-copy">The setup is done. Now keep the daily verdicts coming.</p>
-          <div class="lock-in-grid">
-            <div class="lock-item">
-              <strong>Profile ready</strong>
-              <span id="summaryRole">Role saved for your household.</span>
-            </div>
-            <div class="lock-item">
-              <strong>Alerts ready</strong>
-              <span id="summaryTiming">Your preferred timing is saved.</span>
-            </div>
-            <div class="lock-item">
-              <strong>First value shown</strong>
-              <span>You already saw your first weather verdict before paying.</span>
-            </div>
-          </div>
-          <div class="helper">That is the whole conversion logic: proof first, commitment second.</div>
-        </div>
-
-        <div class="modal-actions">
-          <button class="btn btn-ghost" id="prevBtn">Back</button>
-          <button class="btn btn-primary" id="nextBtn">Next</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const modal = document.getElementById('guidedFlow');
-    const openButtons = document.querySelectorAll('.open-flow');
-    const closeBtn = document.getElementById('closeFlow');
-    const screens = [...document.querySelectorAll('.screen')];
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const progressFill = document.getElementById('progressFill');
-    const progressLabel = document.getElementById('progressLabel');
-    const progressHint = document.getElementById('progressHint');
-
-    const roleChoices = [...document.querySelectorAll('#roleChoices .choice-btn')];
-    const zipInput = document.getElementById('zipCode');
-    const activityBoxes = [...document.querySelectorAll('.activity-box')];
-    const tempSlider = document.getElementById('tempSlider');
-    const tempValue = document.getElementById('tempValue');
-    const timingChoices = [...document.querySelectorAll('#timingChoices .timing-btn')];
-
-    const verdictBadge = document.getElementById('verdictBadge');
-    const verdictTitle = document.getElementById('verdictTitle');
-    const verdictBody = document.getElementById('verdictBody');
-    const verdictHelper = document.getElementById('verdictHelper');
-
-    const summaryRole = document.getElementById('summaryRole');
-    const summaryTiming = document.getElementById('summaryTiming');
-
-    let currentStep = 1;
-    const state = {
-      role: '',
-      zip: '',
-      activities: [],
-      temp: 55,
-      timing: ''
-    };
-
-    function openFlow() {
-      modal.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      renderStep();
-    }
-
-    function closeFlow() {
-      modal.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    openButtons.forEach(btn => btn.addEventListener('click', openFlow));
-    closeBtn.addEventListener('click', closeFlow);
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeFlow();
-    });
-
-    roleChoices.forEach(btn => {
-      btn.addEventListener('click', () => {
-        roleChoices.forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        state.role = btn.dataset.role;
-        validateStep();
-      });
-    });
-
-    zipInput.addEventListener('input', () => {
-      zipInput.value = zipInput.value.replace(/\D/g, '').slice(0, 5);
-      state.zip = zipInput.value;
-      validateStep();
-    });
-
-    activityBoxes.forEach(box => {
-      box.addEventListener('click', () => {
-        box.classList.toggle('selected');
-        const input = box.querySelector('input');
-        input.checked = !input.checked;
-        state.activities = activityBoxes
-          .filter(item => item.querySelector('input').checked)
-          .map(item => item.querySelector('input').value);
-        validateStep();
-      });
-    });
-
-    tempSlider.addEventListener('input', () => {
-      state.temp = Number(tempSlider.value);
-      tempValue.textContent = `${state.temp}°F`;
-    });
-
-    timingChoices.forEach(btn => {
-      btn.addEventListener('click', () => {
-        timingChoices.forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        state.timing = btn.dataset.timing;
-        validateStep();
-      });
-    });
-
-    prevBtn.addEventListener('click', () => {
-      if (currentStep > 1) {
-        currentStep--;
-        renderStep();
-      }
-    });
-
-    nextBtn.addEventListener('click', () => {
-      if (!stepIsValid(currentStep)) return;
-
-      if (currentStep < 7) {
-        currentStep++;
-        renderStep();
-      } else {
-        nextBtn.textContent = 'Locked in';
-        nextBtn.disabled = true;
-        prevBtn.disabled = true;
-      }
-    });
-
-    function stepIsValid(step) {
-      if (step === 1) return !!state.role;
-      if (step === 2) return state.zip.length === 5;
-      if (step === 3) return state.activities.length > 0;
-      if (step === 4) return true;
-      if (step === 5) return !!state.timing;
-      if (step === 6) return true;
-      if (step === 7) return true;
-      return false;
-    }
-
-    function validateStep() {
-      nextBtn.disabled = !stepIsValid(currentStep);
-    }
-
-    function updateVerdict() {
-      const mainActivity = state.activities[0] || 'Park';
-      const temp = state.temp;
-      const roleText = state.role || 'Parent';
-
-      let badge = 'GREEN LIGHT';
-      let title = `${mainActivity}: Green Light before 3:00 PM.`;
-      let body = `Best move: go earlier in the day, then keep the rest of the afternoon flexible. That avoids one wasted trip and keeps the easy part of the day easy.`;
-
-      if (temp <= 45) {
-        badge = 'WATCH IT';
-        title = `${mainActivity}: Watch it unless everyone is bundled up.`;
-        body = `Best move: shorten the outing or swap it for an indoor stop. That saves the effort of a plan that falls apart halfway through.`;
-      } else if (temp >= 68 && mainActivity === 'Pool') {
-        badge = 'GREEN LIGHT';
-        title = `Pool Day: Green Light.`;
-        body = `Best move: go mid-day while it still feels worth the setup. This is a good use of the effort today.`;
-      } else if (mainActivity === 'Soccer') {
-        badge = 'WATCH IT';
-        title = `Soccer: Watch for a late-day shift.`;
-        body = `Best move: check again before you pack up. That helps you avoid a rushed field trip that is no longer worth it.`;
-      }
-
-      verdictBadge.textContent = badge;
-      verdictTitle.textContent = title;
-      verdictBody.textContent = body;
-      verdictHelper.textContent = `${roleText} profile · ZIP ${state.zip || 'your area'} · ${state.activities.join(', ') || 'Family plans'} · Alert set for ${state.timing || 'your preferred time'}`;
-
-      summaryRole.textContent = `${state.role || 'Role'} profile saved for ZIP ${state.zip || 'your area'}.`;
-      summaryTiming.textContent = `${state.timing || 'Alert'} timing saved for daily verdict delivery.`;
-    }
-
-    function renderStep() {
-      screens.forEach(screen => {
-        screen.classList.toggle('active', Number(screen.dataset.screen) === currentStep);
-      });
-
-      const width = (currentStep / 7) * 100;
-      progressFill.style.width = `${width}%`;
-      progressLabel.textContent = `Step ${currentStep} of 7`;
-
-      const left = 7 - currentStep;
-      if (left > 1) {
-        progressHint.textContent = `${left} steps left until your first verdict`;
-      } else if (left === 1) {
-        progressHint.textContent = `1 step left until your first verdict`;
-      } else if (currentStep === 7) {
-        progressHint.textContent = `Setup complete`;
-      } else {
-        progressHint.textContent = `Your verdict is ready`;
-      }
-
-      prevBtn.classList.toggle('hidden', currentStep === 1);
-      nextBtn.textContent = currentStep === 7 ? 'Finish setup' : (currentStep === 6 ? 'Lock this in' : 'Next');
-
-      updateVerdict();
-      validateStep();
-    }
-
-    renderStep();
-  </script>
-</body>
-</html>      --shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
-      --radius: 24px;
-      --max: 1180px;
-    }
-
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
-    body {
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(59,130,246,0.18), transparent 32%),
-        radial-gradient(circle at top right, rgba(34,211,238,0.08), transparent 24%),
-        linear-gradient(180deg, #07152b 0%, #061224 42%, #05101f 100%);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border: 1px solid var(--line-strong);
-      border-radius: 999px;
-      background: rgba(8, 23, 46, 0.72);
-      color: #cfe1fb;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--green);
-      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.12);
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      backdrop-filter: blur(14px);
-      background: rgba(4, 13, 27, 0.58);
-      border-bottom: 1px solid rgba(125, 157, 196, 0.08);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      min-height: 78px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      font-size: 22px;
-    }
-
-    .brand-badge {
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      background: linear-gradient(180deg, #1857ff, #2a7fff);
-      display: grid;
-      place-items: center;
-      box-shadow: 0 12px 26px rgba(37, 99, 235, 0.35);
-      font-size: 22px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .btn {
-      border: 0;
-      cursor: pointer;
-      border-radius: 16px;
-      padding: 14px 20px;
-      font-weight: 700;
-      font-size: 15px;
-      transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease;
-    }
-
-    .btn:hover { transform: translateY(-1px); }
-
-    .btn-ghost {
-      color: #d8e6fb;
-      background: rgba(11, 27, 52, 0.55);
-      border: 1px solid rgba(119, 157, 206, 0.18);
-    }
-
-    .btn-primary {
-      color: white;
-      background: linear-gradient(180deg, var(--blue-2), var(--blue));
-      box-shadow: 0 18px 34px rgba(37, 99, 235, 0.28);
-    }
-
-    .hero {
-      padding: 68px 0 34px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 34px;
-      align-items: center;
-    }
-
-    h1 {
-      margin: 18px 0 14px;
-      font-size: clamp(42px, 7vw, 72px);
-      line-height: 0.98;
-      letter-spacing: -0.06em;
-      max-width: 780px;
-    }
-
-    .lead {
-      margin: 0 0 28px;
-      max-width: 690px;
-      color: var(--muted);
-      font-size: 20px;
-      line-height: 1.65;
-    }
-
-    .lead strong { color: #e8f1ff; }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-
-    .micro-proof {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      color: #bdd0eb;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .hero-card,
-    .panel,
-    .feature,
-    .metric,
-    .step,
-    .tier,
-    .quote,
-    .faq-item,
-    .cta-panel {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(13, 30, 58, 0.92), rgba(8, 22, 43, 0.92));
-      box-shadow: var(--shadow);
-    }
-
-    .hero-card {
-      border-radius: 30px;
-      padding: 18px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: -20% auto auto -5%;
-      width: 180px;
-      height: 180px;
-      background: radial-gradient(circle, rgba(96, 165, 250, 0.2), transparent 70%);
-      pointer-events: none;
-    }
-
-    .app-shell {
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid rgba(132, 171, 222, 0.12);
-      background: linear-gradient(180deg, #081426, #071221);
-    }
-
-    .app-top {
-      padding: 16px 18px;
-      border-bottom: 1px solid rgba(132, 171, 222, 0.12);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .app-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-    }
-
-    .app-pill {
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-      border-radius: 999px;
-      padding: 10px 14px;
-      background: rgba(11, 31, 56, 0.9);
-      color: #ddecff;
-      font-size: 14px;
-      border: 1px solid rgba(113, 154, 210, 0.14);
-    }
-
-    .app-body {
-      padding: 22px;
-      display: grid;
-      gap: 18px;
-    }
-
-    .alert-card {
-      border-radius: 28px;
-      padding: 24px;
-      background: linear-gradient(180deg, rgba(43, 9, 34, 0.85), rgba(29, 8, 30, 0.92));
-      border: 1px solid rgba(251, 113, 133, 0.25);
-    }
-
-    .alert-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      border-radius: 999px;
-      padding: 10px 14px;
-      background: rgba(139, 21, 58, 0.32);
-      color: #ffb5c2;
-      font-weight: 700;
-      font-size: 13px;
-      margin-bottom: 18px;
-      border: 1px solid rgba(251, 113, 133, 0.22);
-    }
-
-    .alert-card h3 {
-      margin: 0 0 12px;
-      font-size: clamp(26px, 4vw, 38px);
-      line-height: 1.08;
-      letter-spacing: -0.04em;
-    }
-
-    .alert-card p {
-      margin: 0;
-      color: #d4dcec;
-      line-height: 1.6;
-      font-size: 16px;
-    }
-
-    .impact-grid {
+    .icon-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
     }
-
-    .impact-box {
+    .icon-box {
       border-radius: 20px;
       padding: 16px;
       background: rgba(10, 24, 46, 0.9);
       border: 1px solid rgba(121, 158, 207, 0.14);
     }
-
-    .impact-label {
+    .icon-label {
       color: #94aac5;
       font-size: 12px;
       text-transform: uppercase;
@@ -2050,124 +295,45 @@
       margin-bottom: 8px;
       font-weight: 700;
     }
-
-    .impact-value {
-      font-size: 28px;
+    .icon-value {
+      font-size: 22px;
       font-weight: 800;
       letter-spacing: -0.04em;
+      margin-bottom: 6px;
     }
-
-    .impact-note {
+    .icon-note {
       font-size: 13px;
       color: #b9cade;
-      margin-top: 8px;
+      line-height: 1.45;
     }
-
     .section {
       padding: 28px 0;
     }
-
     .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 20px;
       margin-bottom: 22px;
     }
-
     .section-head h2 {
-      margin: 0;
+      margin: 0 0 10px;
       font-size: clamp(30px, 5vw, 46px);
       line-height: 1.02;
       letter-spacing: -0.05em;
     }
-
     .section-head p {
-      margin: 8px 0 0;
-      max-width: 700px;
+      margin: 0;
+      max-width: 760px;
       color: var(--muted);
       font-size: 18px;
       line-height: 1.65;
     }
-
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-
-    .metric {
-      border-radius: 22px;
-      padding: 22px;
-    }
-
-    .metric strong {
-      display: block;
-      font-size: 34px;
-      letter-spacing: -0.05em;
-      margin-bottom: 8px;
-    }
-
-    .metric .metric-title {
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .metric span {
-      color: var(--muted);
-      line-height: 1.5;
-      font-size: 14px;
-    }
-
-    .features {
+    .steps {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
     }
-
-    .feature {
+    .step-card {
       border-radius: 24px;
       padding: 22px;
     }
-
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      background: rgba(59, 130, 246, 0.18);
-      border: 1px solid rgba(96, 165, 250, 0.24);
-      font-size: 24px;
-      margin-bottom: 18px;
-    }
-
-    .feature h3 {
-      margin: 0 0 10px;
-      font-size: 22px;
-      letter-spacing: -0.04em;
-    }
-
-    .feature p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.65;
-      font-size: 15px;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-
-    .step {
-      border-radius: 22px;
-      padding: 22px;
-      position: relative;
-      overflow: hidden;
-    }
-
     .step-number {
       width: 38px;
       height: 38px;
@@ -2179,38 +345,55 @@
       font-weight: 800;
       margin-bottom: 14px;
     }
-
-    .step h3 {
+    .step-card h3 {
       margin: 0 0 10px;
-      font-size: 21px;
+      font-size: 22px;
       letter-spacing: -0.04em;
     }
-
-    .step p {
+    .step-card p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.6;
       font-size: 15px;
+      line-height: 1.6;
     }
-
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .proof-card {
+      border-radius: 24px;
+      padding: 22px;
+    }
+    .proof-card p {
+      margin: 0 0 14px;
+      color: #dfebff;
+      line-height: 1.65;
+      font-size: 16px;
+    }
+    .proof-card strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+    .proof-card span {
+      color: var(--muted);
+      font-size: 14px;
+    }
     .pricing {
       display: grid;
       grid-template-columns: 1fr 1.15fr 1fr;
       gap: 16px;
     }
-
     .tier {
       border-radius: 26px;
       padding: 24px;
       position: relative;
     }
-
     .tier-recommended {
       outline: 2px solid rgba(96, 165, 250, 0.45);
       transform: translateY(-4px);
       background: linear-gradient(180deg, rgba(16, 37, 69, 0.98), rgba(8, 24, 46, 0.98));
     }
-
     .tier-tag {
       display: inline-flex;
       margin-bottom: 18px;
@@ -2222,32 +405,27 @@
       font-weight: 700;
       font-size: 13px;
     }
-
     .tier h3 {
       margin: 0 0 8px;
       font-size: 24px;
       letter-spacing: -0.04em;
     }
-
     .tier p {
       margin: 0 0 16px;
       color: var(--muted);
       line-height: 1.55;
     }
-
     .price {
       font-size: 46px;
       font-weight: 800;
       letter-spacing: -0.05em;
       margin-bottom: 6px;
     }
-
     .price small {
       font-size: 16px;
       color: var(--muted);
       font-weight: 600;
     }
-
     .tier ul {
       list-style: none;
       margin: 20px 0 24px;
@@ -2256,104 +434,121 @@
       gap: 12px;
       color: #d8e6fb;
     }
-
     .tier li {
       position: relative;
       padding-left: 26px;
       line-height: 1.5;
     }
-
     .tier li::before {
-      content: "✓";
+      content: " ";
       position: absolute;
       left: 0;
       top: 0;
       color: var(--green);
       font-weight: 800;
     }
-
-    .quotes {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+    .coming-soon-note {
+      margin-top: 12px;
+      color: #b9cade;
+      font-size: 13px;
+      font-weight: 700;
     }
-
-    .quote {
-      border-radius: 24px;
-      padding: 24px;
-    }
-
-    .quote p {
-      margin: 0 0 18px;
-      color: #dfebff;
-      line-height: 1.72;
-      font-size: 16px;
-    }
-
-    .quote strong { display: block; }
-    .quote span { color: var(--muted); font-size: 14px; }
-
-    .faq {
-      display: grid;
-      gap: 14px;
-    }
-
-    .faq-item {
-      border-radius: 22px;
-      padding: 22px;
-    }
-
-    .faq-item h3 {
-      margin: 0 0 10px;
-      font-size: 20px;
-      letter-spacing: -0.03em;
-    }
-
-    .faq-item p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    .cta-panel {
+    .signup-panel {
       border-radius: 30px;
       padding: 30px;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 20px;
-      align-items: center;
-      margin: 18px 0 70px;
+      margin: 20px 0 70px;
     }
-
-    .cta-panel h2 {
-      margin: 0 0 12px;
-      font-size: clamp(30px, 5vw, 48px);
+    .signup-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+    }
+      align-items: start;
+    .question-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 18px 0 18px;
+    }
+    .question-btn {
+      border-radius: 14px;
+      border: 1px solid rgba(120, 153, 202, 0.18);
+      background: rgba(14, 33, 62, 0.92);
+      color: var(--text);
+      padding: 13px 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.16s ease, border-color 0.16s ease;
+    }
+    .question-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(96, 165, 250, 0.34);
+    }
+    .question-btn.active {
+      border-color: rgba(96, 165, 250, 0.6);
+      background: rgba(20, 44, 79, 0.96);
+      box-shadow: inset 0 0 0 1px rgba(96, 165, 250, 0.2);
+    }
+    .email-wrap {
+      display: none;
+      gap: 12px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+    .email-wrap.visible {
+      display: flex;
+    }
+    .email-input {
+      flex: 1 1 280px;
+      min-width: 220px;
+      border-radius: 16px;
+      border: 1px solid rgba(120, 153, 202, 0.16);
+      background: rgba(14, 33, 62, 0.92);
+      color: var(--text);
+      padding: 15px 16px;
+      outline: none;
+    }
+    .email-input::placeholder {
+      color: #7f97b5;
+    }
+    .signup-copy h2 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 5vw, 46px);
       line-height: 1.02;
       letter-spacing: -0.05em;
     }
-
-    .cta-panel p {
+    .signup-copy p {
       margin: 0;
       color: var(--muted);
       font-size: 18px;
       line-height: 1.65;
       max-width: 640px;
     }
-
-    .cta-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 12px;
+    .mini-proof {
+      display: grid;
+      gap: 14px;
     }
-
+    .mini-proof-item {
+      border-radius: 20px;
+      padding: 18px;
+      border: 1px solid rgba(120, 153, 202, 0.14);
+      background: rgba(13, 31, 58, 0.86);
+    }
+    .mini-proof-item strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+    .mini-proof-item span {
+    }
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
     footer {
       border-top: 1px solid rgba(125, 157, 196, 0.08);
       padding: 22px 0 34px;
       color: #8ea6c3;
       font-size: 14px;
     }
-
     .footer-row {
       display: flex;
       align-items: center;
@@ -2361,50 +556,30 @@
       gap: 18px;
       flex-wrap: wrap;
     }
-
-    @media (max-width: 1120px) {
+    @media (max-width: 1020px) {
       .hero-grid,
-      .cta-panel,
       .pricing,
-      .features,
-      .steps,
-      .quotes,
-      .metrics {
-        grid-template-columns: 1fr 1fr;
-      }
-      .cta-actions { justify-content: flex-start; }
-    }
-
-    @media (max-width: 760px) {
-      .nav { min-height: 72px; }
-      .nav-links { display: none; }
-      .hero { padding-top: 42px; }
-      .hero-grid,
-      .cta-panel,
-      .pricing,
-      .features,
-      .steps,
-      .quotes,
-      .metrics,
-      .impact-grid {
+      .proof-grid,
+      .signup-grid {
         grid-template-columns: 1fr;
       }
-      h1 { font-size: 44px; }
+    }
+    @media (max-width: 760px) {
+      .nav-links { display: none; }
+      .hero { padding-top: 42px; }
+      .steps,
+      .icon-grid {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 42px; }
       .lead { font-size: 17px; }
-      .brand { font-size: 20px; }
-      .section-head { display: block; }
-      .section-head p { margin-top: 12px; }
       .hero-card,
-      .cta-panel,
-      .feature,
-      .step,
-      .quote,
+      .step-card,
       .tier,
-      .metric,
-      .faq-item {
+      .proof-card,
+      .signup-panel {
         border-radius: 22px;
       }
-      .cta-panel { padding: 24px; }
     }
   </style>
 </head>
@@ -2412,91 +587,83 @@
   <header>
     <div class="container nav">
       <a class="brand" href="#">
-        <div class="brand-badge">☁</div>
+        <div class="brand-badge"> </div>
         <div>
           <div>Skydocket</div>
-          <div style="font-size:12px;color:#94aac5;font-weight:600;letter-spacing:0.02em;">
-            Weather, translated into action.
-          </div>
+          <div class="brand-sub">Coming Soon for busy households</div>
         </div>
       </a>
-
       <nav class="nav-links">
-        <a href="#problem">Problem</a>
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#pricing">Planned pricing</a>
+        <a href="#waitlist">Waitlist</a>
       </nav>
-
-      <div class="nav-actions">
-        <button class="btn btn-ghost">View demo</button>
-        <button class="btn btn-primary">Start free</button>
-      </div>
+      <a class="btn btn-primary" href="#waitlist">Join the Waitlist</a>
     </div>
   </header>
-
   <section class="hero">
     <div class="container hero-grid">
       <div>
         <div class="eyebrow">
           <span class="dot"></span>
-          Built for parents and college students
+          Built for the parents who do it all
         </div>
-
-        <h1>Bad weather does not just change plans. It changes the whole day.</h1>
-
+        <h1>Stop losing your Saturdays to bad weather.</h1>
         <p class="lead">
-          <strong>Skydocket tells parents and college students what weather changes mean for school, commute, pets, errands, and daily plans before it causes stress.</strong>
-          No forecast guessing. No overthinking. Just what is at risk and the best next move in plain English.
+          <strong>Stop the morning “what-to-wear” chaos before it starts.</strong>
+          Skydocket gives parents one simple verdict for the plans that actually matter: sports, outfits, playtime, errands, and the timing windows that keep the day from falling apart.
         </p>
-
-        <div class="hero-actions">
-          <button class="btn btn-primary">See my first weather risk report</button>
-          <button class="btn btn-ghost">See how it works</button>
+        <div class="hero-points">
+          <span>No weather jargon</span>
+          <span>Just simple verdicts like Green Light, Watch It, or Bad Idea</span>
+          <span>Designed for the pace of a busy household</span>
         </div>
-
-        <div class="micro-proof">
-          <span>No card required</span>
-          <span>Cancel anytime</span>
-          <span>See your first weather impact before paying</span>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#waitlist">Get Early Access (No Card Required)</a>
+          <a class="btn btn-ghost" href="#how-it-works">See how it works</a>
+        </div>
+        <div class="risk-strip">
+          <span>Join the Waitlist - It's Free</span>
+          <span>No Card Required</span>
+          <span>Coming Soon</span>
         </div>
       </div>
-
       <div class="hero-card">
         <div class="app-shell">
           <div class="app-top">
             <div class="app-brand">
-              <div class="brand-badge" style="width:34px;height:34px;border-radius:12px;font-size:18px;">☁</div>
+              <div class="brand-badge" style="width:34px;height:34px;border-radius:12px;font-size:18px;"> </div>
               <div>
                 <div style="font-size:16px;">Skydocket</div>
-                <div style="font-size:12px;color:#92a8c7;">Today · 2:58 PM</div>
+                <div style="font-size:12px;color:#92a8c7;">Preview - Busy household view</div>
               </div>
             </div>
-            <div class="app-pill">56° · Live weather</div>
+            <div class="app-pill">Tomorrow at a glance</div>
           </div>
-
           <div class="app-body">
-            <div class="alert-card">
-              <div class="alert-chip">● ACT NOW</div>
-              <h3>Good dog walk conditions end at 6:00 PM.</h3>
-              <p>Rain and wind move in after that. About 1 hour left in the safe window. Best move: head out now and push evening errands later.</p>
+            <div class="verdict-card">
+              <div class="verdict-badge">GREEN LIGHT</div>
+              <h3>Park Trip: Good before lunch.</h3>
+              <p>Best move: go earlier, then handle errands later. That avoids packing everyone up for a trip that gets cut short by afternoon rain.</p>
             </div>
-
-            <div class="impact-grid">
-              <div class="impact-box">
-                <div class="impact-label">Today at risk</div>
-                <div class="impact-value">3 plans</div>
-                <div class="impact-note">Walk, commute, grocery run</div>
+            <div class="icon-grid">
+              <div class="icon-box">
+                <div class="icon-label">
+ Sports</div>
+                <div class="icon-value">Watch It</div>
+                <div class="icon-note">Late practice window looks shaky.</div>
               </div>
-              <div class="impact-box">
-                <div class="impact-label">Time protected</div>
-                <div class="impact-value">47 min</div>
-                <div class="impact-note">By leaving earlier</div>
+              <div class="icon-box">
+                <div class="icon-label">
+ Outfits</div>
+                <div class="icon-value">Light jacket</div>
+                <div class="icon-note">Easy call before the scramble starts.</div>
               </div>
-              <div class="impact-box">
-                <div class="impact-label">Best next move</div>
-                <div class="impact-value">Ready</div>
-                <div class="impact-note">One screen, clear answer</div>
+              <div class="icon-box">
+                <div class="icon-label">
+ Playtime</div>
+                <div class="icon-value">Green Light</div>
+                <div class="icon-note">Best outdoor window is 10-1.</div>
               </div>
             </div>
           </div>
@@ -2504,2242 +671,183 @@
       </div>
     </div>
   </section>
-
-  <section class="section" id="problem">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>The problem is not the weather. The problem is what it ruins if nobody adjusts in time.</h2>
-          <p>
-            Skydocket follows loss aversion first. It should not sell “better organization.” It should help users avoid missed class timing, stressful school pickup, bad pet windows, wasted trips, and days that fall apart because weather changed faster than the plan did.
-          </p>
-        </div>
-      </div>
-
-      <div class="metrics">
-        <div class="metric">
-          <strong>3 plans</strong>
-          <div class="metric-title">flagged before rain starts</div>
-          <span>School pickup, dog walk, and store run all need adjustment.</span>
-        </div>
-
-        <div class="metric">
-          <strong>42 min</strong>
-          <div class="metric-title">of time protected</div>
-          <span>One early decision can prevent a delayed commute and second trip.</span>
-        </div>
-
-        <div class="metric">
-          <strong>1 screen</strong>
-          <div class="metric-title">to check before leaving</div>
-          <span>No bouncing between weather, maps, and group texts.</span>
-        </div>
-
-        <div class="metric">
-          <strong>7-day</strong>
-          <div class="metric-title">planning view</div>
-          <span>Know which school, pet, and campus days need backup plans.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="features">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>Built for real daily life, not generic weather browsing.</h2>
-          <p>
-            The app should feel like it was built for parents managing kids, pets, pickups, groceries, and school days, and for college students balancing class, walking, transit, work, and campus life.
-          </p>
-        </div>
-      </div>
-
-      <div class="features">
-        <div class="feature">
-          <div class="feature-icon">⚠️</div>
-          <h3>See what weather will actually disrupt</h3>
-          <p>Not just “rain at 7.” Skydocket should say what that means for school drop-off, dog walks, campus walks, errands, and commute windows.</p>
-        </div>
-
-        <div class="feature">
-          <div class="feature-icon">🧭</div>
-          <h3>Get the next best move in plain English</h3>
-          <p>“Leave 20 minutes earlier.” “Walk the dog now.” “Push the grocery run until after 7.” Cognitive fluency builds trust fast.</p>
-        </div>
-
-        <div class="feature">
-          <div class="feature-icon">🎒</div>
-          <h3>Made for your kind of day</h3>
-          <p>Parents and students should feel the product is built for them, not for everybody. That unity makes the app feel relevant immediately.</p>
-        </div>
-
-        <div class="feature">
-          <div class="feature-icon">🔔</div>
-          <h3>High-value defaults are already on</h3>
-          <p>Weather alerts, plan-risk warnings, and daily action briefs should start enabled by default. Users should not build the product from scratch.</p>
-        </div>
-
-        <div class="feature">
-          <div class="feature-icon">🏠</div>
-          <h3>Personalized in minutes</h3>
-          <p>Add your ZIP code, school or campus area, pet routine, and common plan types. The faster it feels like your system, the harder it is to leave.</p>
-        </div>
-
-        <div class="feature">
-          <div class="feature-icon">📈</div>
-          <h3>Daily proof it earned its place</h3>
-          <p>Every day the app should answer one question: what needs to change today because of the weather?</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <div>
-          <h2>Onboarding should move fast and end with proof.</h2>
-          <p>
-            Goal-gradient effect matters. Show visible progress, ask for small yeses, and end with one strong output the user remembers.
-          </p>
-        </div>
+        <h2>The problem: weather turns simple plans into wasted effort.</h2>
+        <p>
+          Skydocket is for parents who are tired of dressing kids, packing snacks, loading the car, and finding out too late the plan was never worth doing. The point is not more forecast data. The point is a clear verdict before the chaos starts.
+        </p>
       </div>
-
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <h3>Choose your day type</h3>
-          <p>Parent, college student, or both. Small commitment first.</p>
+      <div class="proof-grid">
+        <div class="proof-card">
+          <p>"Designed for the pace of a busy household, focusing on the windows of time that actually matter for kids."</p>
+          <strong>Specific household focus</strong>
+          <span>Not generic weather content</span>
         </div>
-
-        <div class="step">
-          <div class="step-number">2</div>
-          <h3>Set your home or campus area</h3>
-          <p>Add your ZIP code and service radius so the app starts feeling personal immediately.</p>
+        <div class="proof-card">
+          <p>"Built for the parents who do it all, from outfits and sports to playtime and last-minute plan changes."</p>
+          <strong>Unity</strong>
+          <span>Made for a specific kind of user</span>
         </div>
-
-        <div class="step">
-          <div class="step-number">3</div>
-          <h3>Pick what weather affects most</h3>
-          <p>School drop-off, commute, dog walks, campus walks, errands, sports, or pickup timing.</p>
-        </div>
-
-        <div class="step">
-          <div class="step-number">4</div>
-          <h3>See your live impact preview</h3>
-          <p>“Rain tomorrow at 2 PM. These 3 plans are at risk. Here is the best move.”</p>
+        <div class="proof-card">
+          <p>"Join 500+ Indiana families staying ahead of the storm."</p>
+          <strong>Social proof</strong>
+          <span>Specific and local</span>
         </div>
       </div>
     </div>
   </section>
-
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-head">
+        <h2>How it works</h2>
+        <p>
+          The page should be readable in five seconds. Three steps. Clear verdict. Better household decisions.
+        </p>
+      </div>
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Pick your biggest weather headache</h3>
+          <p>Sports, outfits, or playtime. Start with the one thing weather keeps messing up.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Get simple verdicts that make sense fast</h3>
+          <p>Green Light. Watch It. Bad Idea. No percentages. No decoding. No wasted time.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Plan the day before the stress hits</h3>
+          <p>Know what to wear, what to move, and what is still worth doing before the family gets moving.</p>
+        </div>
+      </div>
+    </div>
+  </section>
   <section class="section" id="pricing">
     <div class="container">
       <div class="section-head">
-        <div>
-          <h2>Make Premium the obvious choice.</h2>
-          <p>
-            Three tiers. Starter gets people in. Premium is the clear best-value plan. Household is for shared planning. This follows clean option framing without fake urgency.
-          </p>
-        </div>
-      </div>
-
-      <div class="pricing">
-        <div class="tier">
-          <h3>Starter</h3>
-          <p>For light daily use and basic weather-risk awareness.</p>
-          <div class="price">$0<small>/mo</small></div>
-          <ul>
-            <li>Basic weather alerts</li>
-            <li>One location</li>
-            <li>Basic daily plan view</li>
-            <li>See first risk report before paying</li>
-          </ul>
-          <button class="btn btn-ghost" style="width:100%;">Start free</button>
-        </div>
-
-        <div class="tier tier-recommended">
-          <div class="tier-tag">Recommended</div>
-          <h3>Premium</h3>
-          <p>The main plan for parents and students who want weather translated into action every day.</p>
-          <div class="price">$4.99<small>/mo</small></div>
-          <ul>
-            <li>7-day weather-to-action planning</li>
-            <li>Morning action brief</li>
-            <li>Pet and commute timing alerts</li>
-            <li>Multi-plan risk detection</li>
-            <li>Best-move recommendations</li>
-            <li>Clear upgrade path without extra complexity</li>
-          </ul>
-          <button class="btn btn-primary" style="width:100%;">Choose Premium</button>
-        </div>
-
-        <div class="tier">
-          <h3>Household</h3>
-          <p>For shared planning across family members, routines, and multiple schedules.</p>
-          <div class="price">$9.99<small>/mo</small></div>
-          <ul>
-            <li>Shared household views</li>
-            <li>Multiple locations</li>
-            <li>Family planning support</li>
-            <li>Expanded alerts and coordination</li>
-          </ul>
-          <button class="btn btn-ghost" style="width:100%;">Choose Household</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>Specific proof beats vague hype.</h2>
-          <p>
-            Social proof should sound like the user, not like a marketing department. The more specific the example, the stronger it feels.
-          </p>
-        </div>
-      </div>
-
-      <div class="quotes">
-        <div class="quote">
-          <p>“Used by busy parents who need to know if the walk, pickup, and errands still fit before the weather shifts.”</p>
-          <strong>Parent-focused proof</strong>
-          <span>Specific beats generic</span>
-        </div>
-
-        <div class="quote">
-          <p>“Built for students who walk campus, commute between classes, and need one simple answer about what the weather changes today.”</p>
-          <strong>Student-specific proof</strong>
-          <span>Unity principle</span>
-        </div>
-
-        <div class="quote">
-          <p>“The best first session ends with: you would have avoided one wasted trip and protected 35 minutes today.”</p>
-          <strong>Peak-end rule</strong>
-          <span>Remembered value</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="faq">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>Questions users will actually ask.</h2>
-          <p>Clear answers reduce friction, lower risk, and make the product easier to trust.</p>
-        </div>
-      </div>
-
-      <div class="faq">
-        <div class="faq-item">
-          <h3>Who is Skydocket for?</h3>
-          <p>Skydocket is built for parents and college students whose plans change fast when weather changes. It helps with school, commute, pets, errands, and timing decisions.</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>What makes it different from a weather app?</h3>
-          <p>A weather app tells you what the sky is doing. Skydocket tells you what to do next because of it.</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>Why not ask for payment first?</h3>
-          <p>Because risk-reversal works better. Users should see their first weather impact report before being asked to pay.</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>What should the daily habit be?</h3>
-          <p>One question: what needs to change today because of the weather? If Skydocket answers that better than checking three different apps, it stays useful.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="container">
-    <div class="cta-panel">
-      <div>
-        <div class="eyebrow">
-          <span class="dot"></span>
-          Start with proof, not pressure
-        </div>
-        <h2>See your first weather risk report before paying.</h2>
+        <h2>Planned pricing</h2>
         <p>
-          That is the cleanest version of risk-reversal for Skydocket. No fake countdowns. No forced commitment. Just immediate proof that the app can protect time, reduce stress, and improve decisions.
+          These are the launch plans we are building toward. The middle option is designed to be the best fit for most households.
         </p>
       </div>
-
-      <div class="cta-actions">
-        <button class="btn btn-primary">Get my first risk report</button>
-        <button class="btn btn-ghost">View example day</button>
+      <div class="pricing">
+        <div class="tier">
+          <h3>Basic</h3>
+          <p>For families who want simple verdicts for the day ahead.</p>
+          <div class="price">$0<small>/mo</small></div>
+          <ul>
+            <li>Basic daily verdicts</li>
+            <li>One location</li>
+            <li>Core household use</li>
+            <li>Good starting point</li>
+          </ul>
+          <div class="coming-soon-note">Planned launch tier - Coming Soon</div>
+        </div>
+        <div class="tier tier-recommended">
+          <div class="tier-tag">Best fit for most families</div>
+          <h3>Power Parent</h3>
+          <p>For parents who want to stay ahead of sports, outfits, outings, and daily household timing.</p>
+          <div class="price">$4.99<small>/mo</small></div>
+          <ul>
+            <li>Smarter verdicts</li>
+            <li>More activity types</li>
+            <li>Better timing windows</li>
+            <li>Designed for busy households</li>
+          </ul>
+          <div class="coming-soon-note">Planned launch tier - Coming Soon</div>
+        </div>
+        <div class="tier">
+          <h3>The Village</h3>
+          <p>For bigger households or shared planning across multiple caregivers.</p>
+          <div class="price">$9.99<small>/mo</small></div>
+          <ul>
+            <li>Shared family planning</li>
+            <li>More household coordination</li>
+            <li>Expanded coverage</li>
+            <li>Built for more moving pieces</li>
+          </ul>
+          <div class="coming-soon-note">Planned launch tier - Coming Soon</div>
+        </div>
       </div>
     </div>
   </section>
-
+  <section class="section" id="waitlist">
+    <div class="container">
+      <div class="signup-panel">
+        <div class="signup-grid">
+          <div class="signup-copy">
+            <div class="eyebrow">
+              <span class="dot"></span>
+              Coming Soon
+            </div>
+            <h2>Get early access before launch.</h2>
+            <p>
+              Start with one small answer so we know what matters most to your household. Then join the waitlist for free.
+            </p>
+            <div class="question-buttons" id="questionButtons">
+              <button type="button" class="question-btn" data-value="Sports">Sports</button>
+              <button type="button" class="question-btn" data-value="Outfits">Outfits</button>
+              <button type="button" class="question-btn" data-value="Playtime">Playtime</button>
+            </div>
+            <form class="email-wrap" id="emailWrap" action="#" method="post">
+              <input
+                class="email-input"
+                type="email"
+                placeholder="Enter your email"
+                aria-label="Email address"
+                required
+              />
+              <button class="btn btn-primary" type="submit">Join the Waitlist - It's Free</button>
+            </form>
+            <div class="risk-strip" style="margin-top:16px;">
+              <span>No Card Required</span>
+              <span>Free early access list</span>
+              <span>Built for Indiana families first</span>
+            </div>
+          </div>
+          <div class="mini-proof">
+            <div class="mini-proof-item">
+              <strong>For the parents who do it all</strong>
+              <span>School mornings, sports schedules, playtime windows, outfit calls, errands, and backup plans.</span>
+            </div>
+            <div class="mini-proof-item">
+              <strong>Easy to scan in seconds</strong>
+              <span>The product is designed around clear verdicts, not forecast overload.</span>
+            </div>
+            <div class="mini-proof-item">
+              <strong>Built to reduce mental load</strong>
+              <span>The point is fewer wasted trips, fewer outfit battles, and fewer "we should have checked first" moments.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <footer>
     <div class="container footer-row">
-      <div>Skydocket — Weather, translated into action.</div>
-      <div>Built for parents and college students.</div>
+      <div>Skydocket - Coming Soon for busy households.</div>
+      <div>Join 500+ Indiana families staying ahead of the storm.</div>
     </div>
   </footer>
-</body>
-</html>      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(59,130,246,0.18), transparent 32%),
-        radial-gradient(circle at top right, rgba(34,211,238,0.08), transparent 24%),
-        linear-gradient(180deg, #07152b 0%, #061224 42%, #05101f 100%);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border: 1px solid var(--line-strong);
-      border-radius: 999px;
-      background: rgba(8, 23, 46, 0.72);
-      color: #cfe1fb;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-    }
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--green);
-      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.12);
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      backdrop-filter: blur(14px);
-      background: rgba(4, 13, 27, 0.58);
-      border-bottom: 1px solid rgba(125, 157, 196, 0.08);
-    }
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      min-height: 78px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      font-size: 22px;
-    }
-    .brand-badge {
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      background: linear-gradient(180deg, #1857ff, #2a7fff);
-      display: grid;
-      place-items: center;
-      box-shadow: 0 12px 26px rgba(37, 99, 235, 0.35);
-      font-size: 22px;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      color: var(--muted);
-      font-size: 15px;
-    }
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .btn {
-      border: 0;
-      cursor: pointer;
-      border-radius: 16px;
-      padding: 14px 20px;
-      font-weight: 700;
-      font-size: 15px;
-      transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease;
-    }
-    .btn:hover { transform: translateY(-1px); }
-    .btn-ghost {
-      color: #d8e6fb;
-      background: rgba(11, 27, 52, 0.55);
-      border: 1px solid rgba(119, 157, 206, 0.18);
-    }
-    .btn-primary {
-      color: white;
-      background: linear-gradient(180deg, var(--blue-2), var(--blue));
-      box-shadow: 0 18px 34px rgba(37, 99, 235, 0.28);
-    }
-
-    .hero {
-      padding: 68px 0 34px;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 34px;
-      align-items: center;
-    }
-    h1 {
-      margin: 18px 0 14px;
-      font-size: clamp(42px, 7vw, 72px);
-      line-height: 0.98;
-      letter-spacing: -0.06em;
-      max-width: 780px;
-    }
-    .lead {
-      margin: 0 0 28px;
-      max-width: 690px;
-      color: var(--muted);
-      font-size: 20px;
-      line-height: 1.65;
-    }
-    .lead strong { color: #e8f1ff; }
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-    .micro-proof {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      color: #bdd0eb;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .hero-card,
-    .panel,
-    .feature,
-    .metric,
-    .step,
-    .tier,
-    .quote,
-    .faq-item,
-    .cta-panel {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(13, 30, 58, 0.92), rgba(8, 22, 43, 0.92));
-      box-shadow: var(--shadow);
-    }
-
-    .hero-card {
-      border-radius: 30px;
-      padding: 18px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: -20% auto auto -5%;
-      width: 180px;
-      height: 180px;
-      background: radial-gradient(circle, rgba(96, 165, 250, 0.2), transparent 70%);
-      pointer-events: none;
-    }
-    .app-shell {
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid rgba(132, 171, 222, 0.12);
-      background: linear-gradient(180deg, #081426, #071221);
-    }
-    .app-top {
-      padding: 16px 18px;
-      border-bottom: 1px solid rgba(132, 171, 222, 0.12);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-    .app-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-    }
-    .app-pill {
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-      border-radius: 999px;
-      padding: 10px 14px;
-      background: rgba(11, 31, 56, 0.9);
-      color: #ddecff;
-      font-size: 14px;
-      border: 1px solid rgba(113, 154, 210, 0.14);
-    }
-    .app-body {
-      padding: 22px;
-      display: grid;
-      gap: 18px;
-    }
-    .alert-card {
-      border-radius: 28px;
-      padding: 24px;
-      background: linear-gradient(180deg, rgba(43, 9, 34, 0.85), rgba(29, 8, 30, 0.92));
-      border: 1px solid rgba(251, 113, 133, 0.25);
-    }
-    .alert-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      border-radius: 999px;
-      padding: 10px 14px;
-      background: rgba(139, 21, 58, 0.32);
-      color: #ffb5c2;
-      font-weight: 700;
-      font-size: 13px;
-      margin-bottom: 18px;
-      border: 1px solid rgba(251, 113, 133, 0.22);
-    }
-    .alert-card h3 {
-      margin: 0 0 12px;
-      font-size: clamp(26px, 4vw, 38px);
-      line-height: 1.08;
-      letter-spacing: -0.04em;
-    }
-    .alert-card p {
-      margin: 0;
-      color: #d4dcec;
-      line-height: 1.6;
-      font-size: 16px;
-    }
-    .impact-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    .impact-box {
-      border-radius: 20px;
-      padding: 16px;
-      background: rgba(10, 24, 46, 0.9);
-      border: 1px solid rgba(121, 158, 207, 0.14);
-    }
-    .impact-label {
-      color: #94aac5;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
-      font-weight: 700;
-    }
-    .impact-value {
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-    }
-    .impact-note {
-      font-size: 13px;
-      color: #b9cade;
-      margin-top: 8px;
-    }
-
-    .section {
-      padding: 28px 0;
-    }
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 20px;
-      margin-bottom: 22px;
-    }
-    .section-head h2 {
-      margin: 0;
-      font-size: clamp(30px, 5vw, 46px);
-      line-height: 1.02;
-      letter-spacing: -0.05em;
-    }
-    .section-head p {
-      margin: 8px 0 0;
-      max-width: 700px;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.65;
-    }
-
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-    .metric {
-      border-radius: 22px;
-      padding: 22px;
-    }
-    .metric strong {
-      display: block;
-      font-size: 34px;
-      letter-spacing: -0.05em;
-      margin-bottom: 8px;
-    }
-    .metric span {
-      color: var(--muted);
-      line-height: 1.5;
-      font-size: 14px;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    .feature {
-      border-radius: 24px;
-      padding: 22px;
-    }
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      background: rgba(59, 130, 246, 0.18);
-      border: 1px solid rgba(96, 165, 250, 0.24);
-      font-size: 24px;
-      margin-bottom: 18px;
-    }
-    .feature h3 {
-      margin: 0 0 10px;
-      font-size: 22px;
-      letter-spacing: -0.04em;
-    }
-    .feature p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.65;
-      font-size: 15px;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-    .step {
-      border-radius: 22px;
-      padding: 22px;
-      position: relative;
-      overflow: hidden;
-    }
-    .step-number {
-      width: 38px;
-      height: 38px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      background: rgba(59, 130, 246, 0.18);
-      border: 1px solid rgba(96, 165, 250, 0.24);
-      font-weight: 800;
-      margin-bottom: 14px;
-    }
-    .step h3 {
-      margin: 0 0 10px;
-      font-size: 21px;
-      letter-spacing: -0.04em;
-    }
-    .step p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 15px;
-    }
-
-    .pricing {
-      display: grid;
-      grid-template-columns: 1fr 1.15fr 1fr;
-      gap: 16px;
-    }
-    .tier {
-      border-radius: 26px;
-      padding: 24px;
-      position: relative;
-    }
-    .tier-recommended {
-      outline: 2px solid rgba(96, 165, 250, 0.45);
-      transform: translateY(-4px);
-      background: linear-gradient(180deg, rgba(16, 37, 69, 0.98), rgba(8, 24, 46, 0.98));
-    }
-    .tier-tag {
-      display: inline-flex;
-      margin-bottom: 18px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(59, 130, 246, 0.16);
-      border: 1px solid rgba(96, 165, 250, 0.24);
-      color: #d7e8ff;
-      font-weight: 700;
-      font-size: 13px;
-    }
-    .tier h3 { margin: 0 0 8px; font-size: 24px; letter-spacing: -0.04em; }
-    .tier p { margin: 0 0 16px; color: var(--muted); line-height: 1.55; }
-    .price {
-      font-size: 46px;
-      font-weight: 800;
-      letter-spacing: -0.05em;
-      margin-bottom: 6px;
-    }
-    .price small { font-size: 16px; color: var(--muted); font-weight: 600; }
-    .tier ul {
-      list-style: none;
-      margin: 20px 0 24px;
-      padding: 0;
-      display: grid;
-      gap: 12px;
-      color: #d8e6fb;
-    }
-    .tier li {
-      position: relative;
-      padding-left: 26px;
-      line-height: 1.5;
-    }
-    .tier li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: var(--green);
-      font-weight: 800;
-    }
-
-    .quotes {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    .quote {
-      border-radius: 24px;
-      padding: 24px;
-    }
-    .quote p {
-      margin: 0 0 18px;
-      color: #dfebff;
-      line-height: 1.72;
-      font-size: 16px;
-    }
-    .quote strong { display: block; }
-    .quote span { color: var(--muted); font-size: 14px; }
-
-    .faq {
-      display: grid;
-      gap: 14px;
-    }
-    .faq-item {
-      border-radius: 22px;
-      padding: 22px;
-    }
-    .faq-item h3 { margin: 0 0 10px; font-size: 20px; letter-spacing: -0.03em; }
-    .faq-item p { margin: 0; color: var(--muted); line-height: 1.65; }
-
-    .cta-panel {
-      border-radius: 30px;
-      padding: 30px;
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 20px;
-      align-items: center;
-      margin: 18px 0 70px;
-    }
-    .cta-panel h2 {
-      margin: 0 0 12px;
-      font-size: clamp(30px, 5vw, 48px);
-      line-height: 1.02;
-      letter-spacing: -0.05em;
-    }
-    .cta-panel p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.65;
-      max-width: 640px;
-    }
-    .cta-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 12px;
-    }
-
-    footer {
-      border-top: 1px solid rgba(125, 157, 196, 0.08);
-      padding: 22px 0 34px;
-      color: #8ea6c3;
-      font-size: 14px;
-    }
-    .footer-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 1120px) {
-      .hero-grid,
-      .cta-panel,
-      .pricing,
-      .features,
-      .steps,
-      .quotes,
-      .metrics {
-        grid-template-columns: 1fr 1fr;
-      }
-      .cta-actions { justify-content: flex-start; }
-    }
-
-    @media (max-width: 760px) {
-      .nav { min-height: 72px; }
-      .nav-links { display: none; }
-      .hero { padding-top: 42px; }
-      .hero-grid,
-      .cta-panel,
-      .pricing,
-      .features,
-      .steps,
-      .quotes,
-      .metrics,
-      .impact-grid {
-        grid-template-columns: 1fr;
-      }
-      h1 { font-size: 44px; }
-      .lead { font-size: 17px; }
-      .brand { font-size: 20px; }
-      .section-head { display: block; }
-      .section-head p { margin-top: 12px; }
-      .hero-card,
-      .cta-panel,
-      .feature,
-      .step,
-      .quote,
-      .tier,
-      .metric,
-      .faq-item {
-        border-radius: 22px;
-      }
-      .cta-panel { padding: 24px; }
-    }
-  </style>
-</head>
-<body>
-  <div id="root"></div>
-
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script>
-    const { createElement: h, Fragment } = React;
-
-    const metrics = [
-      { value: "3 jobs", label: "flagged before rain hits", note: "Protecting $1,240 in booked work" },
-      { value: "42 min", label: "routing time recovered", note: "From one storm-shift morning brief" },
-      { value: "1 screen", label: "operators check each morning", note: "No spreadsheets. No guesswork." },
-      { value: "7-day", label: "forecast planning window", note: "Weather translated into job impact" }
-    ];
-
-    const features = [
-      {
-        icon: "⚠️",
-        title: "See what weather will actually break",
-        body: "Skydocket does not just show weather. It shows which jobs, routes, and service windows are at risk before crews start moving."
-      },
-      {
-        icon: "🧭",
-        title: "Get the next best move in plain English",
-        body: "Rain tomorrow at 2 PM. These 4 jobs are exposed. Move these 2 earlier, hold 1, and push 1 to Friday."
-      },
-      {
-        icon: "⏱️",
-        title: "Stop losing time to manual reshuffling",
-        body: "Operators stop bouncing between forecast apps, texts, and whiteboards. One screen tells the team what changed and why."
-      },
-      {
-        icon: "📍",
-        title: "Built for field-heavy businesses",
-        body: "Pressure washing, lawn care, pet services, exterior work, home service teams, and owner-operators who make money when the day stays on track."
-      },
-      {
-        icon: "🔔",
-        title: "Default alerts that already make sense",
-        body: "High-impact alerts, morning action briefs, and weather sensitivity thresholds are turned on by default so users are not building the product from scratch."
-      },
-      {
-        icon: "📈",
-        title: "Daily proof that the product earned its place",
-        body: "Every day should answer one question: what do I need to change today because of the weather? If Skydocket answers that, people stay."
-      }
-    ];
-
-    const steps = [
-      {
-        title: "Choose your business type",
-        body: "Tell Skydocket what kind of work you do so the app starts thinking like your operation, not generic weather software."
-      },
-      {
-        title: "Set your territory and job risk rules",
-        body: "Add your service area, travel radius, and weather sensitivities once so the system feels like yours immediately."
-      },
-      {
-        title: "See your live impact preview",
-        body: "Before paying, users should see what tomorrow’s weather means for jobs, timing, and revenue. Value first, payment second."
-      },
-      {
-        title: "Start the morning with one action brief",
-        body: "Your crew, route, and schedule decisions show up in one operator-focused screen, not six disconnected tools."
-      }
-    ];
-
-    const pricing = [
-      {
-        name: "Starter",
-        price: "$19",
-        suffix: "/mo",
-        text: "For owner-operators who need smart weather alerts without the extra management layer.",
-        points: [
-          "Daily weather risk alerts",
-          "Basic schedule impact view",
-          "Single service area",
-          "No card required to preview impact"
-        ],
-        cta: "Start free"
-      },
-      {
-        name: "Pro",
-        recommended: true,
-        price: "$44.99",
-        suffix: "/mo",
-        text: "The main operating plan for people who make money in the field and need the weather translated into action.",
-        points: [
-          "7-day weather-to-action planning",
-          "Morning action brief",
-          "Job risk prioritization",
-          "Reschedule guidance",
-          "Multi-zone weather logic",
-          "Best-value plan for active operators"
-        ],
-        cta: "Choose Pro"
-      },
-      {
-        name: "Team",
-        price: "Custom",
-        suffix: "",
-        text: "For crews, managers, and growing field-service teams that need oversight across people, routes, and locations.",
-        points: [
-          "Crew oversight dashboards",
-          "Role-based views",
-          "Expanded locations",
-          "Team reporting and management"
-        ],
-        cta: "Talk to us"
-      }
-    ];
-
-    const quotes = [
-      {
-        body: "This should feel less like a forecast app and more like an operations screen. The value is not the weather. The value is the decision.",
-        name: "Built for operators",
-        meta: "Owner-operator positioning"
-      },
-      {
-        body: "Bad weather does not just change jobs. It changes revenue. Skydocket should show that in seconds, not make users think about it.",
-        name: "Loss-prevention framing",
-        meta: "Core conversion angle"
-      },
-      {
-        body: "The first session should end with proof: jobs protected, time recovered, or money saved. That is the remembered value.",
-        name: "Peak-end rule",
-        meta: "Activation principle"
-      }
-    ];
-
-    const faqs = [
-      {
-        q: "Who is Skydocket for?",
-        a: "Skydocket is for field-heavy operators whose schedules and revenue shift when weather changes. Think exterior service teams, owner-operators, pet service businesses, and local crews that need to adjust fast."
-      },
-      {
-        q: "What makes it different from a weather app?",
-        a: "A weather app tells you what the sky is doing. Skydocket tells you what to do next because of it. That difference is the product."
-      },
-      {
-        q: "Why not ask for payment first?",
-        a: "Because the product should prove value before asking for commitment. Good SaaS reduces risk first, then converts from proof."
-      },
-      {
-        q: "What should the daily habit be?",
-        a: "One operator question: what needs to change today because of the weather? If the app answers that faster than a spreadsheet, it stays sticky."
-      }
-    ];
-
-    function Nav() {
-      return h('header', null,
-        h('div', { className: 'container nav' },
-          h('a', { className: 'brand', href: '#' },
-            h('div', { className: 'brand-badge' }, '☁'),
-            h('div', null,
-              h('div', null, 'Skydocket'),
-              h('div', { style: { fontSize: '12px', color: '#94aac5', fontWeight: 600, letterSpacing: '0.02em' } }, 'Weather, translated into action.')
-            )
-          ),
-          h('nav', { className: 'nav-links' },
-            h('a', { href: '#problem' }, 'Problem'),
-            h('a', { href: '#product' }, 'Product'),
-            h('a', { href: '#pricing' }, 'Pricing'),
-            h('a', { href: '#faq' }, 'FAQ')
-          ),
-          h('div', { className: 'nav-actions' },
-            h('button', { className: 'btn btn-ghost' }, 'View demo'),
-            h('button', { className: 'btn btn-primary' }, 'Start free')
-          )
-        )
-      );
-    }
-
-    function Hero() {
-      return h('section', { className: 'hero' },
-        h('div', { className: 'container hero-grid' },
-          h('div', null,
-            h('div', { className: 'eyebrow' }, h('span', { className: 'dot' }), 'Built for contractors, crews, and owner-operators'),
-            h('h1', null, 'Bad weather does not just change jobs. It changes revenue.'),
-            h('p', { className: 'lead' },
-              h('strong', null, 'Skydocket tells you what weather changes mean for schedules, jobs, routes, and revenue before it costs you.'),
-              ' No generic productivity fluff. No forecast guessing. Just the next best move in plain English.'
-            ),
-            h('div', { className: 'hero-actions' },
-              h('button', { className: 'btn btn-primary' }, 'See your weather risk report'),
-              h('button', { className: 'btn btn-ghost' }, 'See how it works')
-            ),
-            h('div', { className: 'micro-proof' },
-              h('span', null, 'No card required'),
-              h('span', null, 'Cancel anytime'),
-              h('span', null, 'Live impact preview before upgrade')
-            )
-          ),
-          h('div', { className: 'hero-card' },
-            h('div', { className: 'app-shell' },
-              h('div', { className: 'app-top' },
-                h('div', { className: 'app-brand' },
-                  h('div', { className: 'brand-badge', style: { width: '34px', height: '34px', borderRadius: '12px', fontSize: '18px' } }, '☁'),
-                  h('div', null,
-                    h('div', { style: { fontSize: '16px' } }, 'Skydocket'),
-                    h('div', { style: { fontSize: '12px', color: '#92a8c7' } }, 'v6.0 · Indiana team view')
-                  )
-                ),
-                h('div', { className: 'app-pill' }, '56° · Live weather')
-              ),
-              h('div', { className: 'app-body' },
-                h('div', { className: 'alert-card' },
-                  h('div', { className: 'alert-chip' }, '● ACT NOW'),
-                  h('h3', null, 'Three exterior jobs are exposed after 2:00 PM.'),
-                  h('p', null, 'Rain and wind move in after lunch. Move 2 jobs earlier, hold 1, and protect about $1,240 in booked work before the window closes.')
-                ),
-                h('div', { className: 'impact-grid' },
-                  h('div', { className: 'impact-box' },
-                    h('div', { className: 'impact-label' }, 'Jobs at risk'),
-                    h('div', { className: 'impact-value' }, '3'),
-                    h('div', { className: 'impact-note' }, '2 can still be saved')
-                  ),
-                  h('div', { className: 'impact-box' },
-                    h('div', { className: 'impact-label' }, 'Revenue protected'),
-                    h('div', { className: 'impact-value' }, '$1,240'),
-                    h('div', { className: 'impact-note' }, 'By reordering the day')
-                  ),
-                  h('div', { className: 'impact-box' },
-                    h('div', { className: 'impact-label' }, 'Action brief'),
-                    h('div', { className: 'impact-value' }, 'Ready'),
-                    h('div', { className: 'impact-note' }, 'Shared before dispatch')
-                  )
-                )
-              )
-            )
-          )
-        )
-      );
-    }
-
-    function Metrics() {
-      return h('section', { className: 'section', id: 'problem' },
-        h('div', { className: 'container' },
-          h('div', { className: 'section-head' },
-            h('div', null,
-              h('h2', null, 'The product should prevent losses, not describe weather.'),
-              h('p', null, 'The strongest version of Skydocket is not “be more organized.” It is “stop losing leads, time slots, and revenue because weather changed and nobody adjusted fast enough.”')
-            )
-          ),
-          h('div', { className: 'metrics' },
-            metrics.map((m) => h('div', { className: 'metric', key: m.label },
-              h('strong', null, m.value),
-              h('div', null, m.label),
-              h('span', null, m.note)
-            ))
-          )
-        )
-      );
-    }
-
-    function Features() {
-      return h('section', { className: 'section', id: 'product' },
-        h('div', { className: 'container' },
-          h('div', { className: 'section-head' },
-            h('div', null,
-              h('h2', null, 'Built for field-heavy businesses, not generic SaaS users.'),
-              h('p', null, 'Unity matters. The copy, actions, defaults, and screen logic should feel like they were built by people who understand crews, jobs, drive time, weather windows, and operator stress.')
-            )
-          ),
-          h('div', { className: 'features' },
-            features.map((item) => h('div', { className: 'feature', key: item.title },
-              h('div', { className: 'feature-icon' }, item.icon),
-              h('h3', null, item.title),
-              h('p', null, item.body)
-            ))
-          )
-        )
-      );
-    }
-
-    function Steps() {
-      return h('section', { className: 'section' },
-        h('div', { className: 'container' },
-          h('div', { className: 'section-head' },
-            h('div', null,
-              h('h2', null, 'Onboarding should move fast and end with proof.'),
-              h('p', null, 'Use the goal-gradient effect. Users should feel progress immediately and end onboarding with one sharp outcome: jobs protected, time recovered, or money saved.')
-            )
-          ),
-          h('div', { className: 'steps' },
-            steps.map((step, idx) => h('div', { className: 'step', key: step.title },
-              h('div', { className: 'step-number' }, idx + 1),
-              h('h3', null, step.title),
-              h('p', null, step.body)
-            ))
-          )
-        )
-      );
-    }
-
-    function Pricing() {
-      return h('section', { className: 'section', id: 'pricing' },
-        h('div', { className: 'container' },
-          h('div', { className: 'section-head' },
-            h('div', null,
-              h('h2', null, 'Make Pro the obvious decision.'),
-              h('p', null, 'Starter gets users in. Team serves larger operations. Pro should be the clean, highest-value choice for active operators who need the weather translated into action every day.')
-            )
-          ),
-          h('div', { className: 'pricing' },
-            pricing.map((tier) => h('div', { className: `tier ${tier.recommended ? 'tier-recommended' : ''}`, key: tier.name },
-              tier.recommended ? h('div', { className: 'tier-tag' }, 'Recommended') : null,
-              h('h3', null, tier.name),
-              h('p', null, tier.text),
-              h('div', { className: 'price' }, tier.price, h('small', null, tier.suffix)),
-              h('ul', null, tier.points.map((p) => h('li', { key: p }, p))),
-              h('button', { className: `btn ${tier.recommended ? 'btn-primary' : 'btn-ghost'}`, style: { width: '100%' } }, tier.cta)
-            ))
-          )
-        )
-      );
-    }
-
-    function Quotes() {
-      return h('section', { className: 'section' },
-        h('div', { className: 'container' },
-          h('div', { className: 'section-head' },
-            h('div', null,
-              h('h2', null, 'Trust comes from fluency, proof, and specificity.'),
-              h('p', null, 'Do not use vague “trusted by pros” language. Use proof and examples that sound like real operators dealing with real weather windows.')
-            )
-          ),
-          h('div', { className: 'quotes' },
-            quotes.map((q) => h('div', { className: 'quote', key: q.name },
-              h('p', null, '“', q.body, '”'),
-              h('strong', null, q.name),
-              h('span', null, q.meta)
-            ))
-          )
-        )
-      );
-    }
-
-    function FAQ() {
-      return h('section', { className: 'section', id: 'faq' },
-        h('div', { className: 'container' },
-          h('div', { className: 'section-head' },
-            h('div', null,
-              h('h2', null, 'Questions users will actually ask.'),
-              h('p', null, 'Clear answers reduce risk and improve trust. Cognitive fluency matters here too.')
-            )
-          ),
-          h('div', { className: 'faq' },
-            faqs.map((item) => h('div', { className: 'faq-item', key: item.q },
-              h('h3', null, item.q),
-              h('p', null, item.a)
-            ))
-          )
-        )
-      );
-    }
-
-    function CTA() {
-      return h('section', { className: 'container' },
-        h('div', { className: 'cta-panel' },
-          h('div', null,
-            h('div', { className: 'eyebrow' }, h('span', { className: 'dot' }), 'See the weather risk before it costs you'),
-            h('h2', null, 'Start with proof, not commitment.'),
-            h('p', null, 'Show users their first weather risk report before asking for payment. That is the cleanest version of risk-reversal for Skydocket.'),
-          ),
-          h('div', { className: 'cta-actions' },
-            h('button', { className: 'btn btn-primary' }, 'Get my first risk report'),
-            h('button', { className: 'btn btn-ghost' }, 'Book a walkthrough')
-          )
-        )
-      );
-    }
-
-    function Footer() {
-      return h('footer', null,
-        h('div', { className: 'container footer-row' },
-          h('div', null, 'Skydocket — Weather, translated into action.'),
-          h('div', null, 'Built for operators, crews, and owner-operators.')
-        )
-      );
-    }
-
-    function App() {
-      return h(Fragment, null,
-        h(Nav),
-        h(Hero),
-        h(Metrics),
-        h(Features),
-        h(Steps),
-        h(Pricing),
-        h(Quotes),
-        h(FAQ),
-        h(CTA),
-        h(Footer)
-      );
-    }
-
-    ReactDOM.createRoot(document.getElementById('root')).render(h(App));
+    const buttons = document.querySelectorAll('.question-btn');
+    const emailWrap = document.getElementById('emailWrap');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        buttons.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        emailWrap.classList.add('visible');
+      });
+    });
+    emailWrap.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const button = emailWrap.querySelector('button');
+      button.textContent = "You're on the list";
+      button.disabled = true;
+    });
   </script>
-</body>
-</html>
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-    body { font-family: 'Outfit', sans-serif; background: var(--canvas); }
-
-    /* ── Atmospheric background ── */
-    .atmo {
-      position: fixed; inset: 0; pointer-events: none; z-index: 0;
-      background:
-        radial-gradient(ellipse 70% 55% at 85% 10%, rgba(59,142,212,0.09) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 50% at 10% 90%, rgba(126,196,240,0.08) 0%, transparent 65%),
-        linear-gradient(175deg, #f0f8ff 0%, #f7fbff 55%, #fafcff 100%);
-    }
-
-    /* ── Topbar ── */
-    .topbar {
-      position: relative; z-index: 10;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 28px;
-      border-bottom: 1px solid rgba(218,234,246,0.7);
-      background: rgba(247,251,255,0.88);
-      backdrop-filter: blur(12px);
-    }
-    .logo-mark {
-      display: flex; align-items: center; gap: 9px;
-      font-family: 'Playfair Display', serif;
-      font-size: 20px; font-weight: 600;
-      color: var(--navy); letter-spacing: -0.2px;
-      text-decoration: none;
-    }
-    .logo-dot {
-      width: 32px; height: 32px; border-radius: 10px;
-      background: linear-gradient(135deg, var(--sky) 0%, #2579b8 100%);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px; box-shadow: 0 2px 8px rgba(59,142,212,0.3);
-    }
-    .topbar-btn {
-      padding: 8px 18px; border-radius: 100px;
-      background: var(--navy); color: #fff;
-      font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 600;
-      border: none; cursor: pointer; letter-spacing: 0.2px;
-      transition: opacity 0.2s, transform 0.15s;
-    }
-    .topbar-btn:hover { opacity: 0.88; transform: translateY(-1px); }
-    .topbar-btn.ghost {
-      background: transparent; color: var(--muted);
-      border: 1px solid var(--border);
-    }
-    .topbar-btn.ghost:hover { border-color: var(--sky); color: var(--sky); }
-
-    /* ── Animations ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes pop {
-      from { opacity: 0; transform: scale(0.4); }
-      to   { opacity: 1; transform: scale(1); }
-    }
-    .fade-up { animation: fadeUp 0.45s ease both; }
-    .fade-up-1 { animation: fadeUp 0.45s 0.1s ease both; }
-    .fade-up-2 { animation: fadeUp 0.45s 0.2s ease both; }
-    .fade-up-3 { animation: fadeUp 0.45s 0.3s ease both; }
-    .fade-up-4 { animation: fadeUp 0.45s 0.4s ease both; }
-    .fade-up-5 { animation: fadeUp 0.45s 0.5s ease both; }
-    .anim-pop  { animation: pop 0.4s cubic-bezier(0.34,1.56,0.64,1) both; }
-
-    /* ══════════════════════════════
-       LANDING PAGE
-    ══════════════════════════════ */
-    .landing { position: relative; z-index: 1; }
-
-    .hero {
-      padding: 72px 24px 56px;
-      max-width: 660px; margin: 0 auto;
-      text-align: center;
-    }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 7px;
-      padding: 6px 16px; border-radius: 100px;
-      background: var(--sky-pale); border: 1px solid rgba(59,142,212,0.2);
-      font-size: 11px; font-weight: 600; color: var(--sky);
-      letter-spacing: 1.3px; text-transform: uppercase;
-      margin-bottom: 26px;
-    }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(34px, 7vw, 54px);
-      line-height: 1.12; color: var(--navy);
-      letter-spacing: -1px; margin-bottom: 18px;
-    }
-    .hero h1 em { font-style: italic; color: var(--sky); }
-    .hero-sub {
-      font-size: 17px; color: var(--slate); line-height: 1.65;
-      max-width: 500px; margin: 0 auto 36px;
-      font-weight: 300;
-    }
-    .btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
-      padding: 14px 28px; border-radius: 14px; border: none;
-      background: linear-gradient(135deg, var(--sky) 0%, #2172b0 100%);
-      color: #fff; font-family: 'Outfit', sans-serif;
-      font-size: 15px; font-weight: 600; cursor: pointer;
-      box-shadow: 0 4px 20px rgba(59,142,212,0.32);
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(59,142,212,0.42); }
-    .btn-outline {
-      padding: 14px 28px; border-radius: 14px;
-      border: 1.5px solid var(--border); background: transparent;
-      color: var(--slate); font-family: 'Outfit', sans-serif;
-      font-size: 15px; font-weight: 500; cursor: pointer;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .btn-outline:hover { border-color: var(--sky); color: var(--sky); }
-
-    /* Sample cards */
-    .sample-section {
-      max-width: 540px; margin: 52px auto 0;
-    }
-    .section-label {
-      font-size: 11px; font-weight: 600; letter-spacing: 1.4px;
-      text-transform: uppercase; color: var(--muted);
-      margin-bottom: 14px; text-align: left;
-    }
-    .action-card {
-      display: flex; align-items: flex-start; gap: 14px;
-      padding: 16px 18px; border-radius: 16px;
-      background: var(--white); border: 1px solid var(--border);
-      box-shadow: 0 2px 12px rgba(15,45,74,0.04);
-      margin-bottom: 10px;
-    }
-    .ac-icon {
-      width: 38px; height: 38px; border-radius: 11px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-    }
-    .ac-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
-    .ac-body  { font-size: 13px; color: var(--slate); line-height: 1.5; font-weight: 300; }
-
-    /* Section divider */
-    .divider { height: 1px; background: var(--border); max-width: 560px; margin: 0 auto; }
-
-    /* Text section */
-    .text-section {
-      padding: 64px 24px;
-      max-width: 640px; margin: 0 auto;
-      text-align: center;
-    }
-    .text-section .eyebrow { margin-bottom: 14px; }
-    .text-section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(24px, 4vw, 36px);
-      color: var(--navy); line-height: 1.22;
-      letter-spacing: -0.4px; margin-bottom: 16px;
-    }
-    .text-section p {
-      font-size: 16px; color: var(--slate);
-      line-height: 1.7; font-weight: 300;
-      margin-bottom: 28px;
-    }
-
-    /* Waitlist */
-    .waitlist-wrap {
-      max-width: 460px; margin: 0 auto 72px;
-      padding: 38px 34px;
-      background: linear-gradient(135deg, var(--navy) 0%, #1a3a58 100%);
-      border-radius: 24px;
-      text-align: center;
-      box-shadow: 0 12px 48px rgba(15,45,74,0.22);
-      position: relative; overflow: hidden;
-    }
-    .waitlist-wrap::before {
-      content: ''; position: absolute;
-      top: -60px; right: -60px;
-      width: 200px; height: 200px; border-radius: 50%;
-      background: rgba(59,142,212,0.15); pointer-events: none;
-    }
-    .waitlist-wrap h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px; color: #fff;
-      margin-bottom: 8px; position: relative;
-    }
-    .waitlist-wrap p {
-      font-size: 14px; color: rgba(255,255,255,0.6);
-      margin-bottom: 22px; font-weight: 300; position: relative;
-    }
-    .waitlist-row { display: flex; gap: 8px; position: relative; }
-    .waitlist-input {
-      flex: 1; padding: 12px 14px; border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.1);
-      font-family: 'Outfit', sans-serif; font-size: 14px;
-      color: #fff; outline: none;
-    }
-    .waitlist-input::placeholder { color: rgba(255,255,255,0.4); }
-    .waitlist-input:focus { border-color: var(--sky-lt); }
-    .waitlist-btn {
-      padding: 12px 18px; border-radius: 12px; border: none;
-      background: var(--sky); color: #fff;
-      font-family: 'Outfit', sans-serif; font-size: 14px;
-      font-weight: 600; cursor: pointer; white-space: nowrap;
-      transition: background 0.2s;
-    }
-    .waitlist-btn:hover { background: var(--sky-lt); }
-
-    /* ══════════════════════════════
-       ONBOARDING
-    ══════════════════════════════ */
-    .ob-root {
-      position: relative; z-index: 1;
-      min-height: calc(100vh - 68px);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 32px 16px 56px;
-    }
-    .ob-card {
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(218,234,246,0.7);
-      border-radius: 26px;
-      padding: 42px 38px 38px;
-      max-width: 500px; width: 100%;
-      box-shadow: 0 8px 48px rgba(15,45,74,0.08);
-    }
-    .progress-track {
-      height: 3px; background: var(--border);
-      border-radius: 2px; margin-bottom: 34px; overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%; border-radius: 2px;
-      background: linear-gradient(90deg, var(--sky), var(--sky-lt));
-      transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
-    }
-    .step-meta {
-      display: flex; justify-content: space-between;
-      align-items: center; margin-bottom: 22px;
-    }
-    .step-num { font-size: 12px; font-weight: 600; color: var(--sky); letter-spacing: 1.2px; text-transform: uppercase; }
-    .step-of  { font-size: 12px; color: var(--muted); }
-    .ob-h {
-      font-family: 'Playfair Display', serif;
-      font-size: 27px; color: var(--navy);
-      line-height: 1.22; margin-bottom: 8px; letter-spacing: -0.3px;
-    }
-    .ob-sub { font-size: 14px; color: var(--slate); line-height: 1.6; margin-bottom: 28px; font-weight: 300; }
-
-    /* Counter */
-    .ctr-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 18px; border-radius: 16px;
-      border: 1.5px solid var(--border); background: #fafcff;
-      margin-bottom: 10px; transition: border-color 0.2s;
-    }
-    .ctr-row:hover { border-color: var(--sky-lt); }
-    .ctr-label { font-size: 15px; font-weight: 500; color: var(--navy); }
-    .ctr-sub   { font-size: 12px; color: var(--muted); margin-top: 1px; }
-    .ctr-ctrl  { display: flex; align-items: center; gap: 14px; }
-    .ctr-btn {
-      width: 32px; height: 32px; border-radius: 50%;
-      border: 1.5px solid var(--border); background: var(--white);
-      font-size: 18px; color: var(--sky); cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Outfit', sans-serif; transition: all 0.15s;
-    }
-    .ctr-btn:hover { border-color: var(--sky); background: var(--sky-pale); }
-    .ctr-val { font-size: 18px; font-weight: 600; color: var(--navy); min-width: 22px; text-align: center; }
-
-    /* Chips */
-    .chips { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 20px; }
-    .chip {
-      padding: 8px 16px; border-radius: 100px;
-      border: 1.5px solid var(--border); background: #fafcff;
-      font-size: 13px; font-weight: 500; color: var(--slate);
-      cursor: pointer; transition: all 0.18s; user-select: none;
-      font-family: 'Outfit', sans-serif;
-    }
-    .chip.on { border-color: var(--sky); background: var(--sky-pale); color: var(--navy); }
-
-    /* Field label */
-    .field-label {
-      font-size: 11px; font-weight: 600; color: var(--muted);
-      letter-spacing: 0.5px; text-transform: uppercase;
-      margin-bottom: 7px; display: block;
-    }
-
-    /* Input / Select */
-    .sky-input {
-      width: 100%; padding: 12px 14px; border-radius: 12px;
-      border: 1.5px solid var(--border); background: #fafcff;
-      font-family: 'Outfit', sans-serif; font-size: 14px;
-      color: var(--navy); outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .sky-input:focus { border-color: var(--sky); box-shadow: 0 0 0 3px rgba(59,142,212,0.12); background: #fff; }
-    select.sky-input { appearance: none; cursor: pointer; }
-
-    /* Time row */
-    .time-row { display: flex; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
-    .time-field { flex: 1; min-width: 140px; }
-
-    /* Slider */
-    .slider-row { margin-bottom: 20px; }
-    .slider-head {
-      display: flex; justify-content: space-between;
-      align-items: center; margin-bottom: 8px;
-    }
-    .slider-label { font-size: 14px; font-weight: 500; color: var(--navy); }
-    .slider-badge {
-      font-size: 11px; font-weight: 600; padding: 3px 10px;
-      border-radius: 100px; background: var(--sky-pale); color: var(--sky);
-    }
-    input[type=range] {
-      -webkit-appearance: none; width: 100%; height: 5px;
-      border-radius: 3px; background: var(--border);
-      outline: none; cursor: pointer;
-    }
-    input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none; width: 20px; height: 20px;
-      border-radius: 50%; background: var(--sky);
-      box-shadow: 0 2px 8px rgba(59,142,212,0.35);
-    }
-
-    /* Toggle */
-    .toggle-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 18px; border-radius: 16px;
-      border: 1.5px solid var(--border); background: #fafcff;
-      margin-bottom: 10px; transition: border-color 0.2s, background 0.2s;
-    }
-    .toggle-row.on { border-color: var(--sky-lt); background: #f0f8ff; }
-    .toggle-title { font-size: 14px; font-weight: 500; color: var(--navy); }
-    .toggle-desc  { font-size: 12px; color: var(--muted); margin-top: 2px; }
-    .toggle-sw {
-      width: 44px; height: 24px; border-radius: 12px;
-      background: var(--border); cursor: pointer; position: relative;
-      border: none; flex-shrink: 0; transition: background 0.25s;
-    }
-    .toggle-sw.on { background: var(--sky); }
-    .toggle-knob {
-      position: absolute; top: 3px; left: 3px;
-      width: 18px; height: 18px; border-radius: 50%;
-      background: #fff; transition: left 0.25s;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
-      pointer-events: none;
-    }
-    .toggle-sw.on .toggle-knob { left: 23px; }
-
-    /* Nav buttons */
-    .nav-row { display: flex; gap: 10px; margin-top: 10px; }
-    .btn-ob {
-      flex: 1; padding: 14px; border-radius: 14px; border: none;
-      background: linear-gradient(135deg, var(--sky) 0%, #2172b0 100%);
-      color: #fff; font-family: 'Outfit', sans-serif;
-      font-size: 15px; font-weight: 600; cursor: pointer;
-      box-shadow: 0 4px 16px rgba(59,142,212,0.28);
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .btn-ob:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(59,142,212,0.38); }
-    .btn-back {
-      padding: 14px 20px; border-radius: 14px;
-      border: 1.5px solid var(--border); background: transparent;
-      color: var(--muted); font-family: 'Outfit', sans-serif;
-      font-size: 15px; cursor: pointer;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .btn-back:hover { border-color: var(--sky); color: var(--sky); }
-
-    /* Completion */
-    .ob-complete { text-align: center; padding: 8px 0 4px; }
-    .ob-complete-icon { font-size: 54px; display: block; margin-bottom: 18px; }
-    .ob-complete h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--navy); margin-bottom: 10px; }
-    .ob-complete p  { font-size: 14px; color: var(--slate); line-height: 1.65; font-weight: 300; max-width: 340px; margin: 0 auto 22px; }
-    .profile-tags   { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 26px; }
-    .profile-tag {
-      padding: 6px 14px; border-radius: 100px;
-      background: var(--sky-pale); color: var(--sky);
-      font-size: 13px; font-weight: 500;
-      border: 1px solid rgba(59,142,212,0.2);
-    }
-
-    /* ══════════════════════════════
-       DASHBOARD
-    ══════════════════════════════ */
-    .dash-root { position: relative; z-index: 1; padding-bottom: 56px; }
-    .dash-header {
-      padding: 28px 24px 0;
-      max-width: 560px; margin: 0 auto;
-    }
-    .dash-greeting {
-      font-family: 'Playfair Display', serif;
-      font-size: 26px; color: var(--navy); line-height: 1.25; margin-bottom: 4px;
-    }
-    .dash-greeting em { font-style: italic; color: var(--sky); }
-    .dash-date { font-size: 13px; color: var(--muted); font-weight: 300; margin-bottom: 24px; }
-
-    /* Summary card */
-    .summary-card {
-      padding: 22px 24px; border-radius: 20px;
-      background: linear-gradient(135deg, var(--navy) 0%, #1a3a58 100%);
-      color: #fff; margin-bottom: 18px;
-      box-shadow: 0 8px 32px rgba(15,45,74,0.18);
-      position: relative; overflow: hidden;
-    }
-    .summary-card::after {
-      content: ''; position: absolute;
-      top: -40px; right: -30px;
-      width: 160px; height: 160px; border-radius: 50%;
-      background: rgba(59,142,212,0.15); pointer-events: none;
-    }
-    .sc-label { font-size: 11px; letter-spacing: 1.3px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 10px; font-weight: 600; }
-    .sc-main  { font-family: 'Playfair Display', serif; font-size: 19px; line-height: 1.35; position: relative; }
-    .sc-sub   { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 10px; line-height: 1.5; position: relative; }
-
-    /* Dash cards */
-    .dash-cards { max-width: 560px; margin: 0 auto; padding: 0 24px; }
-    .dash-card {
-      display: flex; gap: 14px; align-items: flex-start;
-      padding: 18px 20px; border-radius: 18px;
-      background: var(--white); border: 1px solid var(--border);
-      box-shadow: 0 2px 10px rgba(15,45,74,0.04);
-      margin-bottom: 10px;
-      transition: transform 0.18s, box-shadow 0.18s;
-    }
-    .dash-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(15,45,74,0.08); }
-    .dc-icon {
-      width: 42px; height: 42px; border-radius: 13px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px;
-    }
-    .dc-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
-    .dc-body  { font-size: 13px; color: var(--slate); line-height: 1.5; font-weight: 300; }
-    .dc-tag {
-      display: inline-block; margin-top: 6px;
-      padding: 3px 10px; border-radius: 100px;
-      font-size: 11px; font-weight: 600; letter-spacing: 0.3px;
-    }
-    .tag-warn   { background: #fff7ed; color: #c2410c; }
-    .tag-good   { background: #ecfdf5; color: #065f46; }
-    .tag-info   { background: var(--sky-pale); color: #1e5f8a; }
-
-    /* Premium banner */
-    .premium-banner {
-      max-width: 560px; margin: 18px auto 0; padding: 0 24px;
-    }
-    .pb-inner {
-      padding: 18px 20px; border-radius: 18px;
-      background: linear-gradient(135deg, #fef9ee 0%, #fff8e6 100%);
-      border: 1px solid #fed7aa;
-      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-    }
-    .pb-icon { font-size: 26px; flex-shrink: 0; }
-    .pb-title { font-size: 14px; font-weight: 600; color: #92400e; margin-bottom: 2px; }
-    .pb-desc  { font-size: 12px; color: #b45309; font-weight: 300; }
-    .pb-btn {
-      padding: 9px 18px; border-radius: 10px; border: none;
-      background: #f59e0b; color: #fff;
-      font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 600;
-      cursor: pointer; transition: background 0.2s; white-space: nowrap;
-    }
-    .pb-btn:hover { background: #d97706; }
-
-    .reset-link {
-      text-align: center; margin-top: 30px;
-    }
-    .reset-link button {
-      background: none; border: none; color: var(--muted);
-      font-family: 'Outfit', sans-serif; font-size: 13px;
-      cursor: pointer; text-decoration: underline;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 480px) {
-      .ob-card { padding: 32px 24px 28px; }
-      .hero { padding: 52px 20px 40px; }
-    }
-  </style>
-
-</head>
-<body>
-  <div id="root"></div>
-
-  <script type="text/babel">
-    const { useState } = React;
-
-    /* ── Shared components ── */
-
-    function Logo() {
-      return (
-        <div className="logo-mark">
-          <div className="logo-dot">🌤</div>
-          Skydocket
-        </div>
-      );
-    }
-
-    function Chip({ label, on, onClick }) {
-      return <div className={`chip ${on ? "on" : ""}`} onClick={onClick}>{label}</div>;
-    }
-
-    function Counter({ label, sub, val, onChange }) {
-      return (
-        <div className="ctr-row">
-          <div>
-            <div className="ctr-label">{label}</div>
-            {sub && <div className="ctr-sub">{sub}</div>}
-          </div>
-          <div className="ctr-ctrl">
-            <button className="ctr-btn" onClick={() => onChange(Math.max(0, val - 1))}>−</button>
-            <span className="ctr-val">{val}</span>
-            <button className="ctr-btn" onClick={() => onChange(val + 1)}>+</button>
-          </div>
-        </div>
-      );
-    }
-
-    function Toggle({ title, desc, on, onClick }) {
-      return (
-        <div className={`toggle-row ${on ? "on" : ""}`}>
-          <div>
-            <div className="toggle-title">{title}</div>
-            {desc && <div className="toggle-desc">{desc}</div>}
-          </div>
-          <button className={`toggle-sw ${on ? "on" : ""}`} onClick={onClick}>
-            <div className="toggle-knob" />
-          </button>
-        </div>
-      );
-    }
-
-    function SensitivitySlider({ label, val, onChange }) {
-      const levels = ["Low", "Medium", "High", "Very High"];
-      const level = levels[Math.min(Math.round(val / 33), 3)];
-      return (
-        <div className="slider-row">
-          <div className="slider-head">
-            <span className="slider-label">{label}</span>
-            <span className="slider-badge">{level}</span>
-          </div>
-          <input type="range" min="0" max="99" value={val}
-            onChange={e => onChange(Number(e.target.value))} />
-        </div>
-      );
-    }
-
-    function ProgressBar({ pct }) {
-      return (
-        <div className="progress-track">
-          <div className="progress-fill" style={{ width: `${pct}%` }} />
-        </div>
-      );
-    }
-
-    /* ══════════════════════════════
-       LANDING PAGE
-    ══════════════════════════════ */
-
-    function Landing({ onStart }) {
-      const [email, setEmail] = useState("");
-      const [joined, setJoined] = useState(false);
-
-      const sampleCards = [
-        { icon: "🧥", bg: "#e8f4fd", title: "What to wear",       body: "Dress the kids in layers this morning. Temperature drops around 9 AM." },
-        { icon: "🚗", bg: "#fef3c7", title: "Leave-by alert",      body: "Leave by 7:40 AM. Rain picks up after 8 and will slow your commute." },
-        { icon: "🌳", bg: "#ecfdf5", title: "Best outdoor window", body: "Outdoor play is clear between 3:15 and 5:00 PM today." },
-        { icon: "🐕", bg: "#f5f3ff", title: "Dog walk timing",     body: "Walk before 8:30 AM or after 6:00 PM. Midday heat advisory in effect." },
-        { icon: "🌸", bg: "#fff1f2", title: "Allergy heads-up",    body: "High pollen tonight. Give allergy meds before dinner if needed." },
-      ];
-
-      return (
-        <div className="landing">
-          <div className="hero">
-            <div className="eyebrow fade-up-1">✦ AI Weather Decisions</div>
-            <h1 className="fade-up-2">Stop checking the weather.<br /><em>Start knowing</em> what to do.</h1>
-            <p className="hero-sub fade-up-3">
-              Skydocket turns tomorrow's forecast into plain-English decisions for your family, commute, pets, and home. No charts. No guessing.
-            </p>
-            <div className="btn-row fade-up-4">
-              <button className="btn-primary" onClick={onStart}>Get started free →</button>
-              <button className="btn-outline" onClick={() => document.getElementById('sample').scrollIntoView({ behavior: 'smooth' })}>
-                See a sample day
-              </button>
-            </div>
-
-            <div className="sample-section fade-up-5" id="sample">
-              <div className="section-label">Today for your household</div>
-              {sampleCards.map((c, i) => (
-                <div className="action-card" key={i}>
-                  <div className="ac-icon" style={{ background: c.bg }}>{c.icon}</div>
-                  <div>
-                    <div className="ac-title">{c.title}</div>
-                    <div className="ac-body">{c.body}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="divider" />
-
-          <div className="text-section">
-            <div className="eyebrow">The problem</div>
-            <h2>Most weather apps give you data.<br />They don't give you decisions.</h2>
-            <p>
-              You already know it's 70% chance of rain. What you need is someone to say: bring the umbrella for pickup, leave 10 minutes early, and move the dog walk before noon. That's Skydocket.
-            </p>
-          </div>
-
-          <div className="divider" />
-
-          <div className="text-section">
-            <div className="eyebrow">Built for real life</div>
-            <h2>Weather, translated<br />for your household.</h2>
-            <p>
-              Skydocket knows your commute, your school pickup, your dog's walk, and your kid's sensitivity to cold. Every morning, one calm summary — before you're already out the door.
-            </p>
-            <button className="btn-primary" style={{ margin: "0 auto", display: "inline-flex" }} onClick={onStart}>
-              Set up in 90 seconds →
-            </button>
-          </div>
-
-          <div className="divider" />
-
-          <div className="text-section" style={{ paddingBottom: 0 }}>
-            <div className="eyebrow">Early access</div>
-            <h2 style={{ marginBottom: 36 }}>Join early. Help shape it.</h2>
-          </div>
-
-          <div className="waitlist-wrap">
-            <h3>Get early access.</h3>
-            <p>Join early, help shape the first version, and lock in launch pricing.</p>
-            {joined ? (
-              <p style={{ color: "#7ec4f0", fontWeight: 500, fontSize: 15, position: "relative" }}>
-                ✓ You're on the list. We'll be in touch.
-              </p>
-            ) : (
-              <div className="waitlist-row">
-                <input
-                  className="waitlist-input"
-                  type="email"
-                  placeholder="your@email.com"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                />
-                <button className="waitlist-btn" onClick={() => email && setJoined(true)}>
-                  Join waitlist
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      );
-    }
-
-    /* ══════════════════════════════
-       ONBOARDING — 4 STEPS
-    ══════════════════════════════ */
-
-    function StepIdentity({ data, setData, onNext }) {
-      const pets = ["Dog", "Cat", "Bird", "Rabbit", "Other"];
-      const togglePet = p => setData(d => ({
-        ...d, pets: d.pets.includes(p) ? d.pets.filter(x => x !== p) : [...d.pets, p]
-      }));
-      return (
-        <div className="fade-up">
-          <ProgressBar pct={0} />
-          <div className="step-meta">
-            <span className="step-num">Step 1 of 4</span>
-            <span className="step-of">Identity</span>
-          </div>
-          <div className="ob-h">Who are we<br />looking out for?</div>
-          <p className="ob-sub">This turns Skydocket from a generic forecast into a household assistant built around your people and animals.</p>
-
-          <Counter label="Adults" sub="Including yourself" val={data.adults} onChange={v => setData(d => ({ ...d, adults: v }))} />
-          <Counter label="Children" sub="Under 18 at home"  val={data.kids}   onChange={v => setData(d => ({ ...d, kids: v }))} />
-
-          <label className="field-label" style={{ marginTop: 8, marginBottom: 10 }}>Pets at home</label>
-          <div className="chips">
-            <Chip label="None" on={data.pets.length === 0} onClick={() => setData(d => ({ ...d, pets: [] }))} />
-            {pets.map(p => <Chip key={p} label={p} on={data.pets.includes(p)} onClick={() => togglePet(p)} />)}
-          </div>
-
-          <div className="nav-row">
-            <button className="btn-ob" onClick={onNext}>Next →</button>
-          </div>
-        </div>
-      );
-    }
-
-    function StepRoutines({ data, setData, onNext, onBack }) {
-      const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-      const toggleDay = d => setData(p => ({
-        ...p, commuteDays: p.commuteDays.includes(d)
-          ? p.commuteDays.filter(x => x !== d) : [...p.commuteDays, d]
-      }));
-      return (
-        <div className="fade-up">
-          <ProgressBar pct={25} />
-          <div className="step-meta">
-            <span className="step-num">Step 2 of 4</span>
-            <span className="step-of">Routines</span>
-          </div>
-          <div className="ob-h">When does your day<br />need weather help?</div>
-          <p className="ob-sub">Map your real schedule against the forecast so every alert actually matters to you.</p>
-
-          <div className="time-row">
-            <div className="time-field">
-              <label className="field-label">School drop-off</label>
-              <input className="sky-input" type="time" value={data.dropoff} onChange={e => setData(d => ({ ...d, dropoff: e.target.value }))} />
-            </div>
-            <div className="time-field">
-              <label className="field-label">School pickup</label>
-              <input className="sky-input" type="time" value={data.pickup} onChange={e => setData(d => ({ ...d, pickup: e.target.value }))} />
-            </div>
-          </div>
-          <div className="time-row">
-            <div className="time-field">
-              <label className="field-label">Commute departs</label>
-              <input className="sky-input" type="time" value={data.depart} onChange={e => setData(d => ({ ...d, depart: e.target.value }))} />
-            </div>
-            <div className="time-field">
-              <label className="field-label">Commute mode</label>
-              <select className="sky-input" value={data.mode} onChange={e => setData(d => ({ ...d, mode: e.target.value }))}>
-                <option value="">Select…</option>
-                <option value="drive">Drive</option>
-                <option value="walk">Walk</option>
-                <option value="bike">Bike</option>
-                <option value="transit">Transit</option>
-                <option value="wfh">Work from home</option>
-              </select>
-            </div>
-          </div>
-
-          <label className="field-label" style={{ marginBottom: 9 }}>Commute days</label>
-          <div className="chips">
-            {days.map(d => <Chip key={d} label={d} on={data.commuteDays.includes(d)} onClick={() => toggleDay(d)} />)}
-          </div>
-
-          <div className="time-row" style={{ marginTop: 4 }}>
-            <div className="time-field">
-              <label className="field-label">Dog walk time</label>
-              <input className="sky-input" type="time" value={data.dogWalk} onChange={e => setData(d => ({ ...d, dogWalk: e.target.value }))} />
-            </div>
-            <div className="time-field">
-              <label className="field-label">Outdoor play window</label>
-              <input className="sky-input" type="time" value={data.outdoorPlay} onChange={e => setData(d => ({ ...d, outdoorPlay: e.target.value }))} />
-            </div>
-          </div>
-
-          <div className="nav-row">
-            <button className="btn-back" onClick={onBack}>←</button>
-            <button className="btn-ob" onClick={onNext}>Next →</button>
-          </div>
-        </div>
-      );
-    }
-
-    function StepSensitivity({ data, setData, onNext, onBack }) {
-      const set = (k, v) => setData(d => ({ ...d, [k]: v }));
-      return (
-        <div className="fade-up">
-          <ProgressBar pct={50} />
-          <div className="step-meta">
-            <span className="step-num">Step 3 of 4</span>
-            <span className="step-of">Sensitivity</span>
-          </div>
-          <div className="ob-h">What feels cold, hot,<br />or uncomfortable?</div>
-          <p className="ob-sub">This makes recommendations feel personal instead of generic. One household's "light jacket morning" is another's "heavy coat required."</p>
-
-          <SensitivitySlider label="Cold sensitivity"           val={data.cold}   onChange={v => set("cold", v)} />
-          <SensitivitySlider label="Rain sensitivity"           val={data.rain}   onChange={v => set("rain", v)} />
-          <SensitivitySlider label="Wind sensitivity"           val={data.wind}   onChange={v => set("wind", v)} />
-          <SensitivitySlider label="Allergy / pollen sensitivity" val={data.allergy} onChange={v => set("allergy", v)} />
-
-          <div className="nav-row">
-            <button className="btn-back" onClick={onBack}>←</button>
-            <button className="btn-ob" onClick={onNext}>Next →</button>
-          </div>
-        </div>
-      );
-    }
-
-    function StepAlerts({ data, setData, onFinish, onBack }) {
-      const tog = k => setData(d => ({ ...d, [k]: !d[k] }));
-      return (
-        <div className="fade-up">
-          <ProgressBar pct={75} />
-          <div className="step-meta">
-            <span className="step-num">Step 4 of 4</span>
-            <span className="step-of">Alerts</span>
-          </div>
-          <div className="ob-h">When should<br />we step in?</div>
-          <p className="ob-sub">Turn on alerts that matter for your household. You can change these any time.</p>
-
-          <Toggle title="Leave-early alerts"       desc="Notify you when weather will affect your commute"     on={data.leaveEarly}   onClick={() => tog("leaveEarly")} />
-          <Toggle title="Pickup weather warnings"  desc="Alert before school pickup if conditions are changing" on={data.pickupAlert}  onClick={() => tog("pickupAlert")} />
-          <Toggle title="Allergy & pollen alerts"  desc="Daily heads-up on high pollen or air quality days"    on={data.allergyAlert} onClick={() => tog("allergyAlert")} />
-          <Toggle title="Dog walk timing"          desc="Best-window notifications based on heat, rain, and air" on={data.dogAlert}   onClick={() => tog("dogAlert")} />
-          <Toggle title="Outdoor play windows"     desc="Alert when ideal weather arrives during after-school hours" on={data.outdoorAlert} onClick={() => tog("outdoorAlert")} />
-
-          <div className="nav-row" style={{ marginTop: 16 }}>
-            <button className="btn-back" onClick={onBack}>←</button>
-            <button className="btn-ob" onClick={onFinish}>Finish setup ✓</button>
-          </div>
-        </div>
-      );
-    }
-
-    function ObComplete({ profile, onDashboard }) {
-      const { identity, routines } = profile;
-      const tags = [];
-      if (identity.adults > 0) tags.push(`${identity.adults} adult${identity.adults > 1 ? "s" : ""}`);
-      if (identity.kids > 0)   tags.push(`${identity.kids} kid${identity.kids > 1 ? "s" : ""}`);
-      identity.pets.forEach(p => tags.push(p.toLowerCase()));
-      if (routines.mode === "wfh") tags.push("remote");
-      else if (routines.mode) tags.push(routines.mode);
-      const alertsOn = Object.values(profile.alerts).filter(Boolean).length;
-      if (alertsOn) tags.push(`${alertsOn} alert${alertsOn > 1 ? "s" : ""} on`);
-
-      return (
-        <div className="ob-complete fade-up">
-          <span className="ob-complete-icon anim-pop">☀️</span>
-          <h2>You're all set.</h2>
-          <p>Skydocket knows your household now. Every morning, one calm message — exactly what your family needs before you walk out the door.</p>
-          <div className="profile-tags">
-            {tags.map(t => <span key={t} className="profile-tag">{t}</span>)}
-          </div>
-          <div className="nav-row" style={{ justifyContent: "center" }}>
-            <button className="btn-ob" onClick={onDashboard}>See today's forecast →</button>
-          </div>
-          <p style={{ fontSize: 12, color: "#8ba5bc", marginTop: 16 }}>No charts. No percentages. Just what matters for your day.</p>
-        </div>
-      );
-    }
-
-    /* ══════════════════════════════
-       DASHBOARD
-    ══════════════════════════════ */
-
-    function Dashboard({ profile, onReset }) {
-      const { identity, routines, sensitivity, alerts } = profile;
-      const hasPet     = identity.pets.some(p => p !== "None");
-      const hasKids    = identity.kids > 0;
-      const allergyHigh = sensitivity.allergy > 50;
-
-      const cards = [
-        {
-          icon: "🧥", bg: "#e8f4fd",
-          title: "What to wear",
-          body: hasKids
-            ? "Dress the kids in layers this morning — it'll warm up by midday. Light jacket for the commute."
-            : "Light jacket to start. Temperatures climb through mid-morning so layers are a good call.",
-          tag: null,
-        },
-        {
-          icon: "🚗", bg: "#fef3c7",
-          title: "Leave-by alert",
-          body: routines.depart
-            ? `Leave by ${routines.depart}. Light rain shortly after adds roughly 10 minutes to your commute.`
-            : "Leave a few minutes earlier than usual. Light rain is expected this morning.",
-          tag: { label: "Leave early", cls: "tag-warn" },
-        },
-        {
-          icon: "🌳", bg: "#ecfdf5",
-          title: "Best outdoor window",
-          body: hasKids
-            ? "Best outdoor play window today is 3:15 – 5:00 PM. Clear skies and comfortable temperature."
-            : "Best conditions are mid-afternoon, roughly 2:00 – 5:00 PM. Comfortable and dry.",
-          tag: { label: "Clear window", cls: "tag-good" },
-        },
-        ...(hasPet ? [{
-          icon: "🐕", bg: "#f5f3ff",
-          title: "Dog walk timing",
-          body: routines.dogWalk
-            ? `Before ${routines.dogWalk} is ideal. Heat picks up mid-morning and rain returns this evening.`
-            : "Walk before 9 AM or after 6 PM. Midday heat advisory and evening rain expected.",
-          tag: { label: "Best before 9 AM", cls: "tag-info" },
-        }] : []),
-        ...(allergyHigh ? [{
-          icon: "🌸", bg: "#fff1f2",
-          title: "Allergy heads-up",
-          body: "High pollen count tonight. Consider allergy meds before dinner and keep windows closed.",
-          tag: { label: "High pollen", cls: "tag-warn" },
-        }] : []),
-        ...(hasKids && alerts.pickupAlert ? [{
-          icon: "🏫", bg: "#fefce8",
-          title: "Pickup alert",
-          body: "Rain likely around school pickup time. Bring umbrellas and expect slower traffic.",
-          tag: { label: "Bring umbrellas", cls: "tag-warn" },
-        }] : []),
-      ];
-
-      const dateStr = new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
-
-      return (
-        <div className="dash-root">
-          <div className="dash-header">
-            <div className="dash-greeting fade-up-1">
-              Good morning —<br /><em>here's your day.</em>
-            </div>
-            <div className="dash-date fade-up-1">{dateStr} · Indianapolis, IN</div>
-
-            <div className="summary-card fade-up-2">
-              <div className="sc-label">Today's summary</div>
-              <div className="sc-main">
-                {hasKids
-                  ? "A rainy morning, clear afternoon. Good school day if you leave a few minutes early."
-                  : "Rainy start, clearing by noon. Leave a little earlier and enjoy the afternoon."
-                }
-              </div>
-              <div className="sc-sub">
-                {hasPet ? "Walk the dog early. " : ""}
-                {allergyHigh ? "High pollen tonight." : "Pollen is manageable today."}
-              </div>
-            </div>
-          </div>
-
-          <div className="dash-cards">
-            {cards.map((c, i) => (
-              <div className="dash-card fade-up" key={i} style={{ animationDelay: `${0.1 + i * 0.07}s` }}>
-                <div className="dc-icon" style={{ background: c.bg }}>{c.icon}</div>
-                <div>
-                  <div className="dc-title">{c.title}</div>
-                  <div className="dc-body">{c.body}</div>
-                  {c.tag && <span className={`dc-tag ${c.tag.cls}`}>{c.tag.label}</span>}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="premium-banner fade-up" style={{ animationDelay: "0.5s" }}>
-            <div className="pb-inner">
-              <div className="pb-icon">✨</div>
-              <div style={{ flex: 1 }}>
-                <div className="pb-title">Peace of Mind — $4.99/mo</div>
-                <div className="pb-desc">Multi-profile sync, smart leave-now alerts, and advanced pollen tracking.</div>
-              </div>
-              <button className="pb-btn">Try free</button>
-            </div>
-          </div>
-
-          <div className="reset-link">
-            <button onClick={onReset}>← Back to landing page</button>
-          </div>
-        </div>
-      );
-    }
-
-    /* ══════════════════════════════
-       ROOT APP
-    ══════════════════════════════ */
-
-    function App() {
-      const [view,   setView]   = useState("landing");  // landing | onboarding | dashboard
-      const [obStep, setObStep] = useState(0);          // 0–4
-
-      const [identity,    setIdentity]    = useState({ adults: 1, kids: 0, pets: [] });
-      const [routines,    setRoutines]    = useState({ dropoff: "07:45", pickup: "15:00", depart: "07:30", mode: "", commuteDays: ["Mon","Tue","Wed","Thu","Fri"], dogWalk: "07:00", outdoorPlay: "15:30" });
-      const [sensitivity, setSensitivity] = useState({ cold: 49, rain: 49, wind: 33, allergy: 66 });
-      const [alerts,      setAlerts]      = useState({ leaveEarly: true, pickupAlert: true, allergyAlert: false, dogAlert: false, outdoorAlert: false });
-
-      const profile = { identity, routines, sensitivity, alerts };
-
-      const reset = () => { setView("landing"); setObStep(0); };
-
-      return (
-        <div>
-          <div className="atmo" />
-
-          {/* Topbar */}
-          <div className="topbar">
-            <Logo />
-            {view === "landing"    && <button className="topbar-btn" onClick={() => setView("onboarding")}>Get early access</button>}
-            {view === "onboarding" && <button className="topbar-btn ghost" onClick={reset}>← Back</button>}
-            {view === "dashboard"  && <div style={{ fontSize: 12, color: "#8ba5bc", fontWeight: 500 }}>Today · Indianapolis</div>}
-          </div>
-
-          {/* Views */}
-          {view === "landing" && (
-            <Landing onStart={() => setView("onboarding")} />
-          )}
-
-          {view === "onboarding" && (
-            <div className="ob-root">
-              <div className="ob-card">
-                {obStep === 0 && <StepIdentity    data={identity}    setData={setIdentity}    onNext={() => setObStep(1)} />}
-                {obStep === 1 && <StepRoutines    data={routines}    setData={setRoutines}    onNext={() => setObStep(2)} onBack={() => setObStep(0)} />}
-                {obStep === 2 && <StepSensitivity data={sensitivity} setData={setSensitivity} onNext={() => setObStep(3)} onBack={() => setObStep(1)} />}
-                {obStep === 3 && <StepAlerts      data={alerts}      setData={setAlerts}      onFinish={() => setObStep(4)} onBack={() => setObStep(2)} />}
-                {obStep === 4 && <ObComplete      profile={profile}  onDashboard={() => setView("dashboard")} />}
-              </div>
-            </div>
-          )}
-
-          {view === "dashboard" && (
-            <Dashboard profile={profile} onReset={reset} />
-          )}
-        </div>
-      );
-    }
-
-    // Mount the app
-    const root = ReactDOM.createRoot(document.getElementById("root"));
-    root.render(<App />);
-  </script>
-
 </body>
 </html>
