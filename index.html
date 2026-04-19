@@ -3,38 +3,1764 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Skydocket — Weather, translated into action.</title>
+  <title>Skydocket — Know the verdict before you load the kids up</title>
   <meta
     name="description"
-    content="Skydocket helps parents and college students know what weather changes mean for school, commute, pets, errands, and daily plans before it causes stress."
+    content="Skydocket helps parents and busy households know when weather will turn an outing into wasted effort, cranky kids, and a harder day."
   />
-  <meta name="theme-color" content="#07152b" />
-
+  <meta name="theme-color" content="#081427" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
-
   <style>
     :root {
-      --bg: #061224;
-      --bg-2: #091b35;
-      --panel: rgba(9, 24, 47, 0.82);
-      --panel-2: rgba(11, 29, 57, 0.95);
-      --card: rgba(13, 34, 65, 0.88);
-      --line: rgba(104, 146, 196, 0.18);
-      --line-strong: rgba(110, 158, 217, 0.28);
-      --text: #eef5ff;
-      --muted: #9fb4cf;
+      --bg: #071427;
+      --bg-2: #0b1d36;
+      --panel: rgba(10, 24, 46, 0.88);
+      --panel-2: rgba(14, 31, 58, 0.96);
+      --card: rgba(14, 33, 62, 0.92);
+      --line: rgba(121, 156, 204, 0.14);
+      --line-strong: rgba(121, 156, 204, 0.28);
+      --text: #eff6ff;
+      --muted: #9cb3cf;
       --blue: #3b82f6;
       --blue-2: #60a5fa;
       --cyan: #22d3ee;
       --green: #22c55e;
       --amber: #f59e0b;
       --red: #fb7185;
-      --shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+      --shadow: 0 22px 70px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(59,130,246,0.18), transparent 32%),
+        radial-gradient(circle at top right, rgba(34,211,238,0.08), transparent 24%),
+        linear-gradient(180deg, #071427 0%, #08172d 42%, #06111f 100%);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: rgba(8, 23, 46, 0.76);
+      color: #d6e6ff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.12);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(5, 13, 26, 0.62);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(125, 157, 196, 0.08);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: 22px;
+    }
+
+    .brand-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #1857ff, #2a7fff);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 12px 26px rgba(37, 99, 235, 0.35);
+      font-size: 22px;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: #95adca;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 15px;
+      align-items: center;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      border: 0;
+      cursor: pointer;
+      border-radius: 16px;
+      padding: 14px 20px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(180deg, var(--blue-2), var(--blue));
+      box-shadow: 0 18px 34px rgba(37, 99, 235, 0.28);
+    }
+
+    .btn-ghost {
+      color: #d8e6fb;
+      background: rgba(11, 27, 52, 0.55);
+      border: 1px solid rgba(119, 157, 206, 0.18);
+    }
+
+    .btn-soft {
+      color: #e8f1ff;
+      background: rgba(20, 44, 79, 0.9);
+      border: 1px solid rgba(120, 153, 202, 0.14);
+    }
+
+    .hero {
+      padding: 68px 0 32px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 18px 0 14px;
+      font-size: clamp(42px, 7vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      max-width: 760px;
+    }
+
+    .lead {
+      margin: 0 0 28px;
+      max-width: 690px;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.65;
+    }
+
+    .lead strong { color: var(--text); }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .risk-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: #c1d4ec;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .hero-card,
+    .metric,
+    .feature,
+    .step,
+    .tier,
+    .proof,
+    .faq-item,
+    .cta-panel,
+    .modal-card,
+    .flow-box {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(13, 30, 58, 0.92), rgba(8, 22, 43, 0.92));
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      border-radius: 30px;
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -20% auto auto -5%;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(96, 165, 250, 0.2), transparent 70%);
+      pointer-events: none;
+    }
+
+    .app-shell {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(132, 171, 222, 0.12);
+      background: linear-gradient(180deg, #081426, #071221);
+    }
+
+    .app-top {
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(132, 171, 222, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .app-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+
+    .app-pill {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(11, 31, 56, 0.9);
+      color: #ddecff;
+      font-size: 14px;
+      border: 1px solid rgba(113, 154, 210, 0.14);
+    }
+
+    .app-body {
+      padding: 22px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .alert-card {
+      border-radius: 28px;
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(43, 9, 34, 0.85), rgba(29, 8, 30, 0.92));
+      border: 1px solid rgba(251, 113, 133, 0.25);
+    }
+
+    .alert-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(139, 21, 58, 0.32);
+      color: #ffb5c2;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(251, 113, 133, 0.22);
+    }
+
+    .alert-card h3 {
+      margin: 0 0 12px;
+      font-size: clamp(26px, 4vw, 38px);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .alert-card p {
+      margin: 0;
+      color: #d4dcec;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .impact-box {
+      border-radius: 20px;
+      padding: 16px;
+      background: rgba(10, 24, 46, 0.9);
+      border: 1px solid rgba(121, 158, 207, 0.14);
+    }
+
+    .impact-label {
+      color: #94aac5;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .impact-value {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .impact-note {
+      font-size: 13px;
+      color: #b9cade;
+      margin-top: 8px;
+    }
+
+    .section { padding: 28px 0; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(30px, 5vw, 46px);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+    }
+
+    .section-head p {
+      margin: 8px 0 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .metric {
+      border-radius: 22px;
+      padding: 22px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 34px;
+      letter-spacing: -0.05em;
+      margin-bottom: 8px;
+    }
+
+    .metric .metric-title {
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .feature {
+      border-radius: 24px;
+      padding: 22px;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(59, 130, 246, 0.18);
+      border: 1px solid rgba(96, 165, 250, 0.24);
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+
+    .feature h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      letter-spacing: -0.04em;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .step {
+      border-radius: 22px;
+      padding: 22px;
+    }
+
+    .step-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(59, 130, 246, 0.18);
+      border: 1px solid rgba(96, 165, 250, 0.24);
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .step h3 {
+      margin: 0 0 10px;
+      font-size: 21px;
+      letter-spacing: -0.04em;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 12px;
+    }
+
+    .flow-box {
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .flow-box strong {
+      display: block;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #cfe1fb;
+      margin-bottom: 10px;
+    }
+
+    .flow-box h4 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      letter-spacing: -0.03em;
+    }
+
+    .flow-box p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .pricing {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr 1fr;
+      gap: 16px;
+    }
+
+    .tier {
+      border-radius: 26px;
+      padding: 24px;
+      position: relative;
+    }
+
+    .tier-recommended {
+      outline: 2px solid rgba(96, 165, 250, 0.45);
+      transform: translateY(-4px);
+      background: linear-gradient(180deg, rgba(16, 37, 69, 0.98), rgba(8, 24, 46, 0.98));
+    }
+
+    .tier-tag {
+      display: inline-flex;
+      margin-bottom: 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.16);
+      border: 1px solid rgba(96, 165, 250, 0.24);
+      color: #d7e8ff;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .tier h3 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      letter-spacing: -0.04em;
+    }
+
+    .tier p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .price {
+      font-size: 46px;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      margin-bottom: 6px;
+    }
+
+    .price small {
+      font-size: 16px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .tier ul {
+      list-style: none;
+      margin: 20px 0 24px;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+      color: #d8e6fb;
+    }
+
+    .tier li {
+      position: relative;
+      padding-left: 26px;
+      line-height: 1.5;
+    }
+
+    .tier li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .proof {
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    .proof p {
+      margin: 0 0 18px;
+      color: #dfebff;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    .proof strong { display: block; }
+    .proof span { color: var(--muted); font-size: 14px; }
+
+    .faq { display: grid; gap: 14px; }
+    .faq-item {
+      border-radius: 22px;
+      padding: 22px;
+    }
+    .faq-item h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+    }
+    .faq-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .cta-panel {
+      border-radius: 30px;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 20px;
+      align-items: center;
+      margin: 18px 0 70px;
+    }
+
+    .cta-panel h2 {
+      margin: 0 0 12px;
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+    }
+
+    .cta-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+      max-width: 640px;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(125, 157, 196, 0.08);
+      padding: 22px 0 34px;
+      color: #8ea6c3;
+      font-size: 14px;
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 9, 18, 0.72);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 60;
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .modal-card {
+      width: min(760px, 100%);
+      border-radius: 28px;
+      overflow: hidden;
+    }
+
+    .modal-head {
+      padding: 18px 20px 14px;
+      border-bottom: 1px solid rgba(132, 171, 222, 0.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .modal-head-left h3 {
+      margin: 0 0 6px;
+      font-size: 22px;
+      letter-spacing: -0.04em;
+    }
+
+    .modal-head-left p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .close-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      border: 1px solid rgba(132, 171, 222, 0.14);
+      background: rgba(13, 31, 58, 0.9);
+      color: #eff6ff;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .progress-wrap {
+      padding: 0 20px 18px;
+    }
+
+    .progress-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: #bfd4f1;
+      font-weight: 700;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(25, 49, 82, 0.95);
+      overflow: hidden;
+      border: 1px solid rgba(120, 153, 202, 0.1);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 14.285%;
+      background: linear-gradient(90deg, var(--cyan), var(--blue-2), var(--blue));
+      transition: width 0.24s ease;
+    }
+
+    .modal-body {
+      padding: 0 20px 22px;
+    }
+
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    .screen-title {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.06;
+      letter-spacing: -0.05em;
+    }
+
+    .screen-copy {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.65;
+      max-width: 620px;
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .choice-btn,
+    .activity-box,
+    .timing-btn {
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid rgba(120, 153, 202, 0.16);
+      background: rgba(14, 33, 62, 0.9);
+      color: var(--text);
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
+    }
+
+    .choice-btn:hover,
+    .activity-box:hover,
+    .timing-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(96, 165, 250, 0.34);
+    }
+
+    .choice-btn.selected,
+    .activity-box.selected,
+    .timing-btn.selected {
+      border-color: rgba(96, 165, 250, 0.6);
+      background: rgba(20, 44, 79, 0.96);
+      box-shadow: inset 0 0 0 1px rgba(96, 165, 250, 0.2);
+    }
+
+    .choice-btn strong,
+    .timing-btn strong { display: block; font-size: 18px; margin-bottom: 6px; }
+    .choice-btn span,
+    .timing-btn span,
+    .activity-box span { color: var(--muted); font-size: 14px; line-height: 1.45; }
+
+    .input-row {
+      display: grid;
+      gap: 12px;
+      max-width: 360px;
+    }
+
+    .input-label {
+      font-size: 14px;
+      color: #cfe1fb;
+      font-weight: 700;
+    }
+
+    .text-input {
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid rgba(120, 153, 202, 0.16);
+      background: rgba(14, 33, 62, 0.92);
+      color: var(--text);
+      padding: 16px 18px;
+      outline: none;
+      font-size: 18px;
+      letter-spacing: 0.04em;
+    }
+
+    .text-input::placeholder { color: #7f97b5; }
+
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .activity-box {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 110px;
+    }
+
+    .activity-box input { display: none; }
+    .activity-box strong { font-size: 18px; }
+
+    .slider-wrap {
+      display: grid;
+      gap: 14px;
+      max-width: 540px;
+    }
+
+    .slider-card {
+      border-radius: 20px;
+      padding: 18px;
+      background: rgba(13, 31, 58, 0.86);
+      border: 1px solid rgba(120, 153, 202, 0.14);
+    }
+
+    .slider-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .range-input {
+      width: 100%;
+      accent-color: #60a5fa;
+    }
+
+    .helper {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .verdict-card {
+      border-radius: 24px;
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(8, 36, 30, 0.92), rgba(8, 24, 38, 0.96));
+      border: 1px solid rgba(34, 197, 94, 0.22);
+      margin-bottom: 14px;
+    }
+
+    .verdict-badge {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      background: rgba(34, 197, 94, 0.16);
+      color: #b9f4cb;
+      border: 1px solid rgba(34, 197, 94, 0.24);
+      margin-bottom: 14px;
+    }
+
+    .verdict-card h4 {
+      margin: 0 0 12px;
+      font-size: 30px;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+    }
+
+    .verdict-card p {
+      margin: 0;
+      color: #d4e8f1;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .lock-in-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .lock-item {
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid rgba(120, 153, 202, 0.14);
+      background: rgba(13, 31, 58, 0.86);
+    }
+
+    .lock-item strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .lock-item span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 1120px) {
+      .hero-grid,
+      .pricing,
+      .features,
+      .metrics,
+      .proof-grid,
+      .cta-panel {
+        grid-template-columns: 1fr 1fr;
+      }
+      .flow-grid { grid-template-columns: repeat(3, 1fr); }
+      .cta-actions { justify-content: flex-start; }
+    }
+
+    @media (max-width: 820px) {
+      .nav-links { display: none; }
+      .steps,
+      .choice-grid,
+      .activity-grid,
+      .lock-in-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero { padding-top: 42px; }
+      .hero-grid,
+      .pricing,
+      .features,
+      .metrics,
+      .proof-grid,
+      .cta-panel,
+      .flow-grid,
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 44px; }
+      .lead { font-size: 17px; }
+      .brand { font-size: 20px; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 12px; }
+      .hero-card,
+      .cta-panel,
+      .feature,
+      .step,
+      .proof,
+      .tier,
+      .metric,
+      .faq-item,
+      .modal-card {
+        border-radius: 22px;
+      }
+      .modal-head {
+        align-items: start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#">
+        <div class="brand-badge">☁</div>
+        <div>
+          <div>Skydocket</div>
+          <div class="brand-sub">Weather, translated into a verdict.</div>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#problem">Why it matters</a>
+        <a href="#features">What it does</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-ghost open-flow">View guided flow</button>
+        <button class="btn btn-primary open-flow">Start free</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">
+          <span class="dot"></span>
+          Built for parents and busy households
+        </div>
+
+        <h1>Know the verdict before you load the kids up.</h1>
+
+        <p class="lead">
+          <strong>Skydocket helps you avoid wasted effort, cranky kids, and last-minute plan changes by telling you what weather means for the day in plain English.</strong>
+          Not percentages. Not weather jargon. Just: park day, green light. Pool plan, bad idea. Dog walk, go now.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary open-flow">See my first verdict</button>
+          <button class="btn btn-ghost" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">View plans</button>
+        </div>
+
+        <div class="risk-strip">
+          <span>No Credit Card Required</span>
+          <span>Cancel Anytime</span>
+          <span>First verdict before you pay</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="app-shell">
+          <div class="app-top">
+            <div class="app-brand">
+              <div class="brand-badge" style="width:34px;height:34px;border-radius:12px;font-size:18px;">☁</div>
+              <div>
+                <div style="font-size:16px;">Skydocket</div>
+                <div style="font-size:12px;color:#92a8c7;">Household view · Today</div>
+              </div>
+            </div>
+            <div class="app-pill">2 plans at risk</div>
+          </div>
+
+          <div class="app-body">
+            <div class="alert-card">
+              <div class="alert-chip">● VERDICT READY</div>
+              <h3>Park Day: Red Light after 3:30 PM.</h3>
+              <p>Wind and rain hit before dinner. Best move: go before nap time or swap the park for an indoor stop. That saves one wasted trip and one meltdown later.</p>
+            </div>
+
+            <div class="impact-grid">
+              <div class="impact-box">
+                <div class="impact-label">Outing status</div>
+                <div class="impact-value">2 risky</div>
+                <div class="impact-note">Park and soccer</div>
+              </div>
+              <div class="impact-box">
+                <div class="impact-label">Stress avoided</div>
+                <div class="impact-value">1 bad trip</div>
+                <div class="impact-note">If you leave earlier</div>
+              </div>
+              <div class="impact-box">
+                <div class="impact-label">Best move</div>
+                <div class="impact-value">Go now</div>
+                <div class="impact-note">Before 1:45 PM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="problem">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>The value is not better weather. The value is less mental load.</h2>
+          <p>
+            Parents do not lose time because weather exists. They lose time because weather changes the plan after bags are packed, kids are dressed, and everyone is already moving. Skydocket is built to stop wasted effort before it starts.
+          </p>
+        </div>
+      </div>
+
+      <div class="metrics">
+        <div class="metric">
+          <strong>1</strong>
+          <div class="metric-title">less wasted trip</div>
+          <span>Know when an outing is worth doing before you buckle everyone in.</span>
+        </div>
+
+        <div class="metric">
+          <strong>3</strong>
+          <div class="metric-title">daily plans checked</div>
+          <span>Park, pickup, walk, errands, sports, pool, or commute windows.</span>
+        </div>
+
+        <div class="metric">
+          <strong>1 screen</strong>
+          <div class="metric-title">simple answer</div>
+          <span>Green light, yellow watch, or red light. No weather decoding needed.</span>
+        </div>
+
+        <div class="metric">
+          <strong>7-day</strong>
+          <div class="metric-title">family planning view</div>
+          <span>See which days look smooth and which ones need a backup plan.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Built to answer the real parent question: “Should we still do this?”</h2>
+          <p>
+            This app uses verdict language instead of weather jargon. That keeps it easy to trust, easy to use, and easy to act on fast.
+          </p>
+        </div>
+      </div>
+
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">🟢</div>
+          <h3>Verdict language, not weather talk</h3>
+          <p>Park Day: Green Light. Soccer: Watch it. Pool: Not worth the setup. The wording is simple on purpose.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🧠</div>
+          <h3>Less second-guessing</h3>
+          <p>Skydocket reduces mental load by turning weather into a clear plan decision before the household starts moving.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">⏰</div>
+          <h3>Best move, best timing</h3>
+          <p>It does not just say “bad later.” It says “go now,” “push to tomorrow,” or “swap this for indoor time.”</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">⚙️</div>
+          <h3>High-value defaults already on</h3>
+          <p>Daily verdicts, alert timing, and outing risk checks start enabled so families get value fast without building the system themselves.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🏡</div>
+          <h3>Feels like your household</h3>
+          <p>Add your ZIP code, favorite outing types, and kid comfort thresholds so the app quickly feels personal.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">📱</div>
+          <h3>One daily check-in</h3>
+          <p>The product should earn its place by answering one thing well every day: what should change today because of the weather?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>7-screen guided flow designed to get a fast “yes, this helps me.”</h2>
+          <p>
+            The flow uses progress, small commitments, personalization, and one strong “aha” moment before asking for anything serious.
+          </p>
+        </div>
+      </div>
+
+      <div class="flow-grid">
+        <div class="flow-box">
+          <strong>Screen 1</strong>
+          <h4>Role Selection</h4>
+          <p>Mom, Dad, or Caregiver. Easy first click.</p>
+        </div>
+        <div class="flow-box">
+          <strong>Screen 2</strong>
+          <h4>ZIP Code</h4>
+          <p>Anchors the app to the right place right away.</p>
+        </div>
+        <div class="flow-box">
+          <strong>Screen 3</strong>
+          <h4>Activity Picker</h4>
+          <p>Soccer, park, pool, and other family plans.</p>
+        </div>
+        <div class="flow-box">
+          <strong>Screen 4</strong>
+          <h4>Sensitivity Slider</h4>
+          <p>Kid-specific comfort thresholds make it feel owned.</p>
+        </div>
+        <div class="flow-box">
+          <strong>Screen 5</strong>
+          <h4>Alert Timing</h4>
+          <p>Small commitment: when do you want the heads-up?</p>
+        </div>
+        <div class="flow-box">
+          <strong>Screen 6</strong>
+          <h4>First Verdict</h4>
+          <p>Immediate proof in plain English.</p>
+        </div>
+        <div class="flow-box">
+          <strong>Screen 7</strong>
+          <h4>Final Lock-In</h4>
+          <p>Finish setup with value already shown.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Pricing designed so the middle choice feels like the right one.</h2>
+          <p>
+            Basic Parent gets people in. Power Parent is the clear best-value plan for real day-to-day use. The Village is for shared family coordination.
+          </p>
+        </div>
+      </div>
+
+      <div class="pricing">
+        <div class="tier">
+          <h3>Basic Parent</h3>
+          <p>Free access for getting simple verdicts before the day gets messy.</p>
+          <div class="price">$0<small>/mo</small></div>
+          <ul>
+            <li>Basic daily verdicts</li>
+            <li>One location</li>
+            <li>One household profile</li>
+            <li>No Credit Card Required</li>
+          </ul>
+          <button class="btn btn-ghost open-flow" style="width:100%;">Start free</button>
+        </div>
+
+        <div class="tier tier-recommended">
+          <div class="tier-tag">Targeted plan</div>
+          <h3>Power Parent</h3>
+          <p>The main plan for busy households that want fewer wasted trips and better day decisions.</p>
+          <div class="price">$4.99<small>/mo</small></div>
+          <ul>
+            <li>7-day verdict planning</li>
+            <li>Morning family brief</li>
+            <li>Custom activity verdicts</li>
+            <li>Kid comfort threshold settings</li>
+            <li>Smarter alert timing</li>
+            <li>Cancel Anytime</li>
+          </ul>
+          <button class="btn btn-primary open-flow" style="width:100%;">Choose Power Parent</button>
+        </div>
+
+        <div class="tier">
+          <h3>The Village</h3>
+          <p>For bigger households or multiple caregivers who need everyone on the same page.</p>
+          <div class="price">$9.99<small>/mo</small></div>
+          <ul>
+            <li>Shared household access</li>
+            <li>Multiple caregivers</li>
+            <li>More locations and routines</li>
+            <li>Expanded coordination alerts</li>
+          </ul>
+          <button class="btn btn-soft open-flow" style="width:100%;">Choose The Village</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Specific proof works better than generic promises.</h2>
+          <p>
+            The message should sound like face-to-face parent advice, not broad software marketing.
+          </p>
+        </div>
+      </div>
+
+      <div class="proof-grid">
+        <div class="proof">
+          <p>“Helped me stop doing the whole shoes-snacks-water-bottles routine for a park trip that was about to get ruined anyway.”</p>
+          <strong>Busy parent use case</strong>
+          <span>Mental load reduction</span>
+        </div>
+
+        <div class="proof">
+          <p>“The best part is it does not talk like a weather app. It just tells me if the plan is still worth it.”</p>
+          <strong>Cognitive fluency</strong>
+          <span>Simple wording builds trust</span>
+        </div>
+
+        <div class="proof">
+          <p>“The first verdict should feel like: you just avoided one wasted outing and one round of cranky-kid fallout.”</p>
+          <strong>Immediate proof</strong>
+          <span>Peak-end rule</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Questions people will ask before trying it.</h2>
+          <p>Clear answers reduce risk and make the product easier to trust fast.</p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <div class="faq-item">
+          <h3>Is this a weather app?</h3>
+          <p>No. It is a decision app built on weather. The point is not more weather data. The point is knowing what the weather means for your plan.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Who is it for?</h3>
+          <p>Parents, caregivers, and busy households trying to avoid wasted effort, bad timing, and harder days caused by weather changes.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What makes it different?</h3>
+          <p>It uses verdict language. Instead of making you decode the forecast, it tells you if the outing is a green light, a watch-it, or a bad idea.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Do I have to pay first?</h3>
+          <p>No. No Credit Card Required to start, and Cancel Anytime if you upgrade later.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="cta-panel">
+      <div>
+        <div class="eyebrow">
+          <span class="dot"></span>
+          First verdict before payment
+        </div>
+        <h2>See whether tomorrow is a green light, a watch-it, or a bad idea.</h2>
+        <p>
+          That is the whole point. Let the app prove it can reduce mental load before asking for money.
+        </p>
+      </div>
+
+      <div class="cta-actions">
+        <button class="btn btn-primary open-flow">Get my first verdict</button>
+        <button class="btn btn-ghost">No Credit Card Required</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-row">
+      <div>Skydocket — Weather, translated into a verdict.</div>
+      <div>Built for parents and busy households.</div>
+    </div>
+  </footer>
+
+  <!-- Guided Flow Modal -->
+  <div class="modal-backdrop" id="guidedFlow">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div class="modal-head-left">
+          <h3>Build your household setup</h3>
+          <p>No Credit Card Required · Cancel Anytime</p>
+        </div>
+        <button class="close-btn" id="closeFlow" aria-label="Close">×</button>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-top">
+          <span id="progressLabel">Step 1 of 7</span>
+          <span id="progressHint">6 steps left until your first verdict</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <!-- Screen 1 -->
+        <div class="screen active" data-screen="1">
+          <h2 class="screen-title">Who are we setting this up for?</h2>
+          <p class="screen-copy">Start simple. Pick the role that fits best so the app talks to you like a real person, not like software.</p>
+          <div class="choice-grid" id="roleChoices">
+            <button class="choice-btn" data-role="Mom">
+              <strong>Mom</strong>
+              <span>School, errands, outings, backup plans.</span>
+            </button>
+            <button class="choice-btn" data-role="Dad">
+              <strong>Dad</strong>
+              <span>Timing, pickup, sports, everyday household decisions.</span>
+            </button>
+            <button class="choice-btn" data-role="Caregiver">
+              <strong>Caregiver</strong>
+              <span>Shared planning, handoffs, and fewer surprises.</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Screen 2 -->
+        <div class="screen" data-screen="2">
+          <h2 class="screen-title">What ZIP code should we watch?</h2>
+          <p class="screen-copy">This anchors the app to your area so your verdicts feel local and immediate.</p>
+          <div class="input-row">
+            <label class="input-label" for="zipCode">ZIP code</label>
+            <input id="zipCode" class="text-input" type="text" maxlength="5" placeholder="Enter 5-digit ZIP" />
+            <div class="helper">Example: 46203</div>
+          </div>
+        </div>
+
+        <!-- Screen 3 -->
+        <div class="screen" data-screen="3">
+          <h2 class="screen-title">What plans matter most to your household?</h2>
+          <p class="screen-copy">Pick the activities weather messes with most. This makes Skydocket feel like your system immediately.</p>
+          <div class="activity-grid">
+            <label class="activity-box">
+              <input type="checkbox" value="Soccer" />
+              <strong>Soccer</strong>
+              <span>Games, practice, muddy fields, late cancellations.</span>
+            </label>
+            <label class="activity-box">
+              <input type="checkbox" value="Park" />
+              <strong>Park</strong>
+              <span>Quick green-light or bad-idea verdicts.</span>
+            </label>
+            <label class="activity-box">
+              <input type="checkbox" value="Pool" />
+              <strong>Pool</strong>
+              <span>Worth packing for or not worth the hassle.</span>
+            </label>
+            <label class="activity-box">
+              <input type="checkbox" value="Dog Walk" />
+              <strong>Dog Walk</strong>
+              <span>Best walk window before the weather flips.</span>
+            </label>
+            <label class="activity-box">
+              <input type="checkbox" value="School Pickup" />
+              <strong>School Pickup</strong>
+              <span>Timing changes before traffic and rain stack up.</span>
+            </label>
+            <label class="activity-box">
+              <input type="checkbox" value="Errands" />
+              <strong>Errands</strong>
+              <span>Know whether the trip is worth doing now.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Screen 4 -->
+        <div class="screen" data-screen="4">
+          <h2 class="screen-title">How sensitive are your kids to the weather?</h2>
+          <p class="screen-copy">Set your comfort line so verdicts feel right for your household, not generic.</p>
+          <div class="slider-wrap">
+            <div class="slider-card">
+              <div class="slider-top">
+                <span>Too cold below</span>
+                <span><strong id="tempValue">55°F</strong></span>
+              </div>
+              <input class="range-input" id="tempSlider" type="range" min="35" max="75" value="55" />
+            </div>
+            <div class="helper">This helps Skydocket decide when an outing still feels fine and when it turns into a rough time for the kids.</div>
+          </div>
+        </div>
+
+        <!-- Screen 5 -->
+        <div class="screen" data-screen="5">
+          <h2 class="screen-title">When should we send the heads-up?</h2>
+          <p class="screen-copy">One small choice. This builds the habit and gets the app working for you without extra effort.</p>
+          <div class="choice-grid" id="timingChoices">
+            <button class="timing-btn" data-timing="Night Before">
+              <strong>Night Before</strong>
+              <span>Great for packing and planning ahead.</span>
+            </button>
+            <button class="timing-btn" data-timing="Early Morning">
+              <strong>Early Morning</strong>
+              <span>Best for same-day family decisions.</span>
+            </button>
+            <button class="timing-btn" data-timing="One Hour Before">
+              <strong>One Hour Before</strong>
+              <span>Good for flexible plans and quick pivots.</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Screen 6 -->
+        <div class="screen" data-screen="6">
+          <h2 class="screen-title">Here is your first verdict.</h2>
+          <p class="screen-copy">This is the “aha” moment. The value should feel obvious right here.</p>
+          <div class="verdict-card">
+            <div class="verdict-badge" id="verdictBadge">GREEN LIGHT</div>
+            <h4 id="verdictTitle">Park Day: Green Light before 3:00 PM.</h4>
+            <p id="verdictBody">Best move: go after lunch, then do errands later. That avoids one wasted trip and keeps the easy part of the day easy.</p>
+          </div>
+          <div class="helper" id="verdictHelper">Based on your role, location, activity picks, comfort setting, and alert timing.</div>
+        </div>
+
+        <!-- Screen 7 -->
+        <div class="screen" data-screen="7">
+          <h2 class="screen-title">You are one step from locking this in.</h2>
+          <p class="screen-copy">The setup is done. Now keep the daily verdicts coming.</p>
+          <div class="lock-in-grid">
+            <div class="lock-item">
+              <strong>Profile ready</strong>
+              <span id="summaryRole">Role saved for your household.</span>
+            </div>
+            <div class="lock-item">
+              <strong>Alerts ready</strong>
+              <span id="summaryTiming">Your preferred timing is saved.</span>
+            </div>
+            <div class="lock-item">
+              <strong>First value shown</strong>
+              <span>You already saw your first weather verdict before paying.</span>
+            </div>
+          </div>
+          <div class="helper">That is the whole conversion logic: proof first, commitment second.</div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn btn-ghost" id="prevBtn">Back</button>
+          <button class="btn btn-primary" id="nextBtn">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('guidedFlow');
+    const openButtons = document.querySelectorAll('.open-flow');
+    const closeBtn = document.getElementById('closeFlow');
+    const screens = [...document.querySelectorAll('.screen')];
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const progressFill = document.getElementById('progressFill');
+    const progressLabel = document.getElementById('progressLabel');
+    const progressHint = document.getElementById('progressHint');
+
+    const roleChoices = [...document.querySelectorAll('#roleChoices .choice-btn')];
+    const zipInput = document.getElementById('zipCode');
+    const activityBoxes = [...document.querySelectorAll('.activity-box')];
+    const tempSlider = document.getElementById('tempSlider');
+    const tempValue = document.getElementById('tempValue');
+    const timingChoices = [...document.querySelectorAll('#timingChoices .timing-btn')];
+
+    const verdictBadge = document.getElementById('verdictBadge');
+    const verdictTitle = document.getElementById('verdictTitle');
+    const verdictBody = document.getElementById('verdictBody');
+    const verdictHelper = document.getElementById('verdictHelper');
+
+    const summaryRole = document.getElementById('summaryRole');
+    const summaryTiming = document.getElementById('summaryTiming');
+
+    let currentStep = 1;
+    const state = {
+      role: '',
+      zip: '',
+      activities: [],
+      temp: 55,
+      timing: ''
+    };
+
+    function openFlow() {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      renderStep();
+    }
+
+    function closeFlow() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    openButtons.forEach(btn => btn.addEventListener('click', openFlow));
+    closeBtn.addEventListener('click', closeFlow);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeFlow();
+    });
+
+    roleChoices.forEach(btn => {
+      btn.addEventListener('click', () => {
+        roleChoices.forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        state.role = btn.dataset.role;
+        validateStep();
+      });
+    });
+
+    zipInput.addEventListener('input', () => {
+      zipInput.value = zipInput.value.replace(/\D/g, '').slice(0, 5);
+      state.zip = zipInput.value;
+      validateStep();
+    });
+
+    activityBoxes.forEach(box => {
+      box.addEventListener('click', () => {
+        box.classList.toggle('selected');
+        const input = box.querySelector('input');
+        input.checked = !input.checked;
+        state.activities = activityBoxes
+          .filter(item => item.querySelector('input').checked)
+          .map(item => item.querySelector('input').value);
+        validateStep();
+      });
+    });
+
+    tempSlider.addEventListener('input', () => {
+      state.temp = Number(tempSlider.value);
+      tempValue.textContent = `${state.temp}°F`;
+    });
+
+    timingChoices.forEach(btn => {
+      btn.addEventListener('click', () => {
+        timingChoices.forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        state.timing = btn.dataset.timing;
+        validateStep();
+      });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentStep > 1) {
+        currentStep--;
+        renderStep();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (!stepIsValid(currentStep)) return;
+
+      if (currentStep < 7) {
+        currentStep++;
+        renderStep();
+      } else {
+        nextBtn.textContent = 'Locked in';
+        nextBtn.disabled = true;
+        prevBtn.disabled = true;
+      }
+    });
+
+    function stepIsValid(step) {
+      if (step === 1) return !!state.role;
+      if (step === 2) return state.zip.length === 5;
+      if (step === 3) return state.activities.length > 0;
+      if (step === 4) return true;
+      if (step === 5) return !!state.timing;
+      if (step === 6) return true;
+      if (step === 7) return true;
+      return false;
+    }
+
+    function validateStep() {
+      nextBtn.disabled = !stepIsValid(currentStep);
+    }
+
+    function updateVerdict() {
+      const mainActivity = state.activities[0] || 'Park';
+      const temp = state.temp;
+      const roleText = state.role || 'Parent';
+
+      let badge = 'GREEN LIGHT';
+      let title = `${mainActivity}: Green Light before 3:00 PM.`;
+      let body = `Best move: go earlier in the day, then keep the rest of the afternoon flexible. That avoids one wasted trip and keeps the easy part of the day easy.`;
+
+      if (temp <= 45) {
+        badge = 'WATCH IT';
+        title = `${mainActivity}: Watch it unless everyone is bundled up.`;
+        body = `Best move: shorten the outing or swap it for an indoor stop. That saves the effort of a plan that falls apart halfway through.`;
+      } else if (temp >= 68 && mainActivity === 'Pool') {
+        badge = 'GREEN LIGHT';
+        title = `Pool Day: Green Light.`;
+        body = `Best move: go mid-day while it still feels worth the setup. This is a good use of the effort today.`;
+      } else if (mainActivity === 'Soccer') {
+        badge = 'WATCH IT';
+        title = `Soccer: Watch for a late-day shift.`;
+        body = `Best move: check again before you pack up. That helps you avoid a rushed field trip that is no longer worth it.`;
+      }
+
+      verdictBadge.textContent = badge;
+      verdictTitle.textContent = title;
+      verdictBody.textContent = body;
+      verdictHelper.textContent = `${roleText} profile · ZIP ${state.zip || 'your area'} · ${state.activities.join(', ') || 'Family plans'} · Alert set for ${state.timing || 'your preferred time'}`;
+
+      summaryRole.textContent = `${state.role || 'Role'} profile saved for ZIP ${state.zip || 'your area'}.`;
+      summaryTiming.textContent = `${state.timing || 'Alert'} timing saved for daily verdict delivery.`;
+    }
+
+    function renderStep() {
+      screens.forEach(screen => {
+        screen.classList.toggle('active', Number(screen.dataset.screen) === currentStep);
+      });
+
+      const width = (currentStep / 7) * 100;
+      progressFill.style.width = `${width}%`;
+      progressLabel.textContent = `Step ${currentStep} of 7`;
+
+      const left = 7 - currentStep;
+      if (left > 1) {
+        progressHint.textContent = `${left} steps left until your first verdict`;
+      } else if (left === 1) {
+        progressHint.textContent = `1 step left until your first verdict`;
+      } else if (currentStep === 7) {
+        progressHint.textContent = `Setup complete`;
+      } else {
+        progressHint.textContent = `Your verdict is ready`;
+      }
+
+      prevBtn.classList.toggle('hidden', currentStep === 1);
+      nextBtn.textContent = currentStep === 7 ? 'Finish setup' : (currentStep === 6 ? 'Lock this in' : 'Next');
+
+      updateVerdict();
+      validateStep();
+    }
+
+    renderStep();
+  </script>
+</body>
+</html>      --shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
       --radius: 24px;
       --max: 1180px;
     }
