@@ -2,1044 +2,328 @@
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Skydocket — Weather, translated into action.</title>
-  <meta name="description" content="Skydocket turns weather forecasts into plain-English daily decisions for your family, commute, pets, and home." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skydocket</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#fff;--bg2:#f7f8fa;--text:#0f172a;--muted:#64748b;--blue:#0066ff;--blue2:#0052cc;--border:#e2e8f0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
 
-  <!-- Google Fonts -->
+header{padding:18px 0;position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(–border);z-index:999}
+.hdr{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:18px;font-weight:700;letter-spacing:-.4px}
+.hnav{display:flex;gap:28px;align-items:center}
+.hnav a{text-decoration:none;color:var(–muted);font-size:14px;font-weight:500;transition:color .2s}
+.hnav a:hover{color:var(–text)}
+.btn-hdr{padding:10px 22px;background:var(–blue);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-hdr:hover{background:var(–blue2);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,102,255,.18)}
+@media(max-width:600px){.hnav a{display:none}}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+.hero{padding:90px 0 60px;text-align:center}
+.hero h1{font-size:52px;font-weight:800;line-height:1.15;letter-spacing:-1.2px;margin-bottom:20px}
+.hero p{font-size:19px;color:var(–muted);max-width:560px;margin:0 auto 40px}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.btn-primary{padding:14px 38px;background:var(–blue);color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;transition:all .25s;box-shadow:0 4px 14px rgba(0,102,255,.18)}
+.btn-primary:hover{background:var(–blue2);transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,102,255,.28)}
+.btn-outline{padding:14px 38px;background:transparent;color:var(–blue);border:2px solid var(–blue);border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;transition:all .25s}
+.btn-outline:hover{background:var(–blue);color:#fff;transform:translateY(-2px)}
+.hero-note{font-size:13px;color:var(–muted);margin-bottom:60px}
+.phone-wrap{display:flex;justify-content:center;padding:40px 0;background:linear-gradient(140deg,#f0f4ff,#f7f8fa);border-radius:20px}
+.phone{width:240px;height:480px;background:#111;border-radius:38px;padding:10px;box-shadow:0 24px 60px rgba(0,0,0,.18);position:relative;animation:float 3.5s ease-in-out infinite}
+.phone::before{content:’’;position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:24px;background:#111;border-radius:0 0 18px 18px;z-index:2}
+.screen{width:100%;height:100%;background:linear-gradient(145deg,#667eea,#764ba2);border-radius:30px;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff;text-align:center;padding:24px;gap:12px}
+.screen .day{font-size:13px;opacity:.75;text-transform:uppercase;letter-spacing:1px}
+.screen .action{font-size:15px;font-weight:600;line-height:1.5}
+.screen .tag{font-size:12px;background:rgba(255,255,255,.2);padding:6px 14px;border-radius:20px;margin-top:8px}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+@media(max-width:600px){.hero h1{font-size:34px}.hero p{font-size:17px}.hero-btns{flex-direction:column;align-items:center}.btn-primary,.btn-outline{width:100%;max-width:280px}}
 
-  <!-- React + Babel via CDN (no build step needed) -->
+.vid-section{padding:80px 0;background:var(–bg2)}
+.section-head{text-align:center;font-size:34px;font-weight:700;margin-bottom:14px;letter-spacing:-.5px}
+.section-sub{text-align:center;font-size:16px;color:var(–muted);max-width:480px;margin:0 auto 48px}
+.vid-box{max-width:760px;margin:0 auto;aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.1)}
+.vid-inner{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;cursor:pointer;background:linear-gradient(135deg,#1a1a2e,#16213e);transition:background .3s}
+.vid-inner:hover{background:linear-gradient(135deg,#12122a,#0e1428)}
+.play-btn{width:60px;height:60px;background:var(–blue);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.vid-inner:hover .play-btn{transform:scale(1.1);box-shadow:0 0 0 8px rgba(0,102,255,.2)}
+.play-btn::after{content:’’;border-left:20px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:4px}
+.vid-label{color:#fff;font-size:14px;font-weight:500;opacity:.8}
+@media(max-width:600px){.section-head{font-size:26px}}
 
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+.why-section{padding:80px 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px}
+.card{padding:32px 24px;background:var(–bg2);border-radius:14px;border:1px solid var(–border);transition:all .3s;text-align:center}
+.card:hover{border-color:var(–blue);box-shadow:0 8px 28px rgba(0,102,255,.08);transform:translateY(-4px);background:var(–bg)}
+.card-icon{font-size:30px;margin-bottom:14px}
+.card h3{font-size:17px;font-weight:600;margin-bottom:10px}
+.card p{font-size:14px;color:var(–muted);line-height:1.6}
 
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+.how-section{padding:80px 0;background:var(–bg2)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px;max-width:860px;margin:0 auto;position:relative}
+.step{padding:0}
+.step-num{width:46px;height:46px;background:var(–blue);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;margin-bottom:18px}
+.step h3{font-size:17px;font-weight:600;margin-bottom:10px}
+.step p{font-size:14px;color:var(–muted)}
 
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+.headache-section{padding:80px 0;text-align:center}
+.headache-section h2{font-size:30px;font-weight:700;margin-bottom:12px}
+.headache-section .sub{font-size:16px;color:var(–muted);margin-bottom:40px;max-width:460px;margin-left:auto;margin-right:auto}
+.options{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;max-width:860px;margin:0 auto}
+.opt{padding:18px 20px;background:var(–bg2);border:2px solid transparent;border-radius:10px;cursor:pointer;font-size:15px;font-weight:500;color:var(–text);transition:all .25s;position:relative}
+.opt:hover{border-color:var(–blue);background:var(–bg)}
+.opt.selected{background:var(–blue);color:#fff;border-color:var(–blue)}
+.opt .check{display:none;position:absolute;left:12px;top:50%;transform:translateY(-50%)}
+.opt.selected .check{display:inline}
+@media(max-width:600px){.options{grid-template-columns:1fr}}
 
-  <style>
-    /* ── Design tokens ── */
-    :root {
-      --navy:    #0f2d4a;
-      --sky:     #3b8ed4;
-      --sky-lt:  #7ec4f0;
-      --sky-pale:#d6ecfa;
-      --canvas:  #f7fbff;
-      --white:   #ffffff;
-      --slate:   #4a6278;
-      --muted:   #8ba5bc;
-      --border:  #daeaf6;
-      --radius:  18px;
-    }
+.waitlist-section{padding:80px 0;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;text-align:center}
+.waitlist-section h2{font-size:38px;font-weight:700;margin-bottom:14px;line-height:1.2}
+.waitlist-section .sub{font-size:17px;opacity:.95;margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto}
+.wform{max-width:420px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.finput-wrap{display:flex;gap:8px}
+.finput{flex:1;padding:14px 18px;border:none;border-radius:8px;font-size:15px;outline:none}
+.finput:focus{box-shadow:0 0 0 3px rgba(255,255,255,.25)}
+.btn-submit{padding:14px 32px;background:#fff;color:#667eea;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;transition:all .25s;white-space:nowrap}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.form-note{font-size:13px;opacity:.9}
+.success{display:none;padding:18px;background:rgba(16,185,129,.2);border:1px solid rgba(16,185,129,.35);border-radius:10px;font-size:15px;font-weight:500}
+.success.show{display:block;animation:fadein .3s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.waitlist-section h2{font-size:26px}.finput-wrap{flex-direction:column}.btn-submit{width:100%}}
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-    body { font-family: 'Outfit', sans-serif; background: var(--canvas); }
+.launch-section{padding:80px 0;text-align:center}
+.launch-section h2{font-size:34px;font-weight:700;margin-bottom:18px}
+.launch-section p{font-size:16px;color:var(–muted);max-width:560px;margin:0 auto 40px}
+.badges{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.badge{padding:14px 26px;border:2px solid var(–border);border-radius:10px;background:var(–bg2);display:flex;align-items:center;gap:10px;font-weight:500;font-size:15px;cursor:default;transition:all .25s}
+.badge:hover{border-color:var(–blue);background:var(–bg);box-shadow:0 4px 14px rgba(0,102,255,.1);transform:translateY(-2px)}
+.badge-icon{font-size:22px}
+@media(max-width:600px){.launch-section h2{font-size:26px}.badges{flex-direction:column;align-items:center}}
 
-    /* ── Atmospheric background ── */
-    .atmo {
-      position: fixed; inset: 0; pointer-events: none; z-index: 0;
-      background:
-        radial-gradient(ellipse 70% 55% at 85% 10%, rgba(59,142,212,0.09) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 50% at 10% 90%, rgba(126,196,240,0.08) 0%, transparent 65%),
-        linear-gradient(175deg, #f0f8ff 0%, #f7fbff 55%, #fafcff 100%);
-    }
+.final-section{padding:80px 0;background:var(–bg2);text-align:center}
+.final-section h2{font-size:38px;font-weight:700;margin-bottom:16px;line-height:1.2}
+.final-section p{font-size:16px;color:var(–muted);max-width:480px;margin:0 auto 36px}
+@media(max-width:600px){.final-section h2{font-size:26px}}
 
-    /* ── Topbar ── */
-    .topbar {
-      position: relative; z-index: 10;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 28px;
-      border-bottom: 1px solid rgba(218,234,246,0.7);
-      background: rgba(247,251,255,0.88);
-      backdrop-filter: blur(12px);
-    }
-    .logo-mark {
-      display: flex; align-items: center; gap: 9px;
-      font-family: 'Playfair Display', serif;
-      font-size: 20px; font-weight: 600;
-      color: var(--navy); letter-spacing: -0.2px;
-      text-decoration: none;
-    }
-    .logo-dot {
-      width: 32px; height: 32px; border-radius: 10px;
-      background: linear-gradient(135deg, var(--sky) 0%, #2579b8 100%);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px; box-shadow: 0 2px 8px rgba(59,142,212,0.3);
-    }
-    .topbar-btn {
-      padding: 8px 18px; border-radius: 100px;
-      background: var(--navy); color: #fff;
-      font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 600;
-      border: none; cursor: pointer; letter-spacing: 0.2px;
-      transition: opacity 0.2s, transform 0.15s;
-    }
-    .topbar-btn:hover { opacity: 0.88; transform: translateY(-1px); }
-    .topbar-btn.ghost {
-      background: transparent; color: var(--muted);
-      border: 1px solid var(--border);
-    }
-    .topbar-btn.ghost:hover { border-color: var(--sky); color: var(--sky); }
-
-    /* ── Animations ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes pop {
-      from { opacity: 0; transform: scale(0.4); }
-      to   { opacity: 1; transform: scale(1); }
-    }
-    .fade-up { animation: fadeUp 0.45s ease both; }
-    .fade-up-1 { animation: fadeUp 0.45s 0.1s ease both; }
-    .fade-up-2 { animation: fadeUp 0.45s 0.2s ease both; }
-    .fade-up-3 { animation: fadeUp 0.45s 0.3s ease both; }
-    .fade-up-4 { animation: fadeUp 0.45s 0.4s ease both; }
-    .fade-up-5 { animation: fadeUp 0.45s 0.5s ease both; }
-    .anim-pop  { animation: pop 0.4s cubic-bezier(0.34,1.56,0.64,1) both; }
-
-    /* ══════════════════════════════
-       LANDING PAGE
-    ══════════════════════════════ */
-    .landing { position: relative; z-index: 1; }
-
-    .hero {
-      padding: 72px 24px 56px;
-      max-width: 660px; margin: 0 auto;
-      text-align: center;
-    }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 7px;
-      padding: 6px 16px; border-radius: 100px;
-      background: var(--sky-pale); border: 1px solid rgba(59,142,212,0.2);
-      font-size: 11px; font-weight: 600; color: var(--sky);
-      letter-spacing: 1.3px; text-transform: uppercase;
-      margin-bottom: 26px;
-    }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(34px, 7vw, 54px);
-      line-height: 1.12; color: var(--navy);
-      letter-spacing: -1px; margin-bottom: 18px;
-    }
-    .hero h1 em { font-style: italic; color: var(--sky); }
-    .hero-sub {
-      font-size: 17px; color: var(--slate); line-height: 1.65;
-      max-width: 500px; margin: 0 auto 36px;
-      font-weight: 300;
-    }
-    .btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
-      padding: 14px 28px; border-radius: 14px; border: none;
-      background: linear-gradient(135deg, var(--sky) 0%, #2172b0 100%);
-      color: #fff; font-family: 'Outfit', sans-serif;
-      font-size: 15px; font-weight: 600; cursor: pointer;
-      box-shadow: 0 4px 20px rgba(59,142,212,0.32);
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(59,142,212,0.42); }
-    .btn-outline {
-      padding: 14px 28px; border-radius: 14px;
-      border: 1.5px solid var(--border); background: transparent;
-      color: var(--slate); font-family: 'Outfit', sans-serif;
-      font-size: 15px; font-weight: 500; cursor: pointer;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .btn-outline:hover { border-color: var(--sky); color: var(--sky); }
-
-    /* Sample cards */
-    .sample-section {
-      max-width: 540px; margin: 52px auto 0;
-    }
-    .section-label {
-      font-size: 11px; font-weight: 600; letter-spacing: 1.4px;
-      text-transform: uppercase; color: var(--muted);
-      margin-bottom: 14px; text-align: left;
-    }
-    .action-card {
-      display: flex; align-items: flex-start; gap: 14px;
-      padding: 16px 18px; border-radius: 16px;
-      background: var(--white); border: 1px solid var(--border);
-      box-shadow: 0 2px 12px rgba(15,45,74,0.04);
-      margin-bottom: 10px;
-    }
-    .ac-icon {
-      width: 38px; height: 38px; border-radius: 11px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-    }
-    .ac-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
-    .ac-body  { font-size: 13px; color: var(--slate); line-height: 1.5; font-weight: 300; }
-
-    /* Section divider */
-    .divider { height: 1px; background: var(--border); max-width: 560px; margin: 0 auto; }
-
-    /* Text section */
-    .text-section {
-      padding: 64px 24px;
-      max-width: 640px; margin: 0 auto;
-      text-align: center;
-    }
-    .text-section .eyebrow { margin-bottom: 14px; }
-    .text-section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(24px, 4vw, 36px);
-      color: var(--navy); line-height: 1.22;
-      letter-spacing: -0.4px; margin-bottom: 16px;
-    }
-    .text-section p {
-      font-size: 16px; color: var(--slate);
-      line-height: 1.7; font-weight: 300;
-      margin-bottom: 28px;
-    }
-
-    /* Waitlist */
-    .waitlist-wrap {
-      max-width: 460px; margin: 0 auto 72px;
-      padding: 38px 34px;
-      background: linear-gradient(135deg, var(--navy) 0%, #1a3a58 100%);
-      border-radius: 24px;
-      text-align: center;
-      box-shadow: 0 12px 48px rgba(15,45,74,0.22);
-      position: relative; overflow: hidden;
-    }
-    .waitlist-wrap::before {
-      content: ''; position: absolute;
-      top: -60px; right: -60px;
-      width: 200px; height: 200px; border-radius: 50%;
-      background: rgba(59,142,212,0.15); pointer-events: none;
-    }
-    .waitlist-wrap h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px; color: #fff;
-      margin-bottom: 8px; position: relative;
-    }
-    .waitlist-wrap p {
-      font-size: 14px; color: rgba(255,255,255,0.6);
-      margin-bottom: 22px; font-weight: 300; position: relative;
-    }
-    .waitlist-row { display: flex; gap: 8px; position: relative; }
-    .waitlist-input {
-      flex: 1; padding: 12px 14px; border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.1);
-      font-family: 'Outfit', sans-serif; font-size: 14px;
-      color: #fff; outline: none;
-    }
-    .waitlist-input::placeholder { color: rgba(255,255,255,0.4); }
-    .waitlist-input:focus { border-color: var(--sky-lt); }
-    .waitlist-btn {
-      padding: 12px 18px; border-radius: 12px; border: none;
-      background: var(--sky); color: #fff;
-      font-family: 'Outfit', sans-serif; font-size: 14px;
-      font-weight: 600; cursor: pointer; white-space: nowrap;
-      transition: background 0.2s;
-    }
-    .waitlist-btn:hover { background: var(--sky-lt); }
-
-    /* ══════════════════════════════
-       ONBOARDING
-    ══════════════════════════════ */
-    .ob-root {
-      position: relative; z-index: 1;
-      min-height: calc(100vh - 68px);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 32px 16px 56px;
-    }
-    .ob-card {
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(218,234,246,0.7);
-      border-radius: 26px;
-      padding: 42px 38px 38px;
-      max-width: 500px; width: 100%;
-      box-shadow: 0 8px 48px rgba(15,45,74,0.08);
-    }
-    .progress-track {
-      height: 3px; background: var(--border);
-      border-radius: 2px; margin-bottom: 34px; overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%; border-radius: 2px;
-      background: linear-gradient(90deg, var(--sky), var(--sky-lt));
-      transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
-    }
-    .step-meta {
-      display: flex; justify-content: space-between;
-      align-items: center; margin-bottom: 22px;
-    }
-    .step-num { font-size: 12px; font-weight: 600; color: var(--sky); letter-spacing: 1.2px; text-transform: uppercase; }
-    .step-of  { font-size: 12px; color: var(--muted); }
-    .ob-h {
-      font-family: 'Playfair Display', serif;
-      font-size: 27px; color: var(--navy);
-      line-height: 1.22; margin-bottom: 8px; letter-spacing: -0.3px;
-    }
-    .ob-sub { font-size: 14px; color: var(--slate); line-height: 1.6; margin-bottom: 28px; font-weight: 300; }
-
-    /* Counter */
-    .ctr-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 18px; border-radius: 16px;
-      border: 1.5px solid var(--border); background: #fafcff;
-      margin-bottom: 10px; transition: border-color 0.2s;
-    }
-    .ctr-row:hover { border-color: var(--sky-lt); }
-    .ctr-label { font-size: 15px; font-weight: 500; color: var(--navy); }
-    .ctr-sub   { font-size: 12px; color: var(--muted); margin-top: 1px; }
-    .ctr-ctrl  { display: flex; align-items: center; gap: 14px; }
-    .ctr-btn {
-      width: 32px; height: 32px; border-radius: 50%;
-      border: 1.5px solid var(--border); background: var(--white);
-      font-size: 18px; color: var(--sky); cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Outfit', sans-serif; transition: all 0.15s;
-    }
-    .ctr-btn:hover { border-color: var(--sky); background: var(--sky-pale); }
-    .ctr-val { font-size: 18px; font-weight: 600; color: var(--navy); min-width: 22px; text-align: center; }
-
-    /* Chips */
-    .chips { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 20px; }
-    .chip {
-      padding: 8px 16px; border-radius: 100px;
-      border: 1.5px solid var(--border); background: #fafcff;
-      font-size: 13px; font-weight: 500; color: var(--slate);
-      cursor: pointer; transition: all 0.18s; user-select: none;
-      font-family: 'Outfit', sans-serif;
-    }
-    .chip.on { border-color: var(--sky); background: var(--sky-pale); color: var(--navy); }
-
-    /* Field label */
-    .field-label {
-      font-size: 11px; font-weight: 600; color: var(--muted);
-      letter-spacing: 0.5px; text-transform: uppercase;
-      margin-bottom: 7px; display: block;
-    }
-
-    /* Input / Select */
-    .sky-input {
-      width: 100%; padding: 12px 14px; border-radius: 12px;
-      border: 1.5px solid var(--border); background: #fafcff;
-      font-family: 'Outfit', sans-serif; font-size: 14px;
-      color: var(--navy); outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .sky-input:focus { border-color: var(--sky); box-shadow: 0 0 0 3px rgba(59,142,212,0.12); background: #fff; }
-    select.sky-input { appearance: none; cursor: pointer; }
-
-    /* Time row */
-    .time-row { display: flex; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
-    .time-field { flex: 1; min-width: 140px; }
-
-    /* Slider */
-    .slider-row { margin-bottom: 20px; }
-    .slider-head {
-      display: flex; justify-content: space-between;
-      align-items: center; margin-bottom: 8px;
-    }
-    .slider-label { font-size: 14px; font-weight: 500; color: var(--navy); }
-    .slider-badge {
-      font-size: 11px; font-weight: 600; padding: 3px 10px;
-      border-radius: 100px; background: var(--sky-pale); color: var(--sky);
-    }
-    input[type=range] {
-      -webkit-appearance: none; width: 100%; height: 5px;
-      border-radius: 3px; background: var(--border);
-      outline: none; cursor: pointer;
-    }
-    input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none; width: 20px; height: 20px;
-      border-radius: 50%; background: var(--sky);
-      box-shadow: 0 2px 8px rgba(59,142,212,0.35);
-    }
-
-    /* Toggle */
-    .toggle-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 18px; border-radius: 16px;
-      border: 1.5px solid var(--border); background: #fafcff;
-      margin-bottom: 10px; transition: border-color 0.2s, background 0.2s;
-    }
-    .toggle-row.on { border-color: var(--sky-lt); background: #f0f8ff; }
-    .toggle-title { font-size: 14px; font-weight: 500; color: var(--navy); }
-    .toggle-desc  { font-size: 12px; color: var(--muted); margin-top: 2px; }
-    .toggle-sw {
-      width: 44px; height: 24px; border-radius: 12px;
-      background: var(--border); cursor: pointer; position: relative;
-      border: none; flex-shrink: 0; transition: background 0.25s;
-    }
-    .toggle-sw.on { background: var(--sky); }
-    .toggle-knob {
-      position: absolute; top: 3px; left: 3px;
-      width: 18px; height: 18px; border-radius: 50%;
-      background: #fff; transition: left 0.25s;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
-      pointer-events: none;
-    }
-    .toggle-sw.on .toggle-knob { left: 23px; }
-
-    /* Nav buttons */
-    .nav-row { display: flex; gap: 10px; margin-top: 10px; }
-    .btn-ob {
-      flex: 1; padding: 14px; border-radius: 14px; border: none;
-      background: linear-gradient(135deg, var(--sky) 0%, #2172b0 100%);
-      color: #fff; font-family: 'Outfit', sans-serif;
-      font-size: 15px; font-weight: 600; cursor: pointer;
-      box-shadow: 0 4px 16px rgba(59,142,212,0.28);
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .btn-ob:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(59,142,212,0.38); }
-    .btn-back {
-      padding: 14px 20px; border-radius: 14px;
-      border: 1.5px solid var(--border); background: transparent;
-      color: var(--muted); font-family: 'Outfit', sans-serif;
-      font-size: 15px; cursor: pointer;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .btn-back:hover { border-color: var(--sky); color: var(--sky); }
-
-    /* Completion */
-    .ob-complete { text-align: center; padding: 8px 0 4px; }
-    .ob-complete-icon { font-size: 54px; display: block; margin-bottom: 18px; }
-    .ob-complete h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--navy); margin-bottom: 10px; }
-    .ob-complete p  { font-size: 14px; color: var(--slate); line-height: 1.65; font-weight: 300; max-width: 340px; margin: 0 auto 22px; }
-    .profile-tags   { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 26px; }
-    .profile-tag {
-      padding: 6px 14px; border-radius: 100px;
-      background: var(--sky-pale); color: var(--sky);
-      font-size: 13px; font-weight: 500;
-      border: 1px solid rgba(59,142,212,0.2);
-    }
-
-    /* ══════════════════════════════
-       DASHBOARD
-    ══════════════════════════════ */
-    .dash-root { position: relative; z-index: 1; padding-bottom: 56px; }
-    .dash-header {
-      padding: 28px 24px 0;
-      max-width: 560px; margin: 0 auto;
-    }
-    .dash-greeting {
-      font-family: 'Playfair Display', serif;
-      font-size: 26px; color: var(--navy); line-height: 1.25; margin-bottom: 4px;
-    }
-    .dash-greeting em { font-style: italic; color: var(--sky); }
-    .dash-date { font-size: 13px; color: var(--muted); font-weight: 300; margin-bottom: 24px; }
-
-    /* Summary card */
-    .summary-card {
-      padding: 22px 24px; border-radius: 20px;
-      background: linear-gradient(135deg, var(--navy) 0%, #1a3a58 100%);
-      color: #fff; margin-bottom: 18px;
-      box-shadow: 0 8px 32px rgba(15,45,74,0.18);
-      position: relative; overflow: hidden;
-    }
-    .summary-card::after {
-      content: ''; position: absolute;
-      top: -40px; right: -30px;
-      width: 160px; height: 160px; border-radius: 50%;
-      background: rgba(59,142,212,0.15); pointer-events: none;
-    }
-    .sc-label { font-size: 11px; letter-spacing: 1.3px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 10px; font-weight: 600; }
-    .sc-main  { font-family: 'Playfair Display', serif; font-size: 19px; line-height: 1.35; position: relative; }
-    .sc-sub   { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 10px; line-height: 1.5; position: relative; }
-
-    /* Dash cards */
-    .dash-cards { max-width: 560px; margin: 0 auto; padding: 0 24px; }
-    .dash-card {
-      display: flex; gap: 14px; align-items: flex-start;
-      padding: 18px 20px; border-radius: 18px;
-      background: var(--white); border: 1px solid var(--border);
-      box-shadow: 0 2px 10px rgba(15,45,74,0.04);
-      margin-bottom: 10px;
-      transition: transform 0.18s, box-shadow 0.18s;
-    }
-    .dash-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(15,45,74,0.08); }
-    .dc-icon {
-      width: 42px; height: 42px; border-radius: 13px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px;
-    }
-    .dc-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
-    .dc-body  { font-size: 13px; color: var(--slate); line-height: 1.5; font-weight: 300; }
-    .dc-tag {
-      display: inline-block; margin-top: 6px;
-      padding: 3px 10px; border-radius: 100px;
-      font-size: 11px; font-weight: 600; letter-spacing: 0.3px;
-    }
-    .tag-warn   { background: #fff7ed; color: #c2410c; }
-    .tag-good   { background: #ecfdf5; color: #065f46; }
-    .tag-info   { background: var(--sky-pale); color: #1e5f8a; }
-
-    /* Premium banner */
-    .premium-banner {
-      max-width: 560px; margin: 18px auto 0; padding: 0 24px;
-    }
-    .pb-inner {
-      padding: 18px 20px; border-radius: 18px;
-      background: linear-gradient(135deg, #fef9ee 0%, #fff8e6 100%);
-      border: 1px solid #fed7aa;
-      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-    }
-    .pb-icon { font-size: 26px; flex-shrink: 0; }
-    .pb-title { font-size: 14px; font-weight: 600; color: #92400e; margin-bottom: 2px; }
-    .pb-desc  { font-size: 12px; color: #b45309; font-weight: 300; }
-    .pb-btn {
-      padding: 9px 18px; border-radius: 10px; border: none;
-      background: #f59e0b; color: #fff;
-      font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 600;
-      cursor: pointer; transition: background 0.2s; white-space: nowrap;
-    }
-    .pb-btn:hover { background: #d97706; }
-
-    .reset-link {
-      text-align: center; margin-top: 30px;
-    }
-    .reset-link button {
-      background: none; border: none; color: var(--muted);
-      font-family: 'Outfit', sans-serif; font-size: 13px;
-      cursor: pointer; text-decoration: underline;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 480px) {
-      .ob-card { padding: 32px 24px 28px; }
-      .hero { padding: 52px 20px 40px; }
-    }
-  </style>
+footer{padding:36px 0;background:#0f172a;color:rgba(255,255,255,.7);text-align:center;font-size:14px}
+.flinks{display:flex;gap:24px;justify-content:center;margin-bottom:14px;flex-wrap:wrap}
+.flinks a{color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.flinks a:hover{color:#fff}
+</style>
 
 </head>
 <body>
-  <div id="root"></div>
 
-  <script type="text/babel">
-    const { useState } = React;
+<header>
+  <div class="container">
+    <div class="hdr">
+      <div class="logo">Skydocket</div>
+      <nav class="hnav">
+        <a href="#how">How it works</a>
+        <a href="#waitlist">Waitlist</a>
+        <button class="btn-hdr" onclick="scrollToWaitlist()">Get early access</button>
+      </nav>
+    </div>
+  </div>
+</header>
 
-    /* ── Shared components ── */
-
-    function Logo() {
-      return (
-        <div className="logo-mark">
-          <div className="logo-dot">🌤</div>
-          Skydocket
+<section class="hero">
+  <div class="container">
+    <h1>Stop letting weather<br>hijack your day.</h1>
+    <p>Skydocket turns your forecast into plain-English action. No jargon. Just what your family needs to know.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="scrollToWaitlist()">Join the waitlist</button>
+      <button class="btn-outline" onclick="document.getElementById('trailer').click()">Watch the trailer ▶</button>
+    </div>
+    <div class="hero-note">✓ Free · No card required · Early access only</div>
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="screen">
+          <div class="day">Monday morning</div>
+          <div class="action">Drizzle until noon → pack a rain jacket and waterproof shoes</div>
+          <div class="tag">🎯 Plan updated</div>
         </div>
-      );
-    }
+      </div>
+    </div>
+  </div>
+</section>
 
-    function Chip({ label, on, onClick }) {
-      return <div className={`chip ${on ? "on" : ""}`} onClick={onClick}>{label}</div>;
-    }
+<section class="vid-section">
+  <div class="container">
+    <h2 class="section-head">See it in action</h2>
+    <p class="section-sub">Watch how Skydocket turns forecast chaos into simple, confident decisions.</p>
+    <div class="vid-box">
+      <div class="vid-inner" id="trailer" onclick="loadVideo()">
+        <div class="play-btn"></div>
+        <div class="vid-label">Watch the trailer</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    function Counter({ label, sub, val, onChange }) {
-      return (
-        <div className="ctr-row">
-          <div>
-            <div className="ctr-label">{label}</div>
-            {sub && <div className="ctr-sub">{sub}</div>}
-          </div>
-          <div className="ctr-ctrl">
-            <button className="ctr-btn" onClick={() => onChange(Math.max(0, val - 1))}>−</button>
-            <span className="ctr-val">{val}</span>
-            <button className="ctr-btn" onClick={() => onChange(val + 1)}>+</button>
-          </div>
-        </div>
-      );
-    }
+<section class="why-section">
+  <div class="container">
+    <h2 class="section-head">Why families choose Skydocket</h2>
+    <p class="section-sub">Weather apps tell you numbers. Skydocket tells you what to do.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">👕</div>
+        <h3>End outfit chaos</h3>
+        <p>Know exactly what your kids need before you leave the house. No more last-minute panic.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🗓️</div>
+        <h3>Plan with confidence</h3>
+        <p>School runs, park trips, errands — make the call before the day starts going sideways.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⏱️</div>
+        <h3>One app. One answer.</h3>
+        <p>Stop toggling between 3 weather apps. Skydocket gives you the decision, not the data.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <h3>Built for real life</h3>
+        <p>Not for meteorologists. Built for parents and busy households who just need to know.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    function Toggle({ title, desc, on, onClick }) {
-      return (
-        <div className={`toggle-row ${on ? "on" : ""}`}>
-          <div>
-            <div className="toggle-title">{title}</div>
-            {desc && <div className="toggle-desc">{desc}</div>}
-          </div>
-          <button className={`toggle-sw ${on ? "on" : ""}`} onClick={onClick}>
-            <div className="toggle-knob" />
-          </button>
-        </div>
-      );
-    }
+<section class="how-section" id="how">
+  <div class="container">
+    <h2 class="section-head">How it works</h2>
+    <p class="section-sub">Three steps. That's it.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Open Skydocket</h3>
+        <p>See today's weather translated into plain English — no charts, no jargon.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Get your action</h3>
+        <p>Skydocket tells you exactly what your day needs — for outfits, plans, timing.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Go with confidence</h3>
+        <p>No second-guessing. No wasted trips. Just move forward and get on with it.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    function SensitivitySlider({ label, val, onChange }) {
-      const levels = ["Low", "Medium", "High", "Very High"];
-      const level = levels[Math.min(Math.round(val / 33), 3)];
-      return (
-        <div className="slider-row">
-          <div className="slider-head">
-            <span className="slider-label">{label}</span>
-            <span className="slider-badge">{level}</span>
-          </div>
-          <input type="range" min="0" max="99" value={val}
-            onChange={e => onChange(Number(e.target.value))} />
-        </div>
-      );
-    }
+<section class="headache-section">
+  <div class="container">
+    <h2>What's your biggest weather headache?</h2>
+    <p class="sub">Pick yours — we'll personalize your experience from day one.</p>
+    <div class="options">
+      <button class="opt" onclick="pick(this,'outfits')"><span class="check">✓ </span>Outfit decisions</button>
+      <button class="opt" onclick="pick(this,'playtime')"><span class="check">✓ </span>Playtime plans</button>
+      <button class="opt" onclick="pick(this,'school')"><span class="check">✓ </span>School runs</button>
+      <button class="opt" onclick="pick(this,'errands')"><span class="check">✓ </span>Errands & timing</button>
+    </div>
+  </div>
+</section>
 
-    function ProgressBar({ pct }) {
-      return (
-        <div className="progress-track">
-          <div className="progress-fill" style={{ width: `${pct}%` }} />
-        </div>
-      );
-    }
+<section class="waitlist-section" id="waitlist">
+  <div class="container">
+    <h2>Be first in line when we launch.</h2>
+    <p class="sub">Join the waitlist now — early members get priority access and launch-day perks.</p>
+    <form class="wform" onsubmit="submitForm(event)">
+      <div class="finput-wrap">
+        <input type="email" id="email-input" class="finput" placeholder="your@email.com" required>
+        <button type="submit" class="btn-submit">Join now</button>
+      </div>
+      <div class="form-note">✓ Free to join &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Early access only &nbsp;·&nbsp; Unsubscribe anytime</div>
+    </form>
+    <div class="success" id="success-msg">🎉 You're on the list! We'll hit you first when Skydocket launches.</div>
+  </div>
+</section>
 
-    /* ══════════════════════════════
-       LANDING PAGE
-    ══════════════════════════════ */
+<section class="launch-section">
+  <div class="container">
+    <h2>Dropping on iOS &amp; Android</h2>
+    <p>Skydocket is in final testing. Waitlist members get notified the moment it's live — before anyone else.</p>
+    <div class="badges">
+      <div class="badge"><span class="badge-icon">🍎</span> App Store — Coming Soon</div>
+      <div class="badge"><span class="badge-icon">▶️</span> Google Play — Coming Soon</div>
+    </div>
+  </div>
+</section>
 
-    function Landing({ onStart }) {
-      const [email, setEmail] = useState("");
-      const [joined, setJoined] = useState(false);
+<section class="final-section">
+  <div class="container">
+    <h2>Your mornings are about to get a lot simpler.</h2>
+    <p>Imagine leaving the house knowing exactly what the day needs. No guessing. No chaos. Just confidence.</p>
+    <button class="btn-primary" onclick="scrollToWaitlist()">Join the waitlist — it's free</button>
+  </div>
+</section>
 
-      const sampleCards = [
-        { icon: "🧥", bg: "#e8f4fd", title: "What to wear",       body: "Dress the kids in layers this morning. Temperature drops around 9 AM." },
-        { icon: "🚗", bg: "#fef3c7", title: "Leave-by alert",      body: "Leave by 7:40 AM. Rain picks up after 8 and will slow your commute." },
-        { icon: "🌳", bg: "#ecfdf5", title: "Best outdoor window", body: "Outdoor play is clear between 3:15 and 5:00 PM today." },
-        { icon: "🐕", bg: "#f5f3ff", title: "Dog walk timing",     body: "Walk before 8:30 AM or after 6:00 PM. Midday heat advisory in effect." },
-        { icon: "🌸", bg: "#fff1f2", title: "Allergy heads-up",    body: "High pollen tonight. Give allergy meds before dinner if needed." },
-      ];
+<footer>
+  <div class="container">
+    <div class="flinks">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Contact</a>
+    </div>
+    <p>&copy; 2026 Skydocket &nbsp;·&nbsp; Built for busy families.</p>
+  </div>
+</footer>
 
-      return (
-        <div className="landing">
-          <div className="hero">
-            <div className="eyebrow fade-up-1">✦ AI Weather Decisions</div>
-            <h1 className="fade-up-2">Stop checking the weather.<br /><em>Start knowing</em> what to do.</h1>
-            <p className="hero-sub fade-up-3">
-              Skydocket turns tomorrow's forecast into plain-English decisions for your family, commute, pets, and home. No charts. No guessing.
-            </p>
-            <div className="btn-row fade-up-4">
-              <button className="btn-primary" onClick={onStart}>Get started free →</button>
-              <button className="btn-outline" onClick={() => document.getElementById('sample').scrollIntoView({ behavior: 'smooth' })}>
-                See a sample day
-              </button>
-            </div>
+<script>
+  function scrollToWaitlist() {
+    document.getElementById('email-input').focus();
+    document.getElementById('waitlist').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
-            <div className="sample-section fade-up-5" id="sample">
-              <div className="section-label">Today for your household</div>
-              {sampleCards.map((c, i) => (
-                <div className="action-card" key={i}>
-                  <div className="ac-icon" style={{ background: c.bg }}>{c.icon}</div>
-                  <div>
-                    <div className="ac-title">{c.title}</div>
-                    <div className="ac-body">{c.body}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+  function pick(btn, val) {
+    document.querySelectorAll('.opt').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    sessionStorage.setItem('headache', val);
+  }
 
-          <div className="divider" />
+  function loadVideo() {
+    // REPLACE THIS YouTube URL with your actual trailer ID
+    const videoId = 'YOUR_YOUTUBE_ID_HERE';
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+    iframe.style.cssText = 'width:100%;height:100%;border:none';
+    iframe.allow = 'autoplay; encrypted-media; fullscreen';
+    document.querySelector('.vid-box').innerHTML = '';
+    document.querySelector('.vid-box').appendChild(iframe);
+  }
 
-          <div className="text-section">
-            <div className="eyebrow">The problem</div>
-            <h2>Most weather apps give you data.<br />They don't give you decisions.</h2>
-            <p>
-              You already know it's 70% chance of rain. What you need is someone to say: bring the umbrella for pickup, leave 10 minutes early, and move the dog walk before noon. That's Skydocket.
-            </p>
-          </div>
+  function submitForm(e) {
+    e.preventDefault();
+    const email = document.getElementById('email-input').value;
+    const headache = sessionStorage.getItem('headache') || 'not selected';
 
-          <div className="divider" />
+    // TODO: Replace console.log with your backend/Zapier/Mailchimp call
+    console.log('NEW WAITLIST SIGNUP:', { email, headache, ts: new Date().toISOString() });
 
-          <div className="text-section">
-            <div className="eyebrow">Built for real life</div>
-            <h2>Weather, translated<br />for your household.</h2>
-            <p>
-              Skydocket knows your commute, your school pickup, your dog's walk, and your kid's sensitivity to cold. Every morning, one calm summary — before you're already out the door.
-            </p>
-            <button className="btn-primary" style={{ margin: "0 auto", display: "inline-flex" }} onClick={onStart}>
-              Set up in 90 seconds →
-            </button>
-          </div>
+    e.target.style.display = 'none';
+    const msg = document.getElementById('success-msg');
+    msg.classList.add('show');
 
-          <div className="divider" />
+    setTimeout(() => {
+      e.target.reset();
+      e.target.style.display = 'flex';
+      msg.classList.remove('show');
+    }, 4000);
+  }
 
-          <div className="text-section" style={{ paddingBottom: 0 }}>
-            <div className="eyebrow">Early access</div>
-            <h2 style={{ marginBottom: 36 }}>Join early. Help shape it.</h2>
-          </div>
-
-          <div className="waitlist-wrap">
-            <h3>Get early access.</h3>
-            <p>Join early, help shape the first version, and lock in launch pricing.</p>
-            {joined ? (
-              <p style={{ color: "#7ec4f0", fontWeight: 500, fontSize: 15, position: "relative" }}>
-                ✓ You're on the list. We'll be in touch.
-              </p>
-            ) : (
-              <div className="waitlist-row">
-                <input
-                  className="waitlist-input"
-                  type="email"
-                  placeholder="your@email.com"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                />
-                <button className="waitlist-btn" onClick={() => email && setJoined(true)}>
-                  Join waitlist
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      );
-    }
-
-    /* ══════════════════════════════
-       ONBOARDING — 4 STEPS
-    ══════════════════════════════ */
-
-    function StepIdentity({ data, setData, onNext }) {
-      const pets = ["Dog", "Cat", "Bird", "Rabbit", "Other"];
-      const togglePet = p => setData(d => ({
-        ...d, pets: d.pets.includes(p) ? d.pets.filter(x => x !== p) : [...d.pets, p]
-      }));
-      return (
-        <div className="fade-up">
-          <ProgressBar pct={0} />
-          <div className="step-meta">
-            <span className="step-num">Step 1 of 4</span>
-            <span className="step-of">Identity</span>
-          </div>
-          <div className="ob-h">Who are we<br />looking out for?</div>
-          <p className="ob-sub">This turns Skydocket from a generic forecast into a household assistant built around your people and animals.</p>
-
-          <Counter label="Adults" sub="Including yourself" val={data.adults} onChange={v => setData(d => ({ ...d, adults: v }))} />
-          <Counter label="Children" sub="Under 18 at home"  val={data.kids}   onChange={v => setData(d => ({ ...d, kids: v }))} />
-
-          <label className="field-label" style={{ marginTop: 8, marginBottom: 10 }}>Pets at home</label>
-          <div className="chips">
-            <Chip label="None" on={data.pets.length === 0} onClick={() => setData(d => ({ ...d, pets: [] }))} />
-            {pets.map(p => <Chip key={p} label={p} on={data.pets.includes(p)} onClick={() => togglePet(p)} />)}
-          </div>
-
-          <div className="nav-row">
-            <button className="btn-ob" onClick={onNext}>Next →</button>
-          </div>
-        </div>
-      );
-    }
-
-    function StepRoutines({ data, setData, onNext, onBack }) {
-      const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-      const toggleDay = d => setData(p => ({
-        ...p, commuteDays: p.commuteDays.includes(d)
-          ? p.commuteDays.filter(x => x !== d) : [...p.commuteDays, d]
-      }));
-      return (
-        <div className="fade-up">
-          <ProgressBar pct={25} />
-          <div className="step-meta">
-            <span className="step-num">Step 2 of 4</span>
-            <span className="step-of">Routines</span>
-          </div>
-          <div className="ob-h">When does your day<br />need weather help?</div>
-          <p className="ob-sub">Map your real schedule against the forecast so every alert actually matters to you.</p>
-
-          <div className="time-row">
-            <div className="time-field">
-              <label className="field-label">School drop-off</label>
-              <input className="sky-input" type="time" value={data.dropoff} onChange={e => setData(d => ({ ...d, dropoff: e.target.value }))} />
-            </div>
-            <div className="time-field">
-              <label className="field-label">School pickup</label>
-              <input className="sky-input" type="time" value={data.pickup} onChange={e => setData(d => ({ ...d, pickup: e.target.value }))} />
-            </div>
-          </div>
-          <div className="time-row">
-            <div className="time-field">
-              <label className="field-label">Commute departs</label>
-              <input className="sky-input" type="time" value={data.depart} onChange={e => setData(d => ({ ...d, depart: e.target.value }))} />
-            </div>
-            <div className="time-field">
-              <label className="field-label">Commute mode</label>
-              <select className="sky-input" value={data.mode} onChange={e => setData(d => ({ ...d, mode: e.target.value }))}>
-                <option value="">Select…</option>
-                <option value="drive">Drive</option>
-                <option value="walk">Walk</option>
-                <option value="bike">Bike</option>
-                <option value="transit">Transit</option>
-                <option value="wfh">Work from home</option>
-              </select>
-            </div>
-          </div>
-
-          <label className="field-label" style={{ marginBottom: 9 }}>Commute days</label>
-          <div className="chips">
-            {days.map(d => <Chip key={d} label={d} on={data.commuteDays.includes(d)} onClick={() => toggleDay(d)} />)}
-          </div>
-
-          <div className="time-row" style={{ marginTop: 4 }}>
-            <div className="time-field">
-              <label className="field-label">Dog walk time</label>
-              <input className="sky-input" type="time" value={data.dogWalk} onChange={e => setData(d => ({ ...d, dogWalk: e.target.value }))} />
-            </div>
-            <div className="time-field">
-              <label className="field-label">Outdoor play window</label>
-              <input className="sky-input" type="time" value={data.outdoorPlay} onChange={e => setData(d => ({ ...d, outdoorPlay: e.target.value }))} />
-            </div>
-          </div>
-
-          <div className="nav-row">
-            <button className="btn-back" onClick={onBack}>←</button>
-            <button className="btn-ob" onClick={onNext}>Next →</button>
-          </div>
-        </div>
-      );
-    }
-
-    function StepSensitivity({ data, setData, onNext, onBack }) {
-      const set = (k, v) => setData(d => ({ ...d, [k]: v }));
-      return (
-        <div className="fade-up">
-          <ProgressBar pct={50} />
-          <div className="step-meta">
-            <span className="step-num">Step 3 of 4</span>
-            <span className="step-of">Sensitivity</span>
-          </div>
-          <div className="ob-h">What feels cold, hot,<br />or uncomfortable?</div>
-          <p className="ob-sub">This makes recommendations feel personal instead of generic. One household's "light jacket morning" is another's "heavy coat required."</p>
-
-          <SensitivitySlider label="Cold sensitivity"           val={data.cold}   onChange={v => set("cold", v)} />
-          <SensitivitySlider label="Rain sensitivity"           val={data.rain}   onChange={v => set("rain", v)} />
-          <SensitivitySlider label="Wind sensitivity"           val={data.wind}   onChange={v => set("wind", v)} />
-          <SensitivitySlider label="Allergy / pollen sensitivity" val={data.allergy} onChange={v => set("allergy", v)} />
-
-          <div className="nav-row">
-            <button className="btn-back" onClick={onBack}>←</button>
-            <button className="btn-ob" onClick={onNext}>Next →</button>
-          </div>
-        </div>
-      );
-    }
-
-    function StepAlerts({ data, setData, onFinish, onBack }) {
-      const tog = k => setData(d => ({ ...d, [k]: !d[k] }));
-      return (
-        <div className="fade-up">
-          <ProgressBar pct={75} />
-          <div className="step-meta">
-            <span className="step-num">Step 4 of 4</span>
-            <span className="step-of">Alerts</span>
-          </div>
-          <div className="ob-h">When should<br />we step in?</div>
-          <p className="ob-sub">Turn on alerts that matter for your household. You can change these any time.</p>
-
-          <Toggle title="Leave-early alerts"       desc="Notify you when weather will affect your commute"     on={data.leaveEarly}   onClick={() => tog("leaveEarly")} />
-          <Toggle title="Pickup weather warnings"  desc="Alert before school pickup if conditions are changing" on={data.pickupAlert}  onClick={() => tog("pickupAlert")} />
-          <Toggle title="Allergy & pollen alerts"  desc="Daily heads-up on high pollen or air quality days"    on={data.allergyAlert} onClick={() => tog("allergyAlert")} />
-          <Toggle title="Dog walk timing"          desc="Best-window notifications based on heat, rain, and air" on={data.dogAlert}   onClick={() => tog("dogAlert")} />
-          <Toggle title="Outdoor play windows"     desc="Alert when ideal weather arrives during after-school hours" on={data.outdoorAlert} onClick={() => tog("outdoorAlert")} />
-
-          <div className="nav-row" style={{ marginTop: 16 }}>
-            <button className="btn-back" onClick={onBack}>←</button>
-            <button className="btn-ob" onClick={onFinish}>Finish setup ✓</button>
-          </div>
-        </div>
-      );
-    }
-
-    function ObComplete({ profile, onDashboard }) {
-      const { identity, routines } = profile;
-      const tags = [];
-      if (identity.adults > 0) tags.push(`${identity.adults} adult${identity.adults > 1 ? "s" : ""}`);
-      if (identity.kids > 0)   tags.push(`${identity.kids} kid${identity.kids > 1 ? "s" : ""}`);
-      identity.pets.forEach(p => tags.push(p.toLowerCase()));
-      if (routines.mode === "wfh") tags.push("remote");
-      else if (routines.mode) tags.push(routines.mode);
-      const alertsOn = Object.values(profile.alerts).filter(Boolean).length;
-      if (alertsOn) tags.push(`${alertsOn} alert${alertsOn > 1 ? "s" : ""} on`);
-
-      return (
-        <div className="ob-complete fade-up">
-          <span className="ob-complete-icon anim-pop">☀️</span>
-          <h2>You're all set.</h2>
-          <p>Skydocket knows your household now. Every morning, one calm message — exactly what your family needs before you walk out the door.</p>
-          <div className="profile-tags">
-            {tags.map(t => <span key={t} className="profile-tag">{t}</span>)}
-          </div>
-          <div className="nav-row" style={{ justifyContent: "center" }}>
-            <button className="btn-ob" onClick={onDashboard}>See today's forecast →</button>
-          </div>
-          <p style={{ fontSize: 12, color: "#8ba5bc", marginTop: 16 }}>No charts. No percentages. Just what matters for your day.</p>
-        </div>
-      );
-    }
-
-    /* ══════════════════════════════
-       DASHBOARD
-    ══════════════════════════════ */
-
-    function Dashboard({ profile, onReset }) {
-      const { identity, routines, sensitivity, alerts } = profile;
-      const hasPet     = identity.pets.some(p => p !== "None");
-      const hasKids    = identity.kids > 0;
-      const allergyHigh = sensitivity.allergy > 50;
-
-      const cards = [
-        {
-          icon: "🧥", bg: "#e8f4fd",
-          title: "What to wear",
-          body: hasKids
-            ? "Dress the kids in layers this morning — it'll warm up by midday. Light jacket for the commute."
-            : "Light jacket to start. Temperatures climb through mid-morning so layers are a good call.",
-          tag: null,
-        },
-        {
-          icon: "🚗", bg: "#fef3c7",
-          title: "Leave-by alert",
-          body: routines.depart
-            ? `Leave by ${routines.depart}. Light rain shortly after adds roughly 10 minutes to your commute.`
-            : "Leave a few minutes earlier than usual. Light rain is expected this morning.",
-          tag: { label: "Leave early", cls: "tag-warn" },
-        },
-        {
-          icon: "🌳", bg: "#ecfdf5",
-          title: "Best outdoor window",
-          body: hasKids
-            ? "Best outdoor play window today is 3:15 – 5:00 PM. Clear skies and comfortable temperature."
-            : "Best conditions are mid-afternoon, roughly 2:00 – 5:00 PM. Comfortable and dry.",
-          tag: { label: "Clear window", cls: "tag-good" },
-        },
-        ...(hasPet ? [{
-          icon: "🐕", bg: "#f5f3ff",
-          title: "Dog walk timing",
-          body: routines.dogWalk
-            ? `Before ${routines.dogWalk} is ideal. Heat picks up mid-morning and rain returns this evening.`
-            : "Walk before 9 AM or after 6 PM. Midday heat advisory and evening rain expected.",
-          tag: { label: "Best before 9 AM", cls: "tag-info" },
-        }] : []),
-        ...(allergyHigh ? [{
-          icon: "🌸", bg: "#fff1f2",
-          title: "Allergy heads-up",
-          body: "High pollen count tonight. Consider allergy meds before dinner and keep windows closed.",
-          tag: { label: "High pollen", cls: "tag-warn" },
-        }] : []),
-        ...(hasKids && alerts.pickupAlert ? [{
-          icon: "🏫", bg: "#fefce8",
-          title: "Pickup alert",
-          body: "Rain likely around school pickup time. Bring umbrellas and expect slower traffic.",
-          tag: { label: "Bring umbrellas", cls: "tag-warn" },
-        }] : []),
-      ];
-
-      const dateStr = new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
-
-      return (
-        <div className="dash-root">
-          <div className="dash-header">
-            <div className="dash-greeting fade-up-1">
-              Good morning —<br /><em>here's your day.</em>
-            </div>
-            <div className="dash-date fade-up-1">{dateStr} · Indianapolis, IN</div>
-
-            <div className="summary-card fade-up-2">
-              <div className="sc-label">Today's summary</div>
-              <div className="sc-main">
-                {hasKids
-                  ? "A rainy morning, clear afternoon. Good school day if you leave a few minutes early."
-                  : "Rainy start, clearing by noon. Leave a little earlier and enjoy the afternoon."
-                }
-              </div>
-              <div className="sc-sub">
-                {hasPet ? "Walk the dog early. " : ""}
-                {allergyHigh ? "High pollen tonight." : "Pollen is manageable today."}
-              </div>
-            </div>
-          </div>
-
-          <div className="dash-cards">
-            {cards.map((c, i) => (
-              <div className="dash-card fade-up" key={i} style={{ animationDelay: `${0.1 + i * 0.07}s` }}>
-                <div className="dc-icon" style={{ background: c.bg }}>{c.icon}</div>
-                <div>
-                  <div className="dc-title">{c.title}</div>
-                  <div className="dc-body">{c.body}</div>
-                  {c.tag && <span className={`dc-tag ${c.tag.cls}`}>{c.tag.label}</span>}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="premium-banner fade-up" style={{ animationDelay: "0.5s" }}>
-            <div className="pb-inner">
-              <div className="pb-icon">✨</div>
-              <div style={{ flex: 1 }}>
-                <div className="pb-title">Peace of Mind — $4.99/mo</div>
-                <div className="pb-desc">Multi-profile sync, smart leave-now alerts, and advanced pollen tracking.</div>
-              </div>
-              <button className="pb-btn">Try free</button>
-            </div>
-          </div>
-
-          <div className="reset-link">
-            <button onClick={onReset}>← Back to landing page</button>
-          </div>
-        </div>
-      );
-    }
-
-    /* ══════════════════════════════
-       ROOT APP
-    ══════════════════════════════ */
-
-    function App() {
-      const [view,   setView]   = useState("landing");  // landing | onboarding | dashboard
-      const [obStep, setObStep] = useState(0);          // 0–4
-
-      const [identity,    setIdentity]    = useState({ adults: 1, kids: 0, pets: [] });
-      const [routines,    setRoutines]    = useState({ dropoff: "07:45", pickup: "15:00", depart: "07:30", mode: "", commuteDays: ["Mon","Tue","Wed","Thu","Fri"], dogWalk: "07:00", outdoorPlay: "15:30" });
-      const [sensitivity, setSensitivity] = useState({ cold: 49, rain: 49, wind: 33, allergy: 66 });
-      const [alerts,      setAlerts]      = useState({ leaveEarly: true, pickupAlert: true, allergyAlert: false, dogAlert: false, outdoorAlert: false });
-
-      const profile = { identity, routines, sensitivity, alerts };
-
-      const reset = () => { setView("landing"); setObStep(0); };
-
-      return (
-        <div>
-          <div className="atmo" />
-
-          {/* Topbar */}
-          <div className="topbar">
-            <Logo />
-            {view === "landing"    && <button className="topbar-btn" onClick={() => setView("onboarding")}>Get early access</button>}
-            {view === "onboarding" && <button className="topbar-btn ghost" onClick={reset}>← Back</button>}
-            {view === "dashboard"  && <div style={{ fontSize: 12, color: "#8ba5bc", fontWeight: 500 }}>Today · Indianapolis</div>}
-          </div>
-
-          {/* Views */}
-          {view === "landing" && (
-            <Landing onStart={() => setView("onboarding")} />
-          )}
-
-          {view === "onboarding" && (
-            <div className="ob-root">
-              <div className="ob-card">
-                {obStep === 0 && <StepIdentity    data={identity}    setData={setIdentity}    onNext={() => setObStep(1)} />}
-                {obStep === 1 && <StepRoutines    data={routines}    setData={setRoutines}    onNext={() => setObStep(2)} onBack={() => setObStep(0)} />}
-                {obStep === 2 && <StepSensitivity data={sensitivity} setData={setSensitivity} onNext={() => setObStep(3)} onBack={() => setObStep(1)} />}
-                {obStep === 3 && <StepAlerts      data={alerts}      setData={setAlerts}      onFinish={() => setObStep(4)} onBack={() => setObStep(2)} />}
-                {obStep === 4 && <ObComplete      profile={profile}  onDashboard={() => setView("dashboard")} />}
-              </div>
-            </div>
-          )}
-
-          {view === "dashboard" && (
-            <Dashboard profile={profile} onReset={reset} />
-          )}
-        </div>
-      );
-    }
-
-    // Mount the app
-    const root = ReactDOM.createRoot(document.getElementById("root"));
-    root.render(<App />);
-  </script>
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const el = document.querySelector(a.getAttribute('href'));
+      if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
 
 </body>
 </html>
