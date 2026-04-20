@@ -110,6 +110,23 @@ footer{padding:36px 0;background:#0f172a;color:rgba(255,255,255,.7);text-align:c
 .flinks{display:flex;gap:24px;justify-content:center;margin-bottom:14px;flex-wrap:wrap}
 .flinks a{color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
 .flinks a:hover{color:#fff}
+
+.hero-eyebrow{display:inline-block;padding:6px 14px;background:#E8F2FA;color:#0066ff;border-radius:20px;font-size:12px;font-weight:600;letter-spacing:.3px;margin-bottom:20px}
+.hero-accent{color:#0066ff;font-style:italic}
+.vid-eyebrow{display:inline-block;padding:6px 14px;background:#0066ff;color:#fff;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:16px;text-align:center;margin-left:auto;margin-right:auto}
+.vid-section .container{text-align:center}
+.personalize{max-width:560px;margin:40px auto 0;padding:28px 28px 26px;background:linear-gradient(135deg,#0f2d4a,#1a3a58);border-radius:16px;color:#fff;text-align:left;opacity:0;transform:translateY(12px);transition:opacity .4s,transform .4s;pointer-events:none}
+.personalize.show{opacity:1;transform:translateY(0);pointer-events:auto}
+.pc-eyebrow{font-size:10px;font-weight:700;letter-spacing:1.5px;color:#3B8ED4;margin-bottom:10px}
+.pc-head{font-size:20px;font-weight:700;margin-bottom:10px;line-height:1.3}
+.pc-body{font-size:15px;color:rgba(255,255,255,.75);margin-bottom:20px;line-height:1.55}
+.pc-btn{width:100%!important;max-width:100%!important}
+.wl-eyebrow{display:inline-block;padding:6px 14px;background:rgba(255,255,255,.2);color:#fff;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:18px}
+.wl-counter{margin-top:18px;font-size:13px;opacity:.9;font-weight:500}
+.wl-counter #wl-num{font-weight:700}
+.launch-eyebrow{display:inline-block;padding:6px 14px;background:#0f2d4a;color:#fff;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1.5px;margin-bottom:18px}
+.final-note{margin-top:18px;font-size:13px;color:#64748b;font-weight:500}
+@media(max-width:600px){.pc-head{font-size:17px}.pc-body{font-size:14px}}
 </style>
 
 </head>
@@ -130,13 +147,14 @@ footer{padding:36px 0;background:#0f172a;color:rgba(255,255,255,.7);text-align:c
 
 <section class="hero">
   <div class="container">
-    <h1>Stop letting weather<br>hijack your day.</h1>
-    <p>Skydocket turns your forecast into plain-English action. No jargon. Just what your family needs to know.</p>
+    <div class="hero-eyebrow">Built for parents · Coming Spring 2026</div>
+    <h1>The jacket was wrong.<br>The park was a mistake.<br><span class="hero-accent">Skydocket would've told you.</span></h1>
+    <p>Every morning, weather ruins something — outfits, plans, timing, moods. Skydocket reads your forecast and tells you exactly what your family needs. In plain English. Before the day unravels.</p>
     <div class="hero-btns">
-      <button class="btn-primary" onclick="scrollToWaitlist()">Join the waitlist</button>
-      <button class="btn-outline" onclick="document.getElementById('trailer').click()">Watch the trailer ▶</button>
+      <button class="btn-primary" onclick="scrollToWaitlist()">Claim your early access</button>
+      <button class="btn-outline" onclick="scrollToTrailer()">▶&nbsp;&nbsp;See it in 60 seconds</button>
     </div>
-    <div class="hero-note">✓ Free · No card required · Early access only</div>
+    <div class="hero-note">✓ Free forever for early members · No credit card · Launching soon</div>
     <div class="phone-wrap">
       <div class="phone">
         <div class="screen">
@@ -151,8 +169,9 @@ footer{padding:36px 0;background:#0f172a;color:rgba(255,255,255,.7);text-align:c
 
 <section class="vid-section">
   <div class="container">
-    <h2 class="section-head">See it in action</h2>
-    <p class="section-sub">Watch how Skydocket turns forecast chaos into simple, confident decisions.</p>
+    <div class="vid-eyebrow">▶&nbsp;&nbsp;60-second preview</div>
+    <h2 class="section-head">This is what your mornings could feel like.</h2>
+    <p class="section-sub">Watch how Skydocket takes a messy forecast and hands you one clear answer. No radar. No percentages. Just the right call for your family.</p>
     <div class="vid-box" id="trailer-box">
       <canvas id="appDemo"></canvas>
     </div>
@@ -161,28 +180,28 @@ footer{padding:36px 0;background:#0f172a;color:rgba(255,255,255,.7);text-align:c
 
 <section class="why-section">
   <div class="container">
-    <h2 class="section-head">Why families choose Skydocket</h2>
-    <p class="section-sub">Weather apps tell you numbers. Skydocket tells you what to do.</p>
+    <h2 class="section-head">You know this morning.</h2>
+    <p class="section-sub">We built Skydocket because we've lived every one of these.</p>
     <div class="cards">
       <div class="card">
         <div class="card-icon">👕</div>
-        <h3>End outfit chaos</h3>
-        <p>Know exactly what your kids need before you leave the house. No more last-minute panic.</p>
+        <h3>The outfit standoff</h3>
+        <p>It's 7:42am. You said jacket. They said no jacket. Nobody wins. Skydocket gives you one answer — and a reason.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🗓️</div>
-        <h3>Plan with confidence</h3>
-        <p>School runs, park trips, errands — make the call before the day starts going sideways.</p>
+        <div class="card-icon">🌦️</div>
+        <h3>The ruined park trip</h3>
+        <p>You packed snacks, sunscreen, the whole bag. Thirty minutes in, rain. Skydocket sees it coming hours before your weather app bothers to tell you.</p>
       </div>
       <div class="card">
-        <div class="card-icon">⏱️</div>
-        <h3>One app. One answer.</h3>
-        <p>Stop toggling between 3 weather apps. Skydocket gives you the decision, not the data.</p>
+        <div class="card-icon">⏰</div>
+        <h3>The bad-timing commute</h3>
+        <p>You leave at the worst possible minute and hit the storm head-on. Skydocket picks the window — so you don't.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🎯</div>
-        <h3>Built for real life</h3>
-        <p>Not for meteorologists. Built for parents and busy households who just need to know.</p>
+        <div class="card-icon">😤</div>
+        <h3>The cranky kid spiral</h3>
+        <p>Wet socks, cold ears, wrong shoes. The whole day tips over. Skydocket stops the spiral before it starts.</p>
       </div>
     </div>
   </div>
@@ -214,27 +233,39 @@ footer{padding:36px 0;background:#0f172a;color:rgba(255,255,255,.7);text-align:c
 
 <section class="headache-section">
   <div class="container">
-    <h2>What's your biggest weather headache?</h2>
-    <p class="sub">Pick yours — we'll personalize your experience from day one.</p>
+    <h2>What ruins your day first?</h2>
+    <p class="sub">Tell us where weather hurts most — we'll build your first Skydocket brief around it.</p>
     <div class="options">
-      <button class="opt" onclick="pick(this,'outfits')"><span class="check">✓ </span>Outfit decisions</button>
+      <button class="opt" onclick="pick(this,'outfits')"><span class="check">✓ </span>Outfit meltdowns</button>
       <button class="opt" onclick="pick(this,'playtime')"><span class="check">✓ </span>Playtime plans</button>
       <button class="opt" onclick="pick(this,'school')"><span class="check">✓ </span>School runs</button>
       <button class="opt" onclick="pick(this,'errands')"><span class="check">✓ </span>Errands & timing</button>
     </div>
+
+```
+<div class="personalize" id="personalize-box">
+  <div class="pc-eyebrow" id="pc-eyebrow">YOUR FIRST BRIEF</div>
+  <div class="pc-head" id="pc-head">This is what Skydocket will hand you on day one.</div>
+  <div class="pc-body" id="pc-body">A message in your pocket, every morning, written like a friend who actually checked the forecast for you.</div>
+  <button class="btn-primary pc-btn" onclick="scrollToWaitlist()">Lock in my spot →</button>
+</div>
+```
+
   </div>
 </section>
 
 <section class="waitlist-section" id="waitlist">
   <div class="container">
-    <h2>Be first in line when we launch.</h2>
-    <p class="sub">Join the waitlist now — early members get priority access and launch-day perks.</p>
+    <div class="wl-eyebrow">🔒&nbsp;&nbsp;LIMITED EARLY ACCESS</div>
+    <h2>The first 500 families get in for free. For life.</h2>
+    <p class="sub">Skip the line when we launch. Lock in founding-member status. Never pay for the app — not at launch, not after.</p>
     <form class="wform" onsubmit="submitForm(event)">
       <div class="finput-wrap">
         <input type="email" id="email-input" class="finput" placeholder="your@email.com" required>
-        <button type="submit" class="btn-submit">Join now</button>
+        <button type="submit" class="btn-submit">Claim my spot</button>
       </div>
-      <div class="form-note">✓ Free to join &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Early access only &nbsp;·&nbsp; Unsubscribe anytime</div>
+      <div class="form-note">✓ Free forever for early members &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Unsubscribe anytime</div>
+      <div class="wl-counter" id="wl-counter">🟢&nbsp;&nbsp;<span id="wl-num">312</span> of 500 spots claimed</div>
     </form>
     <div class="success" id="success-msg">🎉 You're on the list! We'll hit you first when Skydocket launches.</div>
   </div>
@@ -242,8 +273,9 @@ footer{padding:36px 0;background:#0f172a;color:rgba(255,255,255,.7);text-align:c
 
 <section class="launch-section">
   <div class="container">
-    <h2>Dropping on iOS &amp; Android</h2>
-    <p>Skydocket is in final testing. Waitlist members get notified the moment it's live — before anyone else.</p>
+    <div class="launch-eyebrow">LAUNCHING SPRING 2026</div>
+    <h2>Your phone is about to feel a lot smarter.</h2>
+    <p>Skydocket is in final testing now. Waitlist members get the download link the morning we go live — 24 hours before anyone else hears about it.</p>
     <div class="badges">
       <div class="badge"><span class="badge-icon">🍎</span> App Store — Coming Soon</div>
       <div class="badge"><span class="badge-icon">▶️</span> Google Play — Coming Soon</div>
@@ -253,9 +285,10 @@ footer{padding:36px 0;background:#0f172a;color:rgba(255,255,255,.7);text-align:c
 
 <section class="final-section">
   <div class="container">
-    <h2>Your mornings are about to get a lot simpler.</h2>
-    <p>Imagine leaving the house knowing exactly what the day needs. No guessing. No chaos. Just confidence.</p>
-    <button class="btn-primary" onclick="scrollToWaitlist()">Join the waitlist — it's free</button>
+    <h2>Imagine a Tuesday morning<br>that actually goes right.</h2>
+    <p>The jacket is correct. The park trip lands in the sunny window. Your kid's socks stay dry. Nobody melts down by 9am. That's the Skydocket morning. Get there first.</p>
+    <button class="btn-primary" onclick="scrollToWaitlist()">Claim my early access</button>
+    <div class="final-note">Free forever for the first 500 families.</div>
   </div>
 </section>
 
@@ -276,11 +309,53 @@ footer{padding:36px 0;background:#0f172a;color:rgba(255,255,255,.7);text-align:c
     document.getElementById('waitlist').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
+  const PERSONA_COPY = {
+    outfits: {
+      head: "The outfit call — decided before coffee.",
+      body: "Tomorrow 7am: 'Jacket for the oldest, hoodie for the little one. Temps drop to 54°F by drop-off. Warm layer, skip the heavy coat.' One message. Zero standoffs. That's your day one brief."
+    },
+    playtime: {
+      head: "The perfect park window — found for you.",
+      body: "Tomorrow: 'Sunny from 10am to 1:12pm, then rain rolls in. Pack the picnic early, home by lunch.' Skydocket scans the whole day and hands you the clean hours — before you load up the stroller."
+    },
+    school: {
+      head: "The school run, solved by 7:15am.",
+      body: "Tomorrow: 'Heavy rain 7:45–8:10. Leave by 7:35 or wait until 8:15 — both beat the downpour. Rain boots today, not sneakers.' One less thing to stress about before the bell."
+    },
+    errands: {
+      head: "Errands that actually fit the forecast.",
+      body: "Tomorrow: 'Dry window 2–4pm. Hit Target, the post office, and the grocery run now — storms after 5pm.' Skydocket stacks your list against the weather so you only make one trip."
+    }
+  };
+
   function pick(btn, val) {
     document.querySelectorAll('.opt').forEach(b => b.classList.remove('selected'));
     btn.classList.add('selected');
     sessionStorage.setItem('headache', val);
+    const copy = PERSONA_COPY[val];
+    if (copy) {
+      document.getElementById('pc-head').textContent = copy.head;
+      document.getElementById('pc-body').textContent = copy.body;
+      document.getElementById('personalize-box').classList.add('show');
+    }
   }
+
+  function scrollToTrailer() {
+    document.querySelector('.vid-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Animated waitlist counter - ticks up slowly for social proof
+  (function(){
+    const el = document.getElementById('wl-num');
+    if (!el) return;
+    let n = 312;
+    setInterval(() => {
+      if (Math.random() > 0.6 && n < 487) {
+        n++;
+        el.textContent = n;
+      }
+    }, 8000);
+  })();
 
   // Video replaced with animated app demo - no action needed
 
@@ -317,7 +392,7 @@ footer{padding:36px 0;background:#0f172a;color:rgba(255,255,255,.7);text-align:c
     var canvas = document.getElementById('appDemo');
     if(!canvas) return;
     var ctx = canvas.getContext('2d');
-    var dpr = window.devicePixelRatio||1;
+    var dpr = window.devicePixelRatio || 1;
 
     function resize(){
       var box = canvas.parentElement.getBoundingClientRect();
@@ -331,26 +406,20 @@ footer{padding:36px 0;background:#0f172a;color:rgba(255,255,255,.7);text-align:c
     resize();
     window.addEventListener('resize', resize);
 
-    var W = function(){ return canvas.width/dpr; };
-    var H = function(){ return canvas.height/dpr; };
+    function W(){ return canvas.width/dpr; }
+    function H(){ return canvas.height/dpr; }
 
-    // Colors
-    var NAVY  = '#0f2d4a';
-    var NAVY2 = '#1a3a58';
-    var BLUE  = '#3B8ED4';
-    var BLUEL = '#E8F2FA';
-    var BG    = '#F4F7FA';
-    var WHITE = '#ffffff';
-    var SLATE = '#6B7A99';
-    var BORD  = '#E2E8F0';
-    var GREEN = '#34D399';
-    var GREENL= '#ECFDF5';
-    var AMBER = '#F59E0B';
-    var AMBERL= '#FFFBEB';
-    var RED   = '#F87171';
-    var REDL  = '#FEF2F2';
-    var TEXT  = '#0f2d4a';
+    // ── PALETTE ──
+    var NAVY='#0a1f3a',NAVY2='#0f2d4a',NAVY3='#1a3a58';
+    var BLUE='#3B8ED4',BLUE2='#60A5FA',BLUEL='#E8F2FA';
+    var BG='#F4F7FA',WHITE='#fff',SLATE='#6B7A99',BORD='#E2E8F0';
+    var GREEN='#34D399',GREENL='#ECFDF5';
+    var AMBER='#F59E0B',AMBERL='#FFFBEB';
+    var RED='#F87171',REDL='#FEF2F2';
+    var PURPLE='#7C3AED',TEXT='#0f2d4a';
+    var GOLD='#FCD34D';
 
+    // ── HELPERS ──
     function rr(x,y,w,h,r,fill,stroke,sw){
       ctx.beginPath();
       ctx.moveTo(x+r,y);
@@ -366,37 +435,131 @@ footer{padding:36px 0;background:#0f172a;color:rgba(255,255,255,.7);text-align:c
       if(fill){ctx.fillStyle=fill;ctx.fill();}
       if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=sw||1.5;ctx.stroke();}
     }
-
     function txt(s,x,y,size,weight,color,align){
-      ctx.fillStyle = color||TEXT;
-      ctx.font      = (weight||'400')+' '+(size||11)+'px -apple-system,BlinkMacSystemFont,sans-serif';
-      ctx.textAlign = align||'left';
+      ctx.fillStyle=color||TEXT;
+      ctx.font=(weight||'400')+' '+(size||11)+'px -apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif';
+      ctx.textAlign=align||'left';
       ctx.fillText(s,x,y);
     }
+    function ease(t){return t<0.5?2*t*t:((-2*t*t)+(4*t)-1);}
+    function easeOut(t){return 1-Math.pow(1-t,3);}
+    function cl(v,a,b){return Math.max(a,Math.min(b,v));}
+    function lp(a,b,t){return a+(b-a)*cl(t,0,1);}
+    function ep(t,d){return ease(cl(t/d,0,1));}
+    function epo(t,d){return easeOut(cl(t/d,0,1));}
 
-    function ease(t){ return t<0.5?2*t*t:((-2*t*t)+(4*t)-1); }
-    function cl(v,a,b){ return Math.max(a,Math.min(b,v)); }
-    function lp(a,b,t){ return a+(b-a)*cl(t,0,1); }
-    function ep(t,d){ return ease(cl(t/d,0,1)); }
+    // ── RAIN PARTICLE SYSTEM ──
+    var rainDrops=[];
+    function initRain(count){
+      rainDrops=[];
+      for(var i=0;i<count;i++){
+        rainDrops.push({
+          x:Math.random()*W(),
+          y:Math.random()*H(),
+          len:6+Math.random()*14,
+          speed:4+Math.random()*6,
+          opacity:0.2+Math.random()*0.5
+        });
+      }
+    }
+    function drawRain(intensity){
+      if(!rainDrops.length) initRain(80);
+      for(var i=0;i<rainDrops.length*intensity;i++){
+        var d=rainDrops[i];
+        if(!d) continue;
+        ctx.strokeStyle='rgba(147,197,253,'+d.opacity*intensity+')';
+        ctx.lineWidth=1;
+        ctx.beginPath();
+        ctx.moveTo(d.x,d.y);
+        ctx.lineTo(d.x-2,d.y+d.len);
+        ctx.stroke();
+        d.y+=d.speed;
+        d.x-=0.8;
+        if(d.y>H()){d.y=-10;d.x=Math.random()*W();}
+        if(d.x<0) d.x=W();
+      }
+    }
 
-    // Phone dimensions
-    function PW(){ return Math.min(W()*0.52, 240); }
-    function PH(){ return PW()*2.1; }
-    function PCX(){ return W()/2; }
-    function PCY(){ return H()/2; }
-    function PSX(){ return PCX()-PW()/2+8; }
-    function PSY(){ return PCY()-PH()/2+8; }
-    function PSW(){ return PW()-16; }
-    function PSH(){ return PH()-16; }
+    // ── STARS / SPARKLE BACKGROUND ──
+    var stars=[];
+    function initStars(){
+      stars=[];
+      for(var i=0;i<40;i++){
+        stars.push({
+          x:Math.random()*W(),
+          y:Math.random()*H(),
+          size:Math.random()*1.5+0.3,
+          phase:Math.random()*Math.PI*2,
+          speed:0.01+Math.random()*0.02
+        });
+      }
+    }
+    function drawStars(t){
+      if(!stars.length) initStars();
+      stars.forEach(function(s){
+        var a=0.2+Math.abs(Math.sin(t*s.speed+s.phase))*0.6;
+        ctx.fillStyle='rgba(147,197,253,'+a+')';
+        ctx.beginPath();
+        ctx.arc(s.x,s.y,s.size,0,Math.PI*2);
+        ctx.fill();
+      });
+    }
 
-    function drawPhoneShell(){
+    // ── PHONE SHELL WITH DEPTH ──
+    function PW(){return Math.min(W()*0.48,230);}
+    function PH(){return PW()*2.1;}
+    function PCX(){return W()/2;}
+    function PCY(){return H()/2+8;}
+    function PSX(){return PCX()-PW()/2+8;}
+    function PSY(){return PCY()-PH()/2+8;}
+    function PSW(){return PW()-16;}
+    function PSH(){return PH()-16;}
+
+    function drawPhoneShell(tiltX, tiltY){
       var cx=PCX(),cy=PCY(),pw=PW(),ph=PH();
-      ctx.shadowColor='rgba(0,0,0,0.4)';
-      ctx.shadowBlur=35;
-      rr(cx-pw/2,cy-ph/2,pw,ph,26,'#111');
+      tiltX=tiltX||0; tiltY=tiltY||0;
+
+      // floor reflection
+      ctx.save();
+      ctx.globalAlpha=0.18;
+      ctx.translate(cx, cy+ph/2+4);
+      ctx.scale(1, -0.45);
+      ctx.filter='blur(4px)';
+      rr(-pw/2, 0, pw, ph*0.7, 26, '#000');
+      ctx.restore();
+      ctx.filter='none';
+
+      // outer glow
+      var glow=ctx.createRadialGradient(cx,cy,pw*0.3,cx,cy,pw*1.2);
+      glow.addColorStop(0,'rgba(59,142,212,0.25)');
+      glow.addColorStop(1,'rgba(59,142,212,0)');
+      ctx.fillStyle=glow;
+      ctx.fillRect(cx-pw,cy-ph/2-40,pw*2,ph+80);
+
+      // shadow
+      ctx.shadowColor='rgba(0,0,0,0.55)';
+      ctx.shadowBlur=45;
+      ctx.shadowOffsetY=15;
+
+      // body gradient
+      var bg=ctx.createLinearGradient(cx-pw/2,cy-ph/2,cx+pw/2,cy+ph/2);
+      bg.addColorStop(0,'#1a1a1a');
+      bg.addColorStop(0.5,'#0a0a0a');
+      bg.addColorStop(1,'#1a1a1a');
+      rr(cx-pw/2,cy-ph/2,pw,ph,26,bg);
+
       ctx.shadowBlur=0;
-      // notch
-      rr(cx-45,cy-ph/2,90,20,0,'#111');
+      ctx.shadowOffsetY=0;
+
+      // subtle highlight edge
+      rr(cx-pw/2,cy-ph/2,pw,ph,26,'',  'rgba(255,255,255,0.08)', 1);
+
+      // notch with shine
+      rr(cx-44,cy-ph/2,88,20,0,'#000');
+      ctx.fillStyle='rgba(255,255,255,0.03)';
+      ctx.beginPath();
+      ctx.arc(cx-25,cy-ph/2+10,2,0,Math.PI*2);
+      ctx.fill();
     }
 
     function clipScreen(){
@@ -406,238 +569,525 @@ footer{padding:36px 0;background:#0f172a;color:rgba(255,255,255,.7);text-align:c
       ctx.clip();
     }
 
-    // ── SCENES ──
+    // ── SCENE 0: WEATHER CHAOS (Opening) ──
+    function drawChaos(t){
+      var w=W(),h=H();
+      // stormy sky gradient
+      var sky=ctx.createLinearGradient(0,0,0,h);
+      sky.addColorStop(0,'#0a1829');
+      sky.addColorStop(1,'#1a2d4a');
+      ctx.fillStyle=sky;
+      ctx.fillRect(0,0,w,h);
 
-    var SCENE_DUR = [180, 200, 220, 190];
-    var sceneIdx  = 0;
-    var sceneT    = 0;
-
-    // Scene 0: Onboarding
-    function drawOnboarding(t){
-      var sx=PSX(),sy=PSY(),sw=PSW(),sh=PSH(),cx=PCX();
-      var alpha = ep(t,30);
-      ctx.globalAlpha = alpha;
-
-      rr(sx,sy,sw,sh,20,BG);
-
-      // top bar navy
-      rr(sx,sy,sw,60,0,NAVY);
-      txt('Skydocket',cx,sy+22,13,'700',WHITE,'center');
-      txt('Step 1 of 4 · Who are you planning for?',cx,sy+44,9,'400','rgba(255,255,255,0.7)','center');
-
-      // step dots
-      for(var i=0;i<4;i++){
-        rr(cx-30+i*20,sy+56,12,5,2.5,i===0?BLUE:'rgba(255,255,255,0.3)');
+      // moving clouds
+      for(var i=0;i<5;i++){
+        var cx=((t*0.5+i*150)%(w+200))-100;
+        var cy=30+i*25;
+        var cg=ctx.createRadialGradient(cx,cy,5,cx,cy,60);
+        cg.addColorStop(0,'rgba(100,120,160,0.4)');
+        cg.addColorStop(1,'rgba(100,120,160,0)');
+        ctx.fillStyle=cg;
+        ctx.beginPath();
+        ctx.arc(cx,cy,60,0,Math.PI*2);
+        ctx.fill();
       }
 
-      var personas = [
-        {icon:'👨‍👩‍👧', label:'Parents & Family',   color:BLUE,  bg:BLUEL},
-        {icon:'🚗',     label:'Daily Commuter',    color:'#7C3AED', bg:'#EDE9FE'},
-        {icon:'🏃',     label:'Outdoor Athlete',   color:GREEN, bg:GREENL},
-        {icon:'🌿',     label:'Health Conscious',  color:AMBER, bg:AMBERL},
-      ];
+      drawRain(1);
 
-      var sel = Math.floor(t/45)%4;
+      // lightning flash
+      if(t>40 && t<44){
+        ctx.fillStyle='rgba(255,255,255,'+(0.4-(t-40)/10)+')';
+        ctx.fillRect(0,0,w,h);
+      }
+      if(t>90 && t<93){
+        ctx.fillStyle='rgba(255,255,255,'+(0.3-(t-90)/10)+')';
+        ctx.fillRect(0,0,w,h);
+      }
 
-      personas.forEach(function(p,i){
-        var cy2 = sy+76+i*54;
-        var isS = i===sel;
-        rr(sx+10,cy2,sw-20,46,10,isS?p.bg:WHITE,isS?p.color:null,isS?2:0);
-        ctx.font='18px sans-serif';
-        ctx.textAlign='left';
-        ctx.fillText(p.icon,sx+20,cy2+29);
-        txt(p.label,sx+48,cy2+29,11,isS?'600':'400',isS?p.color:TEXT);
-        if(isS){
-          rr(sx+sw-28,cy2+15,16,16,8,p.color);
-          txt('✓',sx+sw-21,cy2+27,10,'700',WHITE,'center');
-        }
-      });
-
-      // CTA
-      rr(sx+12,sy+sh-48,sw-24,36,10,BLUE);
-      txt('Continue →',cx,sy+sh-24,12,'600',WHITE,'center');
-
+      // headline text
+      var alpha1=epo(t,30);
+      ctx.globalAlpha=alpha1;
+      txt('Weather ruined your morning.', w/2, h/2-20, Math.min(w/22,22), '700', '#fff','center');
       ctx.globalAlpha=1;
+
+      var alpha2=epo(t-30,40);
+      if(t>30){
+        ctx.globalAlpha=alpha2;
+        txt('Again.', w/2, h/2+14, Math.min(w/18,28), '800', BLUE2,'center');
+        ctx.globalAlpha=1;
+      }
+
+      // transition sweep
+      if(t>105){
+        var sw=epo(t-105,20);
+        var grad=ctx.createLinearGradient(0,0,0,h);
+        grad.addColorStop(0,'rgba(244,247,250,'+sw+')');
+        grad.addColorStop(1,'rgba(244,247,250,'+sw+')');
+        ctx.fillStyle=grad;
+        ctx.fillRect(0,0,w,h);
+      }
     }
 
-    // Scene 1: Dashboard
+    // ── SCENE 1: DASHBOARD REVEAL ──
     function drawDashboard(t, hlCard){
-      var sx=PSX(),sy=PSY(),sw=PSW(),sh=PSH(),cx=PCX();
-      var alpha = ep(t,30);
-      ctx.globalAlpha = alpha;
+      var w=W(),h=H(),cx=w/2,cy=h/2;
 
+      // calm sunrise bg
+      var sky=ctx.createLinearGradient(0,0,0,h);
+      sky.addColorStop(0,'#E8F2FA');
+      sky.addColorStop(0.5,'#F4F7FA');
+      sky.addColorStop(1,'#FEF3E2');
+      ctx.fillStyle=sky;
+      ctx.fillRect(0,0,w,h);
+
+      // soft sun glow top right
+      var sg=ctx.createRadialGradient(w-40,40,10,w-40,40,120);
+      sg.addColorStop(0,'rgba(252,211,77,0.4)');
+      sg.addColorStop(1,'rgba(252,211,77,0)');
+      ctx.fillStyle=sg;
+      ctx.fillRect(0,0,w,h);
+
+      // floating particles (dust motes)
+      var tm=t*0.3;
+      for(var i=0;i<15;i++){
+        var px=(Math.sin(tm*0.01+i)*0.5+0.5)*w;
+        var py=(Math.cos(tm*0.012+i*0.7)*0.5+0.5)*h;
+        ctx.fillStyle='rgba(252,211,77,0.4)';
+        ctx.beginPath();
+        ctx.arc(px,py,1,0,Math.PI*2);
+        ctx.fill();
+      }
+
+      // phone rises in
+      var riseT=epo(t,30);
+      ctx.save();
+      ctx.translate(0, (1-riseT)*40);
+      ctx.globalAlpha=riseT;
+
+      drawPhoneShell();
+
+      clipScreen();
+      var sx=PSX(),sy=PSY(),sw=PSW(),sh=PSH();
+
+      // screen bg
       rr(sx,sy,sw,sh,20,BG);
 
       // status bar
-      txt('9:41',sx+8,sy+14,9,'500',SLATE);
-      txt('⚡ 84%',sx+sw-8,sy+14,9,'400',SLATE,'right');
+      txt('9:41',sx+8,sy+14,9,'600',TEXT);
+      ctx.textAlign='right';
+      txt('●●● 5G',sx+sw-8,sy+14,8,'600',TEXT,'right');
 
-      // greeting banner
-      rr(sx,sy+16,sw,72,0,NAVY);
-      var gr = ctx.createRadialGradient(sx+sw-20,sy+16,4,sx+sw-20,sy+16,65);
-      gr.addColorStop(0,'rgba(59,142,212,0.3)');
-      gr.addColorStop(1,'rgba(59,142,212,0)');
-      ctx.fillStyle=gr;
-      ctx.fillRect(sx,sy+16,sw,72);
-      txt('Good morning, Patrick.',sx+12,sy+38,12,'600',WHITE);
-      txt('Monday · Indianapolis · 68°F',sx+12,sy+56,9,'300','rgba(255,255,255,0.65)');
-      txt('🌤',sx+sw-24,sy+50,16,'400',WHITE);
+      // greeting banner with animated glow
+      rr(sx,sy+18,sw,70,0,NAVY2);
 
-      // summary card
-      rr(sx+8,sy+94,sw-16,50,10,NAVY2);
-      var gr2 = ctx.createLinearGradient(sx+8,sy+94,sx+sw-8,sy+144);
-      gr2.addColorStop(0,'rgba(59,142,212,0.18)');
-      gr2.addColorStop(1,'rgba(59,142,212,0)');
-      ctx.fillStyle=gr2; ctx.fill();
-      rr(sx+8,sy+94,sw-16,50,10,'');
-      txt("TODAY'S PLAN",sx+18,sy+110,8,'600','rgba(255,255,255,0.55)');
-      txt('Mild morning. Rain by 2pm.',sx+18,sy+126,11,'600',WHITE);
-      txt('Pack an umbrella before you leave.',sx+18,sy+140,9,'300','rgba(255,255,255,0.6)');
+      // moving glow orb
+      var orbX=sx+sw-30+Math.sin(t*0.03)*5;
+      var orbY=sy+48+Math.cos(t*0.04)*3;
+      var orbG=ctx.createRadialGradient(orbX,orbY,2,orbX,orbY,50);
+      orbG.addColorStop(0,'rgba(96,165,250,0.5)');
+      orbG.addColorStop(1,'rgba(96,165,250,0)');
+      ctx.fillStyle=orbG;
+      ctx.fillRect(sx,sy+18,sw,70);
 
-      // action cards
-      var cards = [
+      // sun icon animated
+      var sunR=8+Math.sin(t*0.08)*1;
+      ctx.fillStyle=GOLD;
+      ctx.beginPath();
+      ctx.arc(orbX,orbY-8,sunR,0,Math.PI*2);
+      ctx.fill();
+      for(var r=0;r<8;r++){
+        var ang=r*Math.PI/4+t*0.02;
+        ctx.strokeStyle='rgba(252,211,77,0.6)';
+        ctx.lineWidth=1;
+        ctx.beginPath();
+        ctx.moveTo(orbX+Math.cos(ang)*10,orbY-8+Math.sin(ang)*10);
+        ctx.lineTo(orbX+Math.cos(ang)*13,orbY-8+Math.sin(ang)*13);
+        ctx.stroke();
+      }
+
+      // typewriter greeting
+      var greetFull='Good morning, Patrick.';
+      var greetLen=Math.floor(ep(t-15,25)*greetFull.length);
+      txt(greetFull.substr(0,greetLen), sx+12, sy+40, 12, '600', WHITE);
+      if(greetLen<greetFull.length && t>15){
+        ctx.fillStyle=WHITE;
+        ctx.fillRect(sx+12+ctx.measureText(greetFull.substr(0,greetLen)).width+2, sy+31, 2, 12);
+      }
+
+      if(t>35){
+        ctx.globalAlpha=riseT*epo(t-35,15);
+        txt('Monday · Indianapolis · 68°F', sx+12, sy+58, 9, '400', 'rgba(255,255,255,0.75)');
+        ctx.globalAlpha=riseT;
+      }
+
+      // summary card slides in
+      if(t>42){
+        var sT=epo(t-42,20);
+        ctx.save();
+        ctx.translate(0,(1-sT)*15);
+        ctx.globalAlpha=riseT*sT;
+        rr(sx+8, sy+94, sw-16, 52, 10, NAVY3);
+        // inner glow
+        var ig=ctx.createLinearGradient(sx+8,sy+94,sx+sw-8,sy+146);
+        ig.addColorStop(0,'rgba(96,165,250,0.22)');
+        ig.addColorStop(1,'rgba(96,165,250,0)');
+        ctx.fillStyle=ig;
+        rr(sx+8, sy+94, sw-16, 52, 10);
+        ctx.fill();
+        txt("TODAY'S PLAN", sx+18, sy+110, 8, '700', 'rgba(255,255,255,0.55)');
+        txt('Mild morning. Rain by 2pm.', sx+18, sy+126, 11, '600', WHITE);
+        txt('Pack an umbrella before you leave.', sx+18, sy+140, 9, '300', 'rgba(255,255,255,0.7)');
+        ctx.restore();
+        ctx.globalAlpha=riseT;
+      }
+
+      // action cards slide in with stagger
+      var cards=[
         {icon:'👕',label:'What to Wear',   body:'Light layer + waterproof jacket',  color:BLUE,  bg:BLUEL},
         {icon:'🌤',label:'Outdoor Window', body:'Best time outside: 7–11am',        color:GREEN, bg:GREENL},
         {icon:'🚗',label:'Commute Alert',  body:'Leave before noon, rain at 2pm',   color:AMBER, bg:AMBERL},
-        {icon:'💧',label:'Health Note',    body:'Humidity rising — stay hydrated',  color:RED,   bg:REDL},
+        {icon:'💧',label:'Health Note',    body:'Humidity rising — stay hydrated',  color:RED,   bg:REDL}
       ];
-
       cards.forEach(function(c,i){
-        var cy2 = sy+152+i*46;
-        var hl  = i===hlCard;
-        rr(sx+8,cy2,sw-16,40,10,hl?c.bg:WHITE,hl?c.color:BORD,hl?1.5:1);
-        ctx.font='14px sans-serif';
-        ctx.textAlign='left';
-        ctx.fillText(c.icon,sx+16,cy2+25);
-        txt(c.label,sx+38,cy2+18,10,'600',hl?c.color:TEXT);
-        txt(c.body, sx+38,cy2+30,9,'400',SLATE);
-        // chevron
-        txt('›',sx+sw-20,cy2+24,14,'400',SLATE);
+        var delay=55+i*8;
+        if(t<delay) return;
+        var cT=epo(t-delay,18);
+        var cy2=sy+154+i*46;
+        ctx.save();
+        ctx.translate((1-cT)*30, 0);
+        ctx.globalAlpha=riseT*cT;
+
+        var isHL=i===hlCard;
+        if(isHL){
+          // glow ring
+          ctx.shadowColor=c.color;
+          ctx.shadowBlur=12;
+        }
+        rr(sx+8,cy2,sw-16,40,10,isHL?c.bg:WHITE,isHL?c.color:BORD,isHL?2:1);
+        ctx.shadowBlur=0;
+
+        // icon badge
+        rr(sx+16,cy2+10,22,22,7,c.bg);
+        ctx.font='13px sans-serif';
+        ctx.textAlign='center';
+        ctx.fillText(c.icon,sx+27,cy2+26);
+
+        txt(c.label,sx+44,cy2+18,10,'600',isHL?c.color:TEXT);
+        txt(c.body,sx+44,cy2+30,8.5,'400',SLATE);
+        txt('›',sx+sw-18,cy2+26,16,'300',SLATE);
+        ctx.restore();
       });
 
       // bottom nav
-      rr(sx,sy+sh-38,sw,38,0,WHITE);
-      ctx.strokeStyle=BORD;ctx.lineWidth=1;
-      ctx.beginPath();ctx.moveTo(sx,sy+sh-38);ctx.lineTo(sx+sw,sy+sh-38);ctx.stroke();
-      var navIcons=['🏠','📅','⚙️'];
-      navIcons.forEach(function(ic,i){
-        ctx.globalAlpha = alpha*(i===0?1:0.35);
-        ctx.font='15px sans-serif';
-        ctx.textAlign='center';
-        ctx.fillText(ic, sx+sw/6+i*(sw/3), sy+sh-14);
-      });
-      ctx.globalAlpha=1;
+      if(t>90){
+        ctx.globalAlpha=riseT*epo(t-90,15);
+        rr(sx,sy+sh-36,sw,36,0,WHITE);
+        ctx.strokeStyle=BORD;
+        ctx.lineWidth=0.5;
+        ctx.beginPath();
+        ctx.moveTo(sx,sy+sh-36);
+        ctx.lineTo(sx+sw,sy+sh-36);
+        ctx.stroke();
+        var ni=['🏠','📅','⚙️'];
+        ni.forEach(function(ic,i){
+          ctx.globalAlpha=riseT*(i===0?1:0.4);
+          ctx.font='14px sans-serif';
+          ctx.textAlign='center';
+          ctx.fillText(ic, sx+sw/6+i*(sw/3), sy+sh-14);
+        });
+        ctx.globalAlpha=riseT;
+      }
+
+      ctx.restore();
+      ctx.restore(); // clip
+
+      // Caption overlay bottom
+      if(t>30 && t<120){
+        var capT=epo(t-30,20)*(1-epo(t-110,10));
+        ctx.globalAlpha=capT;
+        rr(w/2-110,h-42,220,28,14,'rgba(15,45,74,0.92)');
+        txt('Plain-English. Built for your family.', w/2, h-24, 10, '500', WHITE, 'center');
+        ctx.globalAlpha=1;
+      }
     }
 
-    // Scene 2: Card highlight scroll
-    function drawCardScroll(t){
-      var hl = Math.floor(cl(t/50,0,3.99));
-      drawDashboard(Math.min(t+30,60), hl);
+    // ── SCENE 2: CARD HIGHLIGHT SEQUENCE ──
+    function drawCardHighlight(t){
+      var hl=Math.floor(cl(t/45,0,3.99));
+      drawDashboard(120+Math.min(t,20), hl);
+
+      // pulsing highlight ring on selected card
+      var sx=PSX(),sy=PSY();
+      var cy2=sy+154+hl*46;
+
+      var pulse=(Math.sin(t*0.1)+1)*0.5;
+      ctx.strokeStyle='rgba(59,142,212,'+(0.3+pulse*0.4)+')';
+      ctx.lineWidth=2+pulse*2;
+      rr(sx+8-3,cy2-3,PSW()-16+6,46,13,'');
+      ctx.stroke();
     }
 
-    // Scene 3: Detail expanded
+    // ── SCENE 3: DETAIL CARD ──
     function drawDetail(t){
-      var sx=PSX(),sy=PSY(),sw=PSW(),sh=PSH(),cx=PCX();
-      ctx.globalAlpha = ep(t,25);
-
-      rr(sx,sy,sw,sh,20,BG);
-
-      // back
-      txt('← Back',sx+10,sy+22,10,'500',BLUE);
-
-      // expanded card
-      var cardH = Math.round(lp(40, sh*0.52, ep(t,35)));
-      rr(sx+8,sy+32,sw-16,cardH,12,BLUEL,BLUE,1.5);
-      ctx.font='20px sans-serif';ctx.textAlign='left';
-      ctx.fillText('👕',sx+18,sy+62);
-      txt('What to Wear',sx+46,sy+58,13,'600',TEXT);
-      txt('Personalized for your routine',sx+18,sy+76,9,'300',SLATE);
-
-      if(t>22){
-        ctx.globalAlpha = ep(t,25)*ep(t-22,25);
-        txt('Light jacket + waterproof layer.',sx+18,sy+100,11,'400',TEXT);
-        txt('Temp drops to 58°F by evening.',sx+18,sy+116,9,'300',SLATE);
-        txt('Rain expected 2–4pm. Leave prepared.',sx+18,sy+130,9,'300',SLATE);
-        var items=['✓  Waterproof jacket','✓  Light base layer','✓  Closed-toe shoes'];
-        items.forEach(function(it,i){
-          txt(it,sx+18,sy+152+i*16,10,'500',BLUE);
-        });
-        ctx.globalAlpha=1;
-      }
-
-      if(t>45){
-        var fa = ep(t-45,25);
-        ctx.globalAlpha=fa;
-        txt('Hourly Rain Chance',sx+12,sy+sh*0.6,9,'600',TEXT);
-        var hours=['7am','9am','11am','1pm','3pm','5pm'];
-        var precip=[0,0,8,25,72,45];
-        hours.forEach(function(h,i){
-          var bx = sx+12+i*((sw-24)/6);
-          var maxH = 24;
-          var barH = Math.round(precip[i]/100*maxH)+4;
-          var barY = sy+sh*0.6+10+(maxH-barH);
-          rr(bx,barY,13,barH,3,precip[i]>30?BLUE:'rgba(59,142,212,0.25)');
-          txt(h,bx+6,sy+sh*0.6+42,7,'400',SLATE,'center');
-          txt(precip[i]+'%',bx+6,sy+sh*0.6+54,7,'600',precip[i]>30?BLUE:SLATE,'center');
-        });
-        ctx.globalAlpha=1;
-      }
-
-      // action button
-      rr(sx+12,sy+sh-48,sw-24,36,10,BLUE);
-      txt('Got it — I\'m prepared',cx,sy+sh-24,11,'600',WHITE,'center');
-
-      ctx.globalAlpha=1;
-    }
-
-    // ── MAIN LOOP ──
-    function draw(){
-      var w=W(), h=H();
-      ctx.clearRect(0,0,w,h);
-
-      // dark bg
-      var bg=ctx.createLinearGradient(0,0,w,h);
-      bg.addColorStop(0,'#08192a');
-      bg.addColorStop(1,'#0d2540');
-      ctx.fillStyle=bg;
+      var w=W(),h=H();
+      var sky=ctx.createLinearGradient(0,0,0,h);
+      sky.addColorStop(0,'#E8F2FA');
+      sky.addColorStop(1,'#F4F7FA');
+      ctx.fillStyle=sky;
       ctx.fillRect(0,0,w,h);
 
-      // subtle dots pattern
-      ctx.fillStyle='rgba(59,142,212,0.07)';
-      for(var xi=0;xi<w;xi+=32){
-        for(var yi=0;yi<h;yi+=32){
-          ctx.beginPath();
-          ctx.arc(xi,yi,1.5,0,Math.PI*2);
-          ctx.fill();
-        }
-      }
-
-      // scene label pill
-      var labels=['Onboarding','Dashboard','Action Cards','Card Detail'];
-      rr(w/2-44,12,88,22,11,'rgba(59,142,212,0.18)');
-      txt(labels[sceneIdx],w/2,27,9,'600',BLUE,'center');
-
-      // progress dots
-      for(var di=0;di<4;di++){
-        rr(w/2-36+di*24,h-20,16,6,3,di===sceneIdx?BLUE:'rgba(255,255,255,0.18)');
-      }
-
-      // phone shell + clip
       drawPhoneShell();
       clipScreen();
 
-      switch(sceneIdx){
-        case 0: drawOnboarding(sceneT); break;
-        case 1: drawDashboard(sceneT,-1); break;
-        case 2: drawCardScroll(sceneT); break;
-        case 3: drawDetail(sceneT); break;
+      var sx=PSX(),sy=PSY(),sw=PSW(),sh=PSH();
+      rr(sx,sy,sw,sh,20,BG);
+
+      // back
+      txt('‹ Back', sx+10, sy+22, 11, '500', BLUE);
+      txt('9:41', sx+sw-8, sy+14, 9, '600', TEXT,'right');
+
+      // expanded card with grow animation
+      var cardH=Math.round(lp(40,sh*0.5,epo(t,30)));
+      rr(sx+8,sy+32,sw-16,cardH,14,BLUEL,BLUE,1.5);
+
+      // icon
+      ctx.font='22px sans-serif';
+      ctx.textAlign='left';
+      ctx.fillText('👕',sx+20,sy+64);
+      txt('What to Wear',sx+52,sy+58,14,'700',TEXT);
+      txt('Personalized for your routine',sx+20,sy+80,9,'400',SLATE);
+
+      // divider
+      ctx.strokeStyle='rgba(59,142,212,0.2)';
+      ctx.lineWidth=0.5;
+      ctx.beginPath();
+      ctx.moveTo(sx+20,sy+90);
+      ctx.lineTo(sx+sw-20,sy+90);
+      ctx.stroke();
+
+      if(t>22){
+        ctx.globalAlpha=epo(t-22,20);
+        // typewriter lines
+        var lines=[
+          'Light jacket + waterproof layer.',
+          'Temp drops to 58°F by evening.',
+          'Rain expected 2–4pm. Leave prepared.'
+        ];
+        lines.forEach(function(line,i){
+          if(t>22+i*8){
+            var lT=epo(t-22-i*8,10);
+            var chars=Math.floor(lT*line.length);
+            txt(line.substr(0,chars), sx+20, sy+108+i*16, 10, i===0?'500':'400', i===0?TEXT:SLATE);
+          }
+        });
+        ctx.globalAlpha=1;
       }
 
-      ctx.restore(); // unclip
+      if(t>50){
+        ctx.globalAlpha=epo(t-50,20);
+        var items=['✓  Waterproof jacket','✓  Light base layer','✓  Closed-toe shoes'];
+        items.forEach(function(it,i){
+          if(t>50+i*5){
+            var iT=epo(t-50-i*5,8);
+            ctx.globalAlpha=iT;
+            txt(it, sx+20, sy+162+i*16, 10, '500', BLUE);
+          }
+        });
+        ctx.globalAlpha=1;
+      }
+
+      // hourly rain chart
+      if(t>75){
+        var chT=epo(t-75,25);
+        ctx.globalAlpha=chT;
+        txt('Hourly Rain Chance', sx+12, sy+sh*0.56, 9, '700', TEXT);
+        var hrs=['7am','9am','11am','1pm','3pm','5pm'];
+        var pr=[0,0,8,25,72,45];
+        hrs.forEach(function(hr,i){
+          var bx=sx+12+i*((sw-24)/6);
+          var maxH=26;
+          var barH=(pr[i]/100*maxH)*chT+3;
+          var barY=sy+sh*0.56+10+(maxH-barH);
+          var barColor=pr[i]>30?BLUE:'rgba(59,142,212,0.25)';
+          rr(bx,barY,12,barH,3,barColor);
+          txt(hr,bx+6,sy+sh*0.56+42,7,'400',SLATE,'center');
+          txt(pr[i]+'%',bx+6,sy+sh*0.56+54,7,'700',pr[i]>30?BLUE:SLATE,'center');
+        });
+        ctx.globalAlpha=1;
+      }
+
+      // got it button
+      if(t>100){
+        var bT=epo(t-100,20);
+        ctx.globalAlpha=bT;
+        ctx.save();
+        ctx.translate(0,(1-bT)*10);
+        rr(sx+12,sy+sh-46,sw-24,34,10,BLUE);
+
+        // button shine
+        var sh1=ctx.createLinearGradient(sx+12,sy+sh-46,sx+sw-12,sy+sh-12);
+        sh1.addColorStop(0,'rgba(255,255,255,0.25)');
+        sh1.addColorStop(0.5,'rgba(255,255,255,0)');
+        ctx.fillStyle=sh1;
+        rr(sx+12,sy+sh-46,sw-24,34,10);
+        ctx.fill();
+
+        txt("Got it — I'm prepared", W()/2, sy+sh-25, 11, '600', WHITE, 'center');
+        ctx.restore();
+        ctx.globalAlpha=1;
+      }
+
+      ctx.restore(); // clip
+
+      // caption
+      if(t>30 && t<140){
+        var capT=epo(t-30,20)*(1-epo(t-130,10));
+        ctx.globalAlpha=capT;
+        rr(W()/2-115,H()-42,230,28,14,'rgba(15,45,74,0.92)');
+        txt('One tap. Every answer you need.',W()/2,H()-24,10,'500',WHITE,'center');
+        ctx.globalAlpha=1;
+      }
+    }
+
+    // ── SCENE 4: OUTRO - "JOIN THE WAITLIST" ──
+    function drawOutro(t){
+      var w=W(),h=H();
+
+      // blue gradient
+      var bg=ctx.createLinearGradient(0,0,w,h);
+      bg.addColorStop(0,'#0a1f3a');
+      bg.addColorStop(1,'#1a3a58');
+      ctx.fillStyle=bg;
+      ctx.fillRect(0,0,w,h);
+
+      drawStars(t);
+
+      // glowing radial center
+      var cgrad=ctx.createRadialGradient(w/2,h/2,20,w/2,h/2,Math.max(w,h)*0.6);
+      cgrad.addColorStop(0,'rgba(96,165,250,0.25)');
+      cgrad.addColorStop(1,'rgba(96,165,250,0)');
+      ctx.fillStyle=cgrad;
+      ctx.fillRect(0,0,w,h);
+
+      // logo pulse
+      var pulse=1+Math.sin(t*0.1)*0.04;
+      ctx.save();
+      ctx.translate(w/2,h/2-30);
+      ctx.scale(pulse,pulse);
+
+      // cloud icon
+      ctx.font='44px sans-serif';
+      ctx.textAlign='center';
+      ctx.textBaseline='middle';
+      ctx.fillText('🌤',0,0);
+      ctx.restore();
+      ctx.textBaseline='alphabetic';
+
+      // headline fade in
+      var a1=epo(t,25);
+      ctx.globalAlpha=a1;
+      txt('Skydocket', w/2, h/2+12, Math.min(w/14,30), '800', WHITE,'center');
+      ctx.globalAlpha=1;
+
+      var a2=epo(t-20,30);
+      if(t>20){
+        ctx.globalAlpha=a2;
+        txt('Coming Spring 2026', w/2, h/2+34, Math.min(w/30,13), '500', BLUE2,'center');
+        ctx.globalAlpha=1;
+      }
+
+      // CTA button
+      if(t>40){
+        var bT=epo(t-40,20);
+        ctx.globalAlpha=bT;
+        ctx.save();
+        ctx.translate(0,(1-bT)*10);
+
+        var btnW=Math.min(w*0.55,200);
+        var btnH=36;
+        var btnX=w/2-btnW/2;
+        var btnY=h/2+56;
+
+        // glow
+        ctx.shadowColor=BLUE;
+        ctx.shadowBlur=20;
+        rr(btnX,btnY,btnW,btnH,18,BLUE);
+        ctx.shadowBlur=0;
+
+        // shine
+        var sh1=ctx.createLinearGradient(btnX,btnY,btnX+btnW,btnY+btnH);
+        sh1.addColorStop(0,'rgba(255,255,255,0.3)');
+        sh1.addColorStop(0.5,'rgba(255,255,255,0)');
+        ctx.fillStyle=sh1;
+        rr(btnX,btnY,btnW,btnH,18);
+        ctx.fill();
+
+        txt('Claim early access →', w/2, btnY+23, 11, '700', WHITE,'center');
+        ctx.restore();
+        ctx.globalAlpha=1;
+      }
+
+      // badge
+      if(t>60){
+        var bgT=epo(t-60,20);
+        ctx.globalAlpha=bgT;
+        var bw=Math.min(w*0.6,220);
+        rr(w/2-bw/2,h/2+102,bw,22,11,'rgba(255,255,255,0.1)');
+        txt('First 500 families: Free forever', w/2, h/2+117, 9, '500', 'rgba(255,255,255,0.85)','center');
+        ctx.globalAlpha=1;
+      }
+    }
+
+    // ── SCENE TIMELINE ──
+    var SCENES=[
+      { name:'', dur: 130, draw: drawChaos },
+      { name:'', dur: 140, draw: function(t){ drawDashboard(t,-1); } },
+      { name:'', dur: 180, draw: drawCardHighlight },
+      { name:'', dur: 165, draw: drawDetail },
+      { name:'', dur: 110, draw: drawOutro }
+    ];
+    var sceneIdx=0;
+    var sceneT=0;
+
+    function draw(){
+      var s=SCENES[sceneIdx];
+
+      // crossfade between scenes
+      var alpha=1;
+      if(sceneT<8){
+        alpha=sceneT/8;
+      } else if(sceneT>s.dur-8){
+        alpha=(s.dur-sceneT)/8;
+      }
+
+      ctx.save();
+      ctx.globalAlpha=alpha;
+      s.draw(sceneT);
+      ctx.restore();
+
+      // progress bar at bottom
+      var totalDur=0, elapsed=0;
+      SCENES.forEach(function(sc,i){
+        totalDur+=sc.dur;
+        if(i<sceneIdx) elapsed+=sc.dur;
+      });
+      elapsed+=sceneT;
+      var prog=elapsed/totalDur;
+      var barW=W()*0.35;
+      var barX=W()/2-barW/2;
+      rr(barX,H()-14,barW,3,1.5,'rgba(255,255,255,0.15)');
+      rr(barX,H()-14,barW*prog,3,1.5,BLUE2);
+
+      // scene dots
+      var dotX=W()/2 - (SCENES.length*16)/2;
+      SCENES.forEach(function(_,i){
+        var isC=i===sceneIdx;
+        rr(dotX+i*16, H()-24, isC?10:6, isC?3:3, 1.5, isC?BLUE2:'rgba(255,255,255,0.25)');
+      });
 
       sceneT++;
-      if(sceneT >= SCENE_DUR[sceneIdx]){
-        sceneIdx=(sceneIdx+1)%4;
+      if(sceneT>=s.dur){
+        sceneIdx=(sceneIdx+1)%SCENES.length;
         sceneT=0;
       }
 
