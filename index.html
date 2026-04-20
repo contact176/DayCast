@@ -44,7 +44,8 @@ header{padding:18px 0;position:sticky;top:0;background:rgba(255,255,255,.96);bac
 .vid-section{padding:80px 0;background:var(–bg2)}
 .section-head{text-align:center;font-size:34px;font-weight:700;margin-bottom:14px;letter-spacing:-.5px}
 .section-sub{text-align:center;font-size:16px;color:var(–muted);max-width:480px;margin:0 auto 48px}
-.vid-box{max-width:760px;margin:0 auto;aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.1)}
+.vid-box{max-width:760px;margin:0 auto;aspect-ratio:16/9;background:#0f2d4a;border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.1);position:relative}
+#appDemo{width:100%;height:100%;display:block}
 .vid-inner{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;cursor:pointer;background:linear-gradient(135deg,#1a1a2e,#16213e);transition:background .3s}
 .vid-inner:hover{background:linear-gradient(135deg,#12122a,#0e1428)}
 .play-btn{width:60px;height:60px;background:var(–blue);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .3s}
@@ -155,11 +156,8 @@ footer{padding:36px 0;background:#0f172a;color:rgba(255,255,255,.7);text-align:c
   <div class="container">
     <h2 class="section-head">See it in action</h2>
     <p class="section-sub">Watch how Skydocket turns forecast chaos into simple, confident decisions.</p>
-    <div class="vid-box">
-      <div class="vid-inner" id="trailer" onclick="loadVideo()">
-        <div class="play-btn"></div>
-        <div class="vid-label">Watch the trailer</div>
-      </div>
+    <div class="vid-box" id="trailer-box">
+      <canvas id="appDemo"></canvas>
     </div>
   </div>
 </section>
@@ -287,16 +285,7 @@ footer{padding:36px 0;background:#0f172a;color:rgba(255,255,255,.7);text-align:c
     sessionStorage.setItem('headache', val);
   }
 
-  function loadVideo() {
-    // REPLACE THIS YouTube URL with your actual trailer ID
-    const videoId = 'YOUR_YOUTUBE_ID_HERE';
-    const iframe = document.createElement('iframe');
-    iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
-    iframe.style.cssText = 'width:100%;height:100%;border:none';
-    iframe.allow = 'autoplay; encrypted-media; fullscreen';
-    document.querySelector('.vid-box').innerHTML = '';
-    document.querySelector('.vid-box').appendChild(iframe);
-  }
+  // Video replaced with animated app demo - no action needed
 
   function submitForm(e) {
     e.preventDefault();
@@ -323,6 +312,350 @@ footer{padding:36px 0;background:#0f172a;color:rgba(255,255,255,.7);text-align:c
       if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
+</script>
+
+<script>
+(function(){
+  function initDemo(){
+    var canvas = document.getElementById('appDemo');
+    if(!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var dpr = window.devicePixelRatio||1;
+
+    function resize(){
+      var box = canvas.parentElement.getBoundingClientRect();
+      canvas.width  = box.width  * dpr;
+      canvas.height = box.height * dpr;
+      canvas.style.width  = box.width  + 'px';
+      canvas.style.height = box.height + 'px';
+      ctx.setTransform(1,0,0,1,0,0);
+      ctx.scale(dpr,dpr);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    var W = function(){ return canvas.width/dpr; };
+    var H = function(){ return canvas.height/dpr; };
+
+    // Colors
+    var NAVY  = '#0f2d4a';
+    var NAVY2 = '#1a3a58';
+    var BLUE  = '#3B8ED4';
+    var BLUEL = '#E8F2FA';
+    var BG    = '#F4F7FA';
+    var WHITE = '#ffffff';
+    var SLATE = '#6B7A99';
+    var BORD  = '#E2E8F0';
+    var GREEN = '#34D399';
+    var GREENL= '#ECFDF5';
+    var AMBER = '#F59E0B';
+    var AMBERL= '#FFFBEB';
+    var RED   = '#F87171';
+    var REDL  = '#FEF2F2';
+    var TEXT  = '#0f2d4a';
+
+    function rr(x,y,w,h,r,fill,stroke,sw){
+      ctx.beginPath();
+      ctx.moveTo(x+r,y);
+      ctx.lineTo(x+w-r,y);
+      ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+      ctx.lineTo(x+w,y+h-r);
+      ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+      ctx.lineTo(x+r,y+h);
+      ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+      ctx.lineTo(x,y+r);
+      ctx.quadraticCurveTo(x,y,x+r,y);
+      ctx.closePath();
+      if(fill){ctx.fillStyle=fill;ctx.fill();}
+      if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=sw||1.5;ctx.stroke();}
+    }
+
+    function txt(s,x,y,size,weight,color,align){
+      ctx.fillStyle = color||TEXT;
+      ctx.font      = (weight||'400')+' '+(size||11)+'px -apple-system,BlinkMacSystemFont,sans-serif';
+      ctx.textAlign = align||'left';
+      ctx.fillText(s,x,y);
+    }
+
+    function ease(t){ return t<0.5?2*t*t:((-2*t*t)+(4*t)-1); }
+    function cl(v,a,b){ return Math.max(a,Math.min(b,v)); }
+    function lp(a,b,t){ return a+(b-a)*cl(t,0,1); }
+    function ep(t,d){ return ease(cl(t/d,0,1)); }
+
+    // Phone dimensions
+    function PW(){ return Math.min(W()*0.52, 240); }
+    function PH(){ return PW()*2.1; }
+    function PCX(){ return W()/2; }
+    function PCY(){ return H()/2; }
+    function PSX(){ return PCX()-PW()/2+8; }
+    function PSY(){ return PCY()-PH()/2+8; }
+    function PSW(){ return PW()-16; }
+    function PSH(){ return PH()-16; }
+
+    function drawPhoneShell(){
+      var cx=PCX(),cy=PCY(),pw=PW(),ph=PH();
+      ctx.shadowColor='rgba(0,0,0,0.4)';
+      ctx.shadowBlur=35;
+      rr(cx-pw/2,cy-ph/2,pw,ph,26,'#111');
+      ctx.shadowBlur=0;
+      // notch
+      rr(cx-45,cy-ph/2,90,20,0,'#111');
+    }
+
+    function clipScreen(){
+      ctx.save();
+      ctx.beginPath();
+      rr(PSX(),PSY(),PSW(),PSH(),20,'');
+      ctx.clip();
+    }
+
+    // ── SCENES ──
+
+    var SCENE_DUR = [180, 200, 220, 190];
+    var sceneIdx  = 0;
+    var sceneT    = 0;
+
+    // Scene 0: Onboarding
+    function drawOnboarding(t){
+      var sx=PSX(),sy=PSY(),sw=PSW(),sh=PSH(),cx=PCX();
+      var alpha = ep(t,30);
+      ctx.globalAlpha = alpha;
+
+      rr(sx,sy,sw,sh,20,BG);
+
+      // top bar navy
+      rr(sx,sy,sw,60,0,NAVY);
+      txt('Skydocket',cx,sy+22,13,'700',WHITE,'center');
+      txt('Step 1 of 4 · Who are you planning for?',cx,sy+44,9,'400','rgba(255,255,255,0.7)','center');
+
+      // step dots
+      for(var i=0;i<4;i++){
+        rr(cx-30+i*20,sy+56,12,5,2.5,i===0?BLUE:'rgba(255,255,255,0.3)');
+      }
+
+      var personas = [
+        {icon:'👨‍👩‍👧', label:'Parents & Family',   color:BLUE,  bg:BLUEL},
+        {icon:'🚗',     label:'Daily Commuter',    color:'#7C3AED', bg:'#EDE9FE'},
+        {icon:'🏃',     label:'Outdoor Athlete',   color:GREEN, bg:GREENL},
+        {icon:'🌿',     label:'Health Conscious',  color:AMBER, bg:AMBERL},
+      ];
+
+      var sel = Math.floor(t/45)%4;
+
+      personas.forEach(function(p,i){
+        var cy2 = sy+76+i*54;
+        var isS = i===sel;
+        rr(sx+10,cy2,sw-20,46,10,isS?p.bg:WHITE,isS?p.color:null,isS?2:0);
+        ctx.font='18px sans-serif';
+        ctx.textAlign='left';
+        ctx.fillText(p.icon,sx+20,cy2+29);
+        txt(p.label,sx+48,cy2+29,11,isS?'600':'400',isS?p.color:TEXT);
+        if(isS){
+          rr(sx+sw-28,cy2+15,16,16,8,p.color);
+          txt('✓',sx+sw-21,cy2+27,10,'700',WHITE,'center');
+        }
+      });
+
+      // CTA
+      rr(sx+12,sy+sh-48,sw-24,36,10,BLUE);
+      txt('Continue →',cx,sy+sh-24,12,'600',WHITE,'center');
+
+      ctx.globalAlpha=1;
+    }
+
+    // Scene 1: Dashboard
+    function drawDashboard(t, hlCard){
+      var sx=PSX(),sy=PSY(),sw=PSW(),sh=PSH(),cx=PCX();
+      var alpha = ep(t,30);
+      ctx.globalAlpha = alpha;
+
+      rr(sx,sy,sw,sh,20,BG);
+
+      // status bar
+      txt('9:41',sx+8,sy+14,9,'500',SLATE);
+      txt('⚡ 84%',sx+sw-8,sy+14,9,'400',SLATE,'right');
+
+      // greeting banner
+      rr(sx,sy+16,sw,72,0,NAVY);
+      var gr = ctx.createRadialGradient(sx+sw-20,sy+16,4,sx+sw-20,sy+16,65);
+      gr.addColorStop(0,'rgba(59,142,212,0.3)');
+      gr.addColorStop(1,'rgba(59,142,212,0)');
+      ctx.fillStyle=gr;
+      ctx.fillRect(sx,sy+16,sw,72);
+      txt('Good morning, Patrick.',sx+12,sy+38,12,'600',WHITE);
+      txt('Monday · Indianapolis · 68°F',sx+12,sy+56,9,'300','rgba(255,255,255,0.65)');
+      txt('🌤',sx+sw-24,sy+50,16,'400',WHITE);
+
+      // summary card
+      rr(sx+8,sy+94,sw-16,50,10,NAVY2);
+      var gr2 = ctx.createLinearGradient(sx+8,sy+94,sx+sw-8,sy+144);
+      gr2.addColorStop(0,'rgba(59,142,212,0.18)');
+      gr2.addColorStop(1,'rgba(59,142,212,0)');
+      ctx.fillStyle=gr2; ctx.fill();
+      rr(sx+8,sy+94,sw-16,50,10,'');
+      txt("TODAY'S PLAN",sx+18,sy+110,8,'600','rgba(255,255,255,0.55)');
+      txt('Mild morning. Rain by 2pm.',sx+18,sy+126,11,'600',WHITE);
+      txt('Pack an umbrella before you leave.',sx+18,sy+140,9,'300','rgba(255,255,255,0.6)');
+
+      // action cards
+      var cards = [
+        {icon:'👕',label:'What to Wear',   body:'Light layer + waterproof jacket',  color:BLUE,  bg:BLUEL},
+        {icon:'🌤',label:'Outdoor Window', body:'Best time outside: 7–11am',        color:GREEN, bg:GREENL},
+        {icon:'🚗',label:'Commute Alert',  body:'Leave before noon, rain at 2pm',   color:AMBER, bg:AMBERL},
+        {icon:'💧',label:'Health Note',    body:'Humidity rising — stay hydrated',  color:RED,   bg:REDL},
+      ];
+
+      cards.forEach(function(c,i){
+        var cy2 = sy+152+i*46;
+        var hl  = i===hlCard;
+        rr(sx+8,cy2,sw-16,40,10,hl?c.bg:WHITE,hl?c.color:BORD,hl?1.5:1);
+        ctx.font='14px sans-serif';
+        ctx.textAlign='left';
+        ctx.fillText(c.icon,sx+16,cy2+25);
+        txt(c.label,sx+38,cy2+18,10,'600',hl?c.color:TEXT);
+        txt(c.body, sx+38,cy2+30,9,'400',SLATE);
+        // chevron
+        txt('›',sx+sw-20,cy2+24,14,'400',SLATE);
+      });
+
+      // bottom nav
+      rr(sx,sy+sh-38,sw,38,0,WHITE);
+      ctx.strokeStyle=BORD;ctx.lineWidth=1;
+      ctx.beginPath();ctx.moveTo(sx,sy+sh-38);ctx.lineTo(sx+sw,sy+sh-38);ctx.stroke();
+      var navIcons=['🏠','📅','⚙️'];
+      navIcons.forEach(function(ic,i){
+        ctx.globalAlpha = alpha*(i===0?1:0.35);
+        ctx.font='15px sans-serif';
+        ctx.textAlign='center';
+        ctx.fillText(ic, sx+sw/6+i*(sw/3), sy+sh-14);
+      });
+      ctx.globalAlpha=1;
+    }
+
+    // Scene 2: Card highlight scroll
+    function drawCardScroll(t){
+      var hl = Math.floor(cl(t/50,0,3.99));
+      drawDashboard(Math.min(t+30,60), hl);
+    }
+
+    // Scene 3: Detail expanded
+    function drawDetail(t){
+      var sx=PSX(),sy=PSY(),sw=PSW(),sh=PSH(),cx=PCX();
+      ctx.globalAlpha = ep(t,25);
+
+      rr(sx,sy,sw,sh,20,BG);
+
+      // back
+      txt('← Back',sx+10,sy+22,10,'500',BLUE);
+
+      // expanded card
+      var cardH = Math.round(lp(40, sh*0.52, ep(t,35)));
+      rr(sx+8,sy+32,sw-16,cardH,12,BLUEL,BLUE,1.5);
+      ctx.font='20px sans-serif';ctx.textAlign='left';
+      ctx.fillText('👕',sx+18,sy+62);
+      txt('What to Wear',sx+46,sy+58,13,'600',TEXT);
+      txt('Personalized for your routine',sx+18,sy+76,9,'300',SLATE);
+
+      if(t>22){
+        ctx.globalAlpha = ep(t,25)*ep(t-22,25);
+        txt('Light jacket + waterproof layer.',sx+18,sy+100,11,'400',TEXT);
+        txt('Temp drops to 58°F by evening.',sx+18,sy+116,9,'300',SLATE);
+        txt('Rain expected 2–4pm. Leave prepared.',sx+18,sy+130,9,'300',SLATE);
+        var items=['✓  Waterproof jacket','✓  Light base layer','✓  Closed-toe shoes'];
+        items.forEach(function(it,i){
+          txt(it,sx+18,sy+152+i*16,10,'500',BLUE);
+        });
+        ctx.globalAlpha=1;
+      }
+
+      if(t>45){
+        var fa = ep(t-45,25);
+        ctx.globalAlpha=fa;
+        txt('Hourly Rain Chance',sx+12,sy+sh*0.6,9,'600',TEXT);
+        var hours=['7am','9am','11am','1pm','3pm','5pm'];
+        var precip=[0,0,8,25,72,45];
+        hours.forEach(function(h,i){
+          var bx = sx+12+i*((sw-24)/6);
+          var maxH = 24;
+          var barH = Math.round(precip[i]/100*maxH)+4;
+          var barY = sy+sh*0.6+10+(maxH-barH);
+          rr(bx,barY,13,barH,3,precip[i]>30?BLUE:'rgba(59,142,212,0.25)');
+          txt(h,bx+6,sy+sh*0.6+42,7,'400',SLATE,'center');
+          txt(precip[i]+'%',bx+6,sy+sh*0.6+54,7,'600',precip[i]>30?BLUE:SLATE,'center');
+        });
+        ctx.globalAlpha=1;
+      }
+
+      // action button
+      rr(sx+12,sy+sh-48,sw-24,36,10,BLUE);
+      txt('Got it — I\'m prepared',cx,sy+sh-24,11,'600',WHITE,'center');
+
+      ctx.globalAlpha=1;
+    }
+
+    // ── MAIN LOOP ──
+    function draw(){
+      var w=W(), h=H();
+      ctx.clearRect(0,0,w,h);
+
+      // dark bg
+      var bg=ctx.createLinearGradient(0,0,w,h);
+      bg.addColorStop(0,'#08192a');
+      bg.addColorStop(1,'#0d2540');
+      ctx.fillStyle=bg;
+      ctx.fillRect(0,0,w,h);
+
+      // subtle dots pattern
+      ctx.fillStyle='rgba(59,142,212,0.07)';
+      for(var xi=0;xi<w;xi+=32){
+        for(var yi=0;yi<h;yi+=32){
+          ctx.beginPath();
+          ctx.arc(xi,yi,1.5,0,Math.PI*2);
+          ctx.fill();
+        }
+      }
+
+      // scene label pill
+      var labels=['Onboarding','Dashboard','Action Cards','Card Detail'];
+      rr(w/2-44,12,88,22,11,'rgba(59,142,212,0.18)');
+      txt(labels[sceneIdx],w/2,27,9,'600',BLUE,'center');
+
+      // progress dots
+      for(var di=0;di<4;di++){
+        rr(w/2-36+di*24,h-20,16,6,3,di===sceneIdx?BLUE:'rgba(255,255,255,0.18)');
+      }
+
+      // phone shell + clip
+      drawPhoneShell();
+      clipScreen();
+
+      switch(sceneIdx){
+        case 0: drawOnboarding(sceneT); break;
+        case 1: drawDashboard(sceneT,-1); break;
+        case 2: drawCardScroll(sceneT); break;
+        case 3: drawDetail(sceneT); break;
+      }
+
+      ctx.restore(); // unclip
+
+      sceneT++;
+      if(sceneT >= SCENE_DUR[sceneIdx]){
+        sceneIdx=(sceneIdx+1)%4;
+        sceneT=0;
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded', initDemo);
+  } else {
+    initDemo();
+  }
+})();
 </script>
 
 </body>
